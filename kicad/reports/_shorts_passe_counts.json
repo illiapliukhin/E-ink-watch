@@ -1,0 +1,96 @@
+{
+  "timestamp": "2026-09-18 14:18:58",
+  "drc_before": 790,
+  "shorting_before": 63,
+  "drc_after": 769,
+  "shorting_after": 52,
+  "delta_shorting": -11,
+  "delta_drc": -21,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0,
+    "GND_VSYS": 0
+  },
+  "fixes": {
+    "SWDCLK_POGO": "east@y=105.50 to x=95.00 then south (cleared 3V3/VBAT/3V3_DISP cluster)",
+    "SWDIO_stub": "deleted stub into J_STRAP_L north MP",
+    "J_STRAP_L_MP": "north MP 1.8x2.2\u21921.0x1.4 @85.70,104.65 (clear SW_DBG)",
+    "R1": "west \u22120.50 (clear U1 SWD pads)",
+    "L_EPD_RST": "F corridor y=97.80 then 96.90 (clear 3V3_DISP@98.25)",
+    "nRESET": "stub truncated + north jog to 91.62 (clear SWDCLK@x=89.08)",
+    "BTN3": "B.Cu @y=109.15 (clear via forest @108.4/109.4)",
+    "R_EPD_MOSI": "via 116.20,98.60\u2192115.90,99.00 (clear J_STRAP_R pad1 3V3_DISP)"
+  },
+  "reverts": [
+    "Pass-E bulk (CS/DC/RST+footprints) \u2192 3V3\u2194GND + GND\u2194VSYS; shorting 63\u219272",
+    "L DC B rebuild y=101 \u2192 shorting up",
+    "R DC x rebuild/nudge \u2192 GND\u2194VSYS@via(111.31,102.9)",
+    "MAIN CS/MOSI/SCK nudges \u2192 shorting up or no gain",
+    "R_LSCTRL \u22120.55/\u22120.30 \u2192 3V3\u2194GND or no BTN3 pad-pad clear",
+    "SW3 +0.45 \u2192 shorting up",
+    "L RST y=97.40 \u2192 RST\u2194GND up"
+  ],
+  "4L": true,
+  "seal_vias_in_pogo_rect": 0,
+  "SW_DBG_nets": [
+    "<none>",
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "latent_GND_via_111_31_102_9": "PRESENT (untouched)",
+  "note": "Never deleted GND copper; power priority held at 0; separate-process pcbnew edit pattern",
+  "remaining_top": [
+    {
+      "3V3|VBUS": 5
+    },
+    {
+      "PMID|VSYS": 5
+    },
+    {
+      "EPD_RST|GND": 3
+    },
+    {
+      "3V3|CD": 3
+    },
+    {
+      "3V3_DISP|VSYS": 2
+    },
+    {
+      "GND|PMIC_INT": 2
+    },
+    {
+      "PMIC_INT|VBAT": 2
+    },
+    {
+      "GND|PMID": 2
+    },
+    {
+      "3V3|LSCTRL": 2
+    },
+    {
+      "3V3|BTN3": 2
+    },
+    {
+      "3V3_DISP|PMID": 2
+    },
+    {
+      "GND|IPRETERM": 2
+    }
+  ],
+  "archive": "/workspace/e-ink-watch-kicad-shorts-passe.tar.gz"
+}

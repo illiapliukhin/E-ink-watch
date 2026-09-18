@@ -1,0 +1,122 @@
+{
+  "before": 12,
+  "after": 12,
+  "drc_before": 596,
+  "drc_after": 595,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "fps": {
+    "R_ISET": [
+      109.2,
+      103.5
+    ],
+    "C_LDO": [
+      113.5,
+      106.8
+    ],
+    "C_SYS": [
+      112.8,
+      104.0
+    ],
+    "U2": [
+      111.0,
+      106.0
+    ],
+    "R_ILIM": [
+      114.8,
+      106.15
+    ],
+    "C_VINLS": [
+      112.8,
+      105.8
+    ],
+    "C_PMID": [
+      113.8,
+      105.25
+    ],
+    "R_IPRETERM": [
+      114.8,
+      102.9
+    ]
+  },
+  "C_PMID_dist_A3_mm": 2.321,
+  "C_LDO_pad2": [
+    113.5,
+    106.32
+  ],
+  "J_STRAP_R_MP": [
+    114.0,
+    104.65,
+    1.2,
+    2.0
+  ],
+  "copper": {
+    "ILIM": 7,
+    "PMID": 8,
+    "IPRETERM": 5,
+    "ISET": 0
+  },
+  "copper0": {
+    "ILIM": 7,
+    "PMID": 8,
+    "IPRETERM": 5,
+    "ISET": 0
+  },
+  "top": [
+    "3V3_DISP|VSYS:2",
+    "GND|PMID:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "GND|IPRETERM:1",
+    "ILIM|TS:1",
+    "SWDCLK|nRESET:1",
+    "IPRETERM|VSYS:1"
+  ],
+  "top0": [
+    "3V3_DISP|VSYS:2",
+    "GND|PMID:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "ILIM|TS:1",
+    "GND|IPRETERM:1",
+    "IPRETERM|VSYS:1",
+    "SWDCLK|nRESET:1"
+  ],
+  "kept": [],
+  "blocked": [
+    "C_LDO shift",
+    "J_STRAP_R MP ease (mechanical or DRC)",
+    "dogbones fanout",
+    "ISET B.Cu west of 109.2",
+    "C_VINLS\u2192PMID stitch"
+  ],
+  "I_peak_A": 0.5,
+  "widths_mm": {
+    "VBUS": 0.4,
+    "PMID": "0.40",
+    "VSYS": 0.45,
+    "ILIM": 0.15,
+    "Signal": 0.15
+  },
+  "layers": 4,
+  "VBUS_spine_x": [
+    110.6,
+    110.6,
+    105.7
+  ],
+  "U2_rot": 0,
+  "seal_vias_note": "unchanged",
+  "archive": "/workspace/e-ink-watch-kicad/e-ink-watch-backups/passo_topo_20260918_170034_s12.kicad_pcb"
+}

@@ -1,0 +1,29 @@
+{
+  "drc_before": 947,
+  "drc_after": 930,
+  "shorting_before": 179,
+  "shorting_after": 158,
+  "delta_shorting": -21,
+  "GND_VBUS": 0,
+  "GND_VBAT": 0,
+  "GND_VBUS_POGO": 0,
+  "3V3_3V3_DISP": 0,
+  "3V3_DISP_GND": 0,
+  "3V3_GND": 0,
+  "GND_SW": 0,
+  "4L": true,
+  "SW_DBG_preserved": true,
+  "fixes": [
+    "BTN B.Cu y=110.8 mash",
+    "EPD y=85.2 stagger",
+    "3V3_DISP via@111.5",
+    "3V3 via dedup"
+  ],
+  "density_stuck": [
+    "GND\u2194VSYS C_SYS/C_VINLS/MP",
+    "SCL/SDA cluster",
+    "FH12 verticals",
+    "3V3\u2194VBUS R_VSYS/C2"
+  ],
+  "archive": "/workspace/e-ink-watch-kicad-drc-cont.tar.gz"
+}

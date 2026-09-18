@@ -1,0 +1,1829 @@
+[
+ {
+  "ref": "SW2",
+  "value": "BTN2",
+  "footprint": "Button_Switch_SMD:SW_SPST_B3U-1000P",
+  "x": 114.5,
+  "y": 111.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 21,
+    "net": "BTN2"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R_ISET",
+  "value": "4.02k",
+  "footprint": "R_0402_1005Metric",
+  "x": 109.8,
+  "y": 103.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 35,
+    "net": "ISET"
+   }
+  ]
+ },
+ {
+  "ref": "R_CD",
+  "value": "10k",
+  "footprint": "R_0402_1005Metric",
+  "x": 112.8,
+  "y": 107.9,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 33,
+    "net": "CD"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C_LDO",
+  "value": "1uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 113.5,
+  "y": 106.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   }
+  ]
+ },
+ {
+  "ref": "NTC_BAT",
+  "value": "10k_NTC",
+  "footprint": "R_0402_1005Metric",
+  "x": 108.2,
+  "y": 107.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 32,
+    "net": "TS"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C1",
+  "value": "100n",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 95.4,
+  "y": 102.2,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C4",
+  "value": "10u",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 103.0,
+  "y": 108.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R_SCL",
+  "value": "4.7k",
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "x": 111.5,
+  "y": 107.6,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 28,
+    "net": "SCL"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   }
+  ]
+ },
+ {
+  "ref": "C_SYS",
+  "value": "10uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 113.5,
+  "y": 104.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 5,
+    "net": "VSYS"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "SW1",
+  "value": "BTN1",
+  "footprint": "Button_Switch_SMD:SW_SPST_B3U-1000P",
+  "x": 109.2,
+  "y": 112.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 20,
+    "net": "BTN1"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "U2",
+  "value": "BQ25120A",
+  "footprint": "EInkWatch:Texas_YFP0025_DSBGA-25_2.5x2.5mm_Layout5x5_P0.4mm",
+  "x": 111.0,
+  "y": 106.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "A1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "A2",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 6,
+    "net": "VBUS"
+   },
+   {
+    "num": "A3",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "A4",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 34,
+    "net": "SW"
+   },
+   {
+    "num": "A5",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "B1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 4,
+    "net": "VBAT"
+   },
+   {
+    "num": "B2",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 4,
+    "net": "VBAT"
+   },
+   {
+    "num": "B3",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "B4",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "B5",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 5,
+    "net": "VSYS"
+   },
+   {
+    "num": "C1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 35,
+    "net": "ISET"
+   },
+   {
+    "num": "C2",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 36,
+    "net": "ILIM"
+   },
+   {
+    "num": "C3",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 32,
+    "net": "TS"
+   },
+   {
+    "num": "C4",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "C5",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "D1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 37,
+    "net": "IPRETERM"
+   },
+   {
+    "num": "D2",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 29,
+    "net": "PMIC_INT"
+   },
+   {
+    "num": "D3",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "D4",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "D5",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "E1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "E2",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 33,
+    "net": "CD"
+   },
+   {
+    "num": "E3",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 38,
+    "net": "LSCTRL"
+   },
+   {
+    "num": "E4",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 27,
+    "net": "SDA"
+   },
+   {
+    "num": "E5",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 28,
+    "net": "SCL"
+   }
+  ]
+ },
+ {
+  "ref": "R_TS",
+  "value": "5.1k",
+  "footprint": "R_0402_1005Metric",
+  "x": 108.2,
+  "y": 107.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 6,
+    "net": "VBUS"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 32,
+    "net": "TS"
+   }
+  ]
+ },
+ {
+  "ref": "R_ILIM",
+  "value": "2.0k",
+  "footprint": "R_0402_1005Metric",
+  "x": 110.8,
+  "y": 103.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 36,
+    "net": "ILIM"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "J_STRAP_L",
+  "value": "STRAP_L",
+  "footprint": "Connector_FFC-FPC:Hirose_FH12-10S-0.5SH_1x10-1MP_P0.50mm_Horizontal",
+  "x": 85.0,
+  "y": 100.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "3",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 8,
+    "net": "EPD_MOSI"
+   },
+   {
+    "num": "4",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 7,
+    "net": "EPD_SCK"
+   },
+   {
+    "num": "5",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 12,
+    "net": "EPD_CS_L"
+   },
+   {
+    "num": "6",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 9,
+    "net": "EPD_DC"
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 10,
+    "net": "EPD_RST"
+   },
+   {
+    "num": "8",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 15,
+    "net": "EPD_BUSY_L"
+   },
+   {
+    "num": "9",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "10",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R1",
+  "value": "10k",
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "x": 94.8,
+  "y": 95.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 19,
+    "net": "nRESET"
+   }
+  ]
+ },
+ {
+  "ref": "D_TVS_VBUS",
+  "value": "PESD5V0S1U",
+  "footprint": "D_SOD-323",
+  "x": 89.2,
+  "y": 112.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 39,
+    "net": "VBUS_POGO"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "J_SWD",
+  "value": "SWD",
+  "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical",
+  "x": 84.0,
+  "y": 108.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "thru_hole",
+    "shape": "rect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "thru_hole",
+    "shape": "circle",
+    "net_id": 17,
+    "net": "SWDIO"
+   },
+   {
+    "num": "3",
+    "type": "thru_hole",
+    "shape": "circle",
+    "net_id": 18,
+    "net": "SWDCLK"
+   },
+   {
+    "num": "4",
+    "type": "thru_hole",
+    "shape": "circle",
+    "net_id": 19,
+    "net": "nRESET"
+   },
+   {
+    "num": "5",
+    "type": "thru_hole",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R_SDA",
+  "value": "4.7k",
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "x": 109.5,
+  "y": 107.6,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 27,
+    "net": "SDA"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   }
+  ]
+ },
+ {
+  "ref": "C_VINLS",
+  "value": "1uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 113.5,
+  "y": 105.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R_LSCTRL",
+  "value": "10k",
+  "footprint": "R_0402_1005Metric",
+  "x": 113.8,
+  "y": 107.9,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 38,
+    "net": "LSCTRL"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   }
+  ]
+ },
+ {
+  "ref": "C_PMID",
+  "value": "4.7uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 111.0,
+  "y": 103.9,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 30,
+    "net": "PMID"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C3",
+  "value": "10u",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 97.0,
+  "y": 108.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C2",
+  "value": "100n",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 104.6,
+  "y": 102.2,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "C_BAT",
+  "value": "1uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 108.6,
+  "y": 105.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 4,
+    "net": "VBAT"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "FB1",
+  "value": "BLM18PG121SN1",
+  "footprint": "Inductor_SMD:L_0603_1608Metric",
+  "x": 105.0,
+  "y": 112.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 39,
+    "net": "VBUS_POGO"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 6,
+    "net": "VBUS"
+   }
+  ]
+ },
+ {
+  "ref": "C_IN",
+  "value": "1uF",
+  "footprint": "Capacitor_SMD:C_0402_1005Metric",
+  "x": 108.6,
+  "y": 104.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 6,
+    "net": "VBUS"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "SW3",
+  "value": "BTN3",
+  "footprint": "Button_Switch_SMD:SW_SPST_B3U-1000P",
+  "x": 116.5,
+  "y": 108.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 22,
+    "net": "BTN3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R_VSYS",
+  "value": "0R",
+  "footprint": "R_0603_1608Metric",
+  "x": 107.5,
+  "y": 103.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 5,
+    "net": "VSYS"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   }
+  ]
+ },
+ {
+  "ref": "U1",
+  "value": "MDBT50Q-1MV2",
+  "footprint": "RF_Module:Raytac_MDBT50Q",
+  "x": 100.0,
+  "y": 93.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "3",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "4",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "5",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "6",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "8",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "9",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 7,
+    "net": "EPD_SCK"
+   },
+   {
+    "num": "10",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 15,
+    "net": "EPD_BUSY_L"
+   },
+   {
+    "num": "11",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "12",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "13",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 14,
+    "net": "EPD_BUSY_MAIN"
+   },
+   {
+    "num": "14",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 16,
+    "net": "EPD_BUSY_R"
+   },
+   {
+    "num": "15",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "16",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 10,
+    "net": "EPD_RST"
+   },
+   {
+    "num": "17",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "18",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "19",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 9,
+    "net": "EPD_DC"
+   },
+   {
+    "num": "20",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 8,
+    "net": "EPD_MOSI"
+   },
+   {
+    "num": "21",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "22",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 11,
+    "net": "EPD_CS_MAIN"
+   },
+   {
+    "num": "23",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 12,
+    "net": "EPD_CS_L"
+   },
+   {
+    "num": "24",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 13,
+    "net": "EPD_CS_R"
+   },
+   {
+    "num": "25",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "26",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "27",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 27,
+    "net": "SDA"
+   },
+   {
+    "num": "28",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "29",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 28,
+    "net": "SCL"
+   },
+   {
+    "num": "30",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "31",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "32",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "33",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "34",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "35",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "36",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "37",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "38",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "39",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 29,
+    "net": "PMIC_INT"
+   },
+   {
+    "num": "40",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 19,
+    "net": "nRESET"
+   },
+   {
+    "num": "41",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "42",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "43",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "44",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "45",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "46",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "47",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "48",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "49",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "50",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 21,
+    "net": "BTN2"
+   },
+   {
+    "num": "51",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 17,
+    "net": "SWDIO"
+   },
+   {
+    "num": "52",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "53",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 18,
+    "net": "SWDCLK"
+   },
+   {
+    "num": "54",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "55",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "56",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "57",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "58",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "59",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "60",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 22,
+    "net": "BTN3"
+   },
+   {
+    "num": "61",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 20,
+    "net": "BTN1"
+   }
+  ]
+ },
+ {
+  "ref": "SW_DBG",
+  "value": "PROG EN",
+  "footprint": "Button_Switch_SMD:SW_DIP_SPSTx03_Slide_Copal_CVS-03xB_W5.9mm_P1mm",
+  "x": 90.5,
+  "y": 105.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 17,
+    "net": "SWDIO"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 18,
+    "net": "SWDCLK"
+   },
+   {
+    "num": "3",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 19,
+    "net": "nRESET"
+   },
+   {
+    "num": "4",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 25,
+    "net": "nRESET_POGO"
+   },
+   {
+    "num": "5",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 24,
+    "net": "SWDCLK_POGO"
+   },
+   {
+    "num": "6",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 23,
+    "net": "SWDIO_POGO"
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 0,
+    "net": ""
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 0,
+    "net": ""
+   }
+  ]
+ },
+ {
+  "ref": "J_STRAP_R",
+  "value": "STRAP_R",
+  "footprint": "Connector_FFC-FPC:Hirose_FH12-10S-0.5SH_1x10-1MP_P0.50mm_Horizontal",
+  "x": 115.0,
+  "y": 100.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "3",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 8,
+    "net": "EPD_MOSI"
+   },
+   {
+    "num": "4",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 7,
+    "net": "EPD_SCK"
+   },
+   {
+    "num": "5",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 13,
+    "net": "EPD_CS_R"
+   },
+   {
+    "num": "6",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 9,
+    "net": "EPD_DC"
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 10,
+    "net": "EPD_RST"
+   },
+   {
+    "num": "8",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 16,
+    "net": "EPD_BUSY_R"
+   },
+   {
+    "num": "9",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "10",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "R2",
+  "value": "10k",
+  "footprint": "Resistor_SMD:R_0402_1005Metric",
+  "x": 105.2,
+  "y": 95.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 2,
+    "net": "3V3"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 11,
+    "net": "EPD_CS_MAIN"
+   }
+  ]
+ },
+ {
+  "ref": "J_BAT",
+  "value": "BAT",
+  "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+  "x": 100.0,
+  "y": 115.8,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "thru_hole",
+    "shape": "rect",
+    "net_id": 4,
+    "net": "VBAT"
+   },
+   {
+    "num": "2",
+    "type": "thru_hole",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "L_SYS",
+  "value": "2.2uH",
+  "footprint": "L_0805_2012Metric",
+  "x": 114.8,
+  "y": 104.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 34,
+    "net": "SW"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 5,
+    "net": "VSYS"
+   }
+  ]
+ },
+ {
+  "ref": "R_IPRETERM",
+  "value": "0R",
+  "footprint": "R_0402_1005Metric",
+  "x": 112.0,
+  "y": 103.5,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 37,
+    "net": "IPRETERM"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "roundrect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "J_DISP_MAIN",
+  "value": "DISP_MAIN",
+  "footprint": "Connector_FFC-FPC:Hirose_FH12-10S-0.5SH_1x10-1MP_P0.50mm_Horizontal",
+  "x": 100.0,
+  "y": 85.0,
+  "layer": "F.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "2",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "3",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 8,
+    "net": "EPD_MOSI"
+   },
+   {
+    "num": "4",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 7,
+    "net": "EPD_SCK"
+   },
+   {
+    "num": "5",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 11,
+    "net": "EPD_CS_MAIN"
+   },
+   {
+    "num": "6",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 9,
+    "net": "EPD_DC"
+   },
+   {
+    "num": "7",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 10,
+    "net": "EPD_RST"
+   },
+   {
+    "num": "8",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 14,
+    "net": "EPD_BUSY_MAIN"
+   },
+   {
+    "num": "9",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "10",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 3,
+    "net": "3V3_DISP"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   },
+   {
+    "num": "MP",
+    "type": "smd",
+    "shape": "rect",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "TP3",
+  "value": "SWDIO",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 99.0,
+  "y": 114.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 23,
+    "net": "SWDIO_POGO"
+   }
+  ]
+ },
+ {
+  "ref": "TP4",
+  "value": "SWDCLK",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 93.0,
+  "y": 111.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 24,
+    "net": "SWDCLK_POGO"
+   }
+  ]
+ },
+ {
+  "ref": "TP1",
+  "value": "VCHG",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 93.0,
+  "y": 114.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 39,
+    "net": "VBUS_POGO"
+   }
+  ]
+ },
+ {
+  "ref": "TP5",
+  "value": "nRESET",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 96.0,
+  "y": 111.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 25,
+    "net": "nRESET_POGO"
+   }
+  ]
+ },
+ {
+  "ref": "TP2",
+  "value": "GND",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 96.0,
+  "y": 114.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 1,
+    "net": "GND"
+   }
+  ]
+ },
+ {
+  "ref": "TP6",
+  "value": "OPT",
+  "footprint": "TestPoint:Pogo_Pad_D1.5mm",
+  "x": 99.0,
+  "y": 111.0,
+  "layer": "B.Cu",
+  "pads": [
+   {
+    "num": "1",
+    "type": "smd",
+    "shape": "circle",
+    "net_id": 26,
+    "net": "OPT"
+   }
+  ]
+ }
+]

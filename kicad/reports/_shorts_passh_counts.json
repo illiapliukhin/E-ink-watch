@@ -1,0 +1,34 @@
+{
+  "before_shorting": 34,
+  "after_shorting": 30,
+  "before_drc": 732,
+  "after_drc": 690,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "latent_gnd_vsys": false,
+  "top": [
+    "PMID\u2194VSYS\u00d75",
+    "PMIC_INT\u2194VBAT\u00d73",
+    "3V3_DISP\u2194VSYS\u00d72",
+    "PMID\u2194VBUS\u00d72",
+    "GND\u2194PMID\u00d72",
+    "3V3\u2194LSCTRL\u00d72",
+    "GND\u2194IPRETERM\u00d72",
+    "3V3\u2194SCL\u00d72",
+    "3V3_DISP\u2194PMID\u00d72",
+    "EPD_DC\u2194EPD_MOSI\u00d71",
+    "ISET\u2194VBAT\u00d71",
+    "SW\u2194VSYS\u00d71",
+    "VBUS\u2194VSYS\u00d71",
+    "GND\u2194ISET\u00d71"
+  ],
+  "layers": 4
+}

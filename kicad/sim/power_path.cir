@@ -1,0 +1,32 @@
+* E Ink Watch — simplified POWER-path only (NOT full nRF52840 / RF SPICE)
+* Purpose: show VSYS under pulsed E Ink refresh with ideal LiPo + DISP_EN switch.
+* PMIC (BQ25120A) modeled as: battery ESR + always-on Iq + ideal switch.
+* No digital/RF model of nRF52840 — unavailable / not faked.
+
+.title E Ink Watch power path (LiPo -> switch -> pulsed E Ink)
+
+Vlipo n_bat 0 DC 3.8
+R_esr n_bat n_vsys 0.08
+C_sys n_vsys 0 47u IC=3.8
+I_q n_vsys 0 DC 15u
+
+S_disp n_vsys n_disp n_ctrl 0 SWDISP
+.model SWDISP SW(Vt=0.5 Von=0.1 Voff=1Meg)
+R_eink n_disp 0 380
+C_disp n_disp 0 1u
+V_ctrl n_ctrl 0 PULSE(0 1 5 10u 10u 1 60)
+
+.tran 1m 180 0 1m
+.control
+  run
+  wrdata power_path_raw.dat v(n_vsys) v(n_disp) i(Vlipo)
+  * Spot-check at idle and mid-pulse (t≈5.5 s)
+  print tran.v(n_vsys)[0]
+  meas tran vsys_idle FIND v(n_vsys) AT=1
+  meas tran vsys_pulse FIND v(n_vsys) AT=5.5
+  meas tran vdisp_pulse FIND v(n_disp) AT=5.5
+  meas tran ibat_idle FIND i(Vlipo) AT=1
+  meas tran ibat_pulse FIND i(Vlipo) AT=5.5
+  echo SIM_OK
+.endc
+.end

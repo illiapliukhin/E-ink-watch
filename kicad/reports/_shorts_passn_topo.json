@@ -1,0 +1,97 @@
+{
+  "before": 14,
+  "after": 12,
+  "drc_after": 596,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "fps": {
+    "R_ISET": [
+      109.2,
+      103.5
+    ],
+    "C_SYS": [
+      112.8,
+      104.0
+    ],
+    "U2": [
+      111.0,
+      106.0
+    ],
+    "R_ILIM": [
+      114.8,
+      106.15
+    ],
+    "C_VINLS": [
+      112.8,
+      105.8
+    ],
+    "C_PMID": [
+      113.8,
+      105.25
+    ],
+    "R_IPRETERM": [
+      114.8,
+      102.9
+    ]
+  },
+  "C_PMID_dist_A3_mm": 2.321,
+  "top": [
+    "3V3_DISP|VSYS:2",
+    "GND|PMID:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "GND|IPRETERM:1",
+    "ILIM|TS:1",
+    "SWDCLK|nRESET:1",
+    "IPRETERM|VSYS:1"
+  ],
+  "kept": [
+    "R_ILIM (112.5,103.5)->(114.8,106.15) south +2.65mm east +2.3mm",
+    "C_PMID (112.4,103.85)->(113.8,105.25) south +1.40mm east +1.4mm",
+    "R_IPRETERM (113.8,102.8)->(114.8,102.9) east nudge",
+    "ILIM pad-pad vs PMID CLEARED (was residual 1)",
+    "ILIM via west 110.90->110.75 (TS residual 2->1)",
+    "trim fat 3V3_DISP F @y=106 (VSYS 3->2)"
+  ],
+  "blocked": [
+    "ISET B.Cu west of x=109.2: IPRETERM/VBAT/GND mash",
+    "C_VINLS dedicated PMID stitch: 3V3_DISP/C_LDO corridor",
+    "Full ILIM/PMID/IPRETERM copper retarget: raises shorts or power (3V3_DISP|GND / GND|SW)",
+    "ILIM\u2194TS final 1: TS diagonal vs C2 stub \u2014 ortho rebuild collateral",
+    "VBUS west of x=110: still blocked (left @x=110.6 w=0.40)"
+  ],
+  "connectivity_note": "ILIM/PMID/IPRETERM footprints moved; some fanout copper still at pre-move anchors \u2014 reconnect needs U2 rotate or C_LDO/J_STRAP_MP clearance",
+  "I_peak_A": 0.5,
+  "widths_mm": {
+    "VBUS": 0.4,
+    "PMID": "0.40-0.45",
+    "VSYS": 0.45,
+    "ILIM": 0.15,
+    "Signal": 0.15
+  },
+  "VBUS_x": 110.6,
+  "layers": 4,
+  "south_dy_mm": {
+    "R_ILIM": 2.65,
+    "C_PMID": 1.4
+  },
+  "preserve": {
+    "4L": true,
+    "SW_DBG_SWD_only": true,
+    "pogo": true,
+    "seal_vias": 0,
+    "no_GND_copper_delete": true,
+    "no_U2_rotate": true
+  },
+  "archive": "e-ink-watch-backups/passn_topo_20260918_161511_s12.kicad_pcb"
+}

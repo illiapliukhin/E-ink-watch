@@ -1,0 +1,28 @@
+{
+  "shorting": 17,
+  "drc": 565,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "top": [
+    "3V3_DISP|VSYS:2",
+    "GND|IPRETERM:2",
+    "PMIC_INT|VBAT:2",
+    "EPD_DC|EPD_MOSI:2",
+    "CD|GND:2",
+    "VBUS|VSYS:1",
+    "GND|SDA:1",
+    "BTN2|OPT:1",
+    "SW|VSYS:1",
+    "ILIM|ISET:1",
+    "ISET|PMID:1",
+    "ILIM|PMID:1"
+  ]
+}

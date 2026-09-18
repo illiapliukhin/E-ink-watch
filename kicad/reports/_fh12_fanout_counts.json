@@ -1,0 +1,73 @@
+{
+  "timestamp": "2026-09-18 13:58:47",
+  "drc_before": 897,
+  "shorting_before": 123,
+  "drc_after": 832,
+  "shorting_after": 86,
+  "delta_shorting": -37,
+  "delta_drc": -65,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0,
+    "GND_VSYS": 0
+  },
+  "fh12": {
+    "EPD_BUSY_L_EPD_CS_L": {
+      "before": 3,
+      "after": 0
+    },
+    "EPD_CS_L_EPD_SCK": {
+      "before": 2,
+      "after": 0
+    },
+    "EPD_BUSY_L_EPD_SCK": {
+      "before": 2,
+      "after": 0
+    },
+    "EPD_BUSY_R_EPD_CS_R": {
+      "before": 2,
+      "after": 0
+    },
+    "EPD_CS_R_EPD_DC": {
+      "before": 2,
+      "after": 1
+    },
+    "EPD_DC_EPD_RST": {
+      "before": 2,
+      "after": 1
+    }
+  },
+  "signal": {
+    "BTN1_BTN3": {
+      "before": 2,
+      "after": 0
+    },
+    "nRESET_PMIC_INT": {
+      "before": 2,
+      "after": 0
+    }
+  },
+  "4L": true,
+  "seal_vias": 0,
+  "SW_DBG_nets": [
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "archive": "/workspace/e-ink-watch-kicad-fh12-fanout.tar.gz",
+  "note": "Pass-C MAIN channel nudges flipped latent GND\u2194VSYS \u2014 reverted; never delete GND"
+}

@@ -1,0 +1,189 @@
+17:00:22: Debug: Adding duplicate image handler for 'PNG file'
+17:00:22: Debug: Adding duplicate image handler for 'JPEG file'
+17:00:22: Debug: Adding duplicate image handler for 'TIFF file'
+17:00:22: Debug: Adding duplicate image handler for 'GIF file'
+17:00:22: Debug: Adding duplicate image handler for 'PNM file'
+17:00:22: Debug: Adding duplicate image handler for 'PCX file'
+17:00:22: Debug: Adding duplicate image handler for 'IFF file'
+17:00:22: Debug: Adding duplicate image handler for 'Windows icon file'
+17:00:22: Debug: Adding duplicate image handler for 'Windows cursor file'
+17:00:22: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+17:00:22: Debug: Adding duplicate image handler for 'TGA file'
+17:00:22: Debug: Adding duplicate image handler for 'XPM file'
+17:00:34: Debug: Adding duplicate image handler for 'PNG file'
+17:00:34: Debug: Adding duplicate image handler for 'JPEG file'
+17:00:34: Debug: Adding duplicate image handler for 'TIFF file'
+17:00:34: Debug: Adding duplicate image handler for 'GIF file'
+17:00:34: Debug: Adding duplicate image handler for 'PNM file'
+17:00:34: Debug: Adding duplicate image handler for 'PCX file'
+17:00:34: Debug: Adding duplicate image handler for 'IFF file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows icon file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'TGA file'
+17:00:34: Debug: Adding duplicate image handler for 'XPM file'
+17:00:34: Debug: Adding duplicate image handler for 'PNG file'
+17:00:34: Debug: Adding duplicate image handler for 'JPEG file'
+17:00:34: Debug: Adding duplicate image handler for 'TIFF file'
+17:00:34: Debug: Adding duplicate image handler for 'GIF file'
+17:00:34: Debug: Adding duplicate image handler for 'PNM file'
+17:00:34: Debug: Adding duplicate image handler for 'PCX file'
+17:00:34: Debug: Adding duplicate image handler for 'IFF file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows icon file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'TGA file'
+17:00:34: Debug: Adding duplicate image handler for 'XPM file'
+17:00:34: Debug: Adding duplicate image handler for 'PNG file'
+17:00:34: Debug: Adding duplicate image handler for 'JPEG file'
+17:00:34: Debug: Adding duplicate image handler for 'TIFF file'
+17:00:34: Debug: Adding duplicate image handler for 'GIF file'
+17:00:34: Debug: Adding duplicate image handler for 'PNM file'
+17:00:34: Debug: Adding duplicate image handler for 'PCX file'
+17:00:34: Debug: Adding duplicate image handler for 'IFF file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows icon file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+17:00:34: Debug: Adding duplicate image handler for 'TGA file'
+17:00:34: Debug: Adding duplicate image handler for 'XPM file'
+BASE 12 drc 596 distA3 2.321 C_LDO (113.5, 106.8) MP (114.0, 104.65, 1.2, 2.0)
+top0 [(('3V3_DISP', 'VSYS'), 2), (('GND', 'PMID'), 2), (('IPRETERM', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('PMID', 'SW'), 1), (('PMIC_INT', 'TS'), 1), (('ILIM', 'TS'), 1), (('GND', 'IPRETERM'), 1), (('IPRETERM', 'VSYS'), 1), (('SWDCLK', 'nRESET'), 1)]
+copper0 {'ILIM': 7, 'PMID': 8, 'IPRETERM': 5, 'ISET': 0}
+--- 01_cldo --- C_LDO->(113.8, 107.7) rem=3 pad2=(113.8, 107.22) distC5=2.343
+  short=26 power_ok=False top=[(('PMID', 'VBUS'), 3), (('PMID', 'SW'), 3), (('PMIC_INT', 'TS'), 2), (('3V3_DISP', 'VSYS'), 2), (('CD', 'PMIC_INT'), 2), (('3V3_DISP', 'GND'), 2), (('GND', 'PMID'), 2), (('3V3', 'GND'), 1), (('PMIC_INT', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1)]
+  REVERT
+--- 02_jstrap_mp --- MP eased (114.0,104.65)1.2x2.0 -> (114.7, 104.65)(1.0, 1.4)
+  short=14 power_ok=False top=[(('GND', 'SW'), 3), (('3V3_DISP', 'VSYS'), 2), (('IPRETERM', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('PMID', 'SW'), 1), (('PMIC_INT', 'TS'), 1), (('GND', 'IPRETERM'), 1), (('SWDCLK', 'nRESET'), 1), (('ILIM', 'TS'), 1), (('IPRETERM', 'VSYS'), 1)]
+  REVERT
+--- 03_dogbones --- dogbones rem_dead=1 rem_ipre=3 C_PMID=(113.32, 105.25) R_ILIM=(114.29, 106.15) R_IPT=(114.29, 102.9) vx=111.0
+  short=18 power_ok=False top=[(('PMID', 'SW'), 3), (('GND', 'IPRETERM'), 2), (('IPRETERM', 'VSYS'), 2), (('GND', 'PMID'), 2), (('IPRETERM', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('3V3_DISP', 'VSYS'), 1), (('PMIC_INT', 'TS'), 1), (('PMID', 'VSYS'), 1), (('SWDCLK', 'nRESET'), 1)]
+  REVERT
+--- 04_iset --- ISET B west x=109.00 C1=(110.2, 106.0) pad=(109.71, 103.5) rem=0
+  short=17 power_ok=True top=[(('GND', 'ISET'), 3), (('3V3_DISP', 'VSYS'), 2), (('IPRETERM', 'ISET'), 2), (('GND', 'PMID'), 2), (('ISET', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('PMID', 'SW'), 1), (('GND', 'IPRETERM'), 1), (('PMIC_INT', 'TS'), 1), (('SWDCLK', 'nRESET'), 1)]
+  REVERT
+--- 05_cvinls --- C_VINLS stitch B cvin=(112.8, 106.28) cpmid=(113.32, 105.25)
+  short=16 power_ok=True top=[(('3V3_DISP', 'PMID'), 3), (('3V3_DISP', 'VSYS'), 2), (('GND', 'PMID'), 2), (('IPRETERM', 'VBAT'), 1), (('PMID', 'SW'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('ILIM', 'PMID'), 1), (('PMIC_INT', 'TS'), 1), (('GND', 'IPRETERM'), 1), (('3V3_DISP', 'ILIM'), 1)]
+  REVERT
+ARCHIVE /workspace/e-ink-watch-kicad/e-ink-watch-backups/passo_topo_20260918_170034_s12.kicad_pcb
+FINAL {
+  "before": 12,
+  "after": 12,
+  "drc_before": 596,
+  "drc_after": 595,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "fps": {
+    "R_ISET": [
+      109.2,
+      103.5
+    ],
+    "C_LDO": [
+      113.5,
+      106.8
+    ],
+    "C_SYS": [
+      112.8,
+      104.0
+    ],
+    "U2": [
+      111.0,
+      106.0
+    ],
+    "R_ILIM": [
+      114.8,
+      106.15
+    ],
+    "C_VINLS": [
+      112.8,
+      105.8
+    ],
+    "C_PMID": [
+      113.8,
+      105.25
+    ],
+    "R_IPRETERM": [
+      114.8,
+      102.9
+    ]
+  },
+  "C_PMID_dist_A3_mm": 2.321,
+  "C_LDO_pad2": [
+    113.5,
+    106.32
+  ],
+  "J_STRAP_R_MP": [
+    114.0,
+    104.65,
+    1.2,
+    2.0
+  ],
+  "copper": {
+    "ILIM": 7,
+    "PMID": 8,
+    "IPRETERM": 5,
+    "ISET": 0
+  },
+  "copper0": {
+    "ILIM": 7,
+    "PMID": 8,
+    "IPRETERM": 5,
+    "ISET": 0
+  },
+  "top": [
+    "3V3_DISP|VSYS:2",
+    "GND|PMID:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "GND|IPRETERM:1",
+    "ILIM|TS:1",
+    "SWDCLK|nRESET:1",
+    "IPRETERM|VSYS:1"
+  ],
+  "top0": [
+    "3V3_DISP|VSYS:2",
+    "GND|PMID:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "ILIM|TS:1",
+    "GND|IPRETERM:1",
+    "IPRETERM|VSYS:1",
+    "SWDCLK|nRESET:1"
+  ],
+  "kept": [],
+  "blocked": [
+    "C_LDO shift",
+    "J_STRAP_R MP ease (mechanical or DRC)",
+    "dogbones fanout",
+    "ISET B.Cu west of 109.2",
+    "C_VINLS\u2192PMID stitch"
+  ],
+  "I_peak_A": 0.5,
+  "widths_mm": {
+    "VBUS": 0.4,
+    "PMID": "0.40",
+    "VSYS": 0.45,
+    "ILIM": 0.15,
+    "Signal": 0.15
+  },
+  "layers": 4,
+  "VBUS_spine_x": [
+    110.6,
+    110.6,
+    105.7
+  ],
+  "U2_rot": 0,
+  "seal_vias_note": "unchanged",
+  "archive": "/workspace/e-ink-watch-kicad/e-ink-watch-backups/passo_topo_20260918_170034_s12.kicad_pcb"
+}

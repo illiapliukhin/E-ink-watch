@@ -1,0 +1,17 @@
+{
+  "shorting": 21,
+  "pairs": {
+    "PMID|VSYS": 5,
+    "3V3_DISP|VSYS": 2,
+    "PMID|VBUS": 2,
+    "GND|PMID": 2,
+    "GND|IPRETERM": 2,
+    "3V3_DISP|PMID": 2,
+    "PMIC_INT|TS": 1,
+    "PMIC_INT|VBAT": 1,
+    "SW|VSYS": 1,
+    "ILIM|VBAT": 1,
+    "VBUS|VSYS": 1,
+    "ILIM|ISET": 1
+  }
+}

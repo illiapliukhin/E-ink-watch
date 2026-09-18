@@ -1,0 +1,1 @@
+SW2	BTN2	Button_Switch_SMD:SW_SPST_B3U-1000P	F.SilkS

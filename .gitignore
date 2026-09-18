@@ -1,0 +1,12 @@
+# KiCad / CAD churn
+*-backups/
+backups/
+*.kicad_pcb-bak
+*.sch-bak
+fp-info-cache
+__pycache__/
+*.pyc
+.DS_Store
+reports/_drc_*
+reports/_try_*
+tools/__pycache__/

@@ -1,0 +1,61 @@
+{
+  "timestamp": "2026-09-18 13:40:40 ",
+  "drc_before": 929,
+  "shorting_before": 157,
+  "GND_VSYS_before": 8,
+  "SCL_SDA_before": 10,
+  "drc_after": 903,
+  "shorting_after": 138,
+  "GND_VSYS_after": 0,
+  "SCL_SDA_after": 3,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0
+  },
+  "4L": true,
+  "SW_DBG_nets": [
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "seal_vias": 0,
+  "C_SYS": [
+    112.8,
+    104.0
+  ],
+  "C_VINLS": [
+    112.8,
+    105.8
+  ],
+  "MP_south": [
+    114.0,
+    1.2,
+    2.0
+  ],
+  "fixes": [
+    "deleted VSYS stub through C_SYS body",
+    "C_SYS dy=-0.80 clear C_VINLS.2 pad stack",
+    "J_STRAP_R south MP shrink+east 1.8x2.2\u21921.2x2.0 @x+0.40",
+    "SW corridor restored to y=104.5",
+    "VSYS corridor lowered to y=102.95 + jog west of U2.A5",
+    "GND via cleanup near C_SYS/C_VINLS/IPRETERM",
+    "SCL/SDA via cluster thinned (0.45 vias @0.9\u20131.36mm)"
+  ],
+  "delta_shorting": -19,
+  "delta_GND_VSYS": -8,
+  "archive": "/workspace/e-ink-watch-kicad-vsys-gnd.tar.gz"
+}

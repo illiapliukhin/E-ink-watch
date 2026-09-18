@@ -1,0 +1,6 @@
+# Pass-L PMIC topology calc notes
+I_peak: 0.5 A wearable charge class on VBUS/VBAT/PMID/VSYS
+Widths: VBUS 0.40 mm (west-of-110 @0.50 blocked by GND↔VBUS); PMID 0.40–0.50 + dual vias; VSYS B5 0.45; signals 0.15–0.18
+C_PMID @ (111.7, 103.85) ~1.5 mm from U2.A3 (datasheet-sane decoupling)
+R_IPRETERM/R_ILIM/R_ISET spread east/west of U2 north row
+No GND copper deleted; latent via moved 111.31,102.9 → 112.20,102.20

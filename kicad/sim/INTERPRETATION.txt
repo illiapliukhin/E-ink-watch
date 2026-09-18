@@ -1,0 +1,14 @@
+Power-path ngspice interpretation
+================================
+Model: ideal LiPo 3.8V + 80 mOhm ESR + 47uF + 15uA Iq + ideal DISP_EN switch + 380 Ohm E Ink (~10 mA).
+NOT a BQ25120A transistor-level model; NOT nRF52840 digital/RF SPICE.
+
+Results (180 s, 3 refresh pulses of 1 s / 60 s):
+- Idle battery current: ~15.0 uA (matches Iq)
+- Steady refresh current: ~12.75 mA (target ~10 mA)
+- Inrush peak at switch close: ~626 mA (charging C_disp 1uF) — expect real PMIC soft-start lower
+- VSYS sag during pulse: ~50.1 mV — negligible with 47uF + low ESR
+- Average I over 180 s: ~181.3 uA
+
+Conclusion: pulsed E Ink load is fine electrically at concept level; battery life is dominated by
+sleep Iq + BLE/RTC duty cycle + refresh rate — see battery_life.py / battery_life_out.txt.

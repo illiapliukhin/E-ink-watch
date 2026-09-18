@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "EInkWatch")(type "KiCad")(uri "${KIPRJMOD}/libraries/EInkWatch.pretty")(options "")(descr "BQ25120A YFP + Raytac copy"))
+)

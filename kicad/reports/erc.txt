@@ -1,0 +1,515 @@
+ERC report (2026-09-18T11:35:13+0300, Encoding UTF8)
+
+***** Sheet /
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(10.00 mm, 15.00 mm): Vertical Wire, length 50.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(12.00 mm, 15.00 mm): Label 'DISP_EN'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 30.00 mm): Horizontal Wire, length 220.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(22.00 mm, 48.00 mm): Vertical Wire, length 14.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(30.00 mm, 48.00 mm): Horizontal Wire, length 8.00 mm
+[hier_label_mismatch]: Sheet pin SCL has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 48.00 mm): Hierarchical Sheet Pin SCL
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(25.00 mm, 55.00 mm): Vertical Wire, length 15.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(30.00 mm, 55.00 mm): Horizontal Wire, length 5.00 mm
+[hier_label_mismatch]: Sheet pin SDA has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 55.00 mm): Hierarchical Sheet Pin SDA
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(10.00 mm, 65.00 mm): Horizontal Wire, length 20.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(22.00 mm, 62.00 mm): Horizontal Wire, length 98.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(24.00 mm, 62.00 mm): Label 'SCL'
+[hier_label_mismatch]: Sheet pin DISP_EN has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 65.00 mm): Hierarchical Sheet Pin DISP_EN
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(25.00 mm, 70.00 mm): Horizontal Wire, length 95.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(27.00 mm, 70.00 mm): Label 'SDA'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 80.00 mm): Vertical Wire, length 14.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 80.00 mm): Vertical Wire, length 50.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(30.00 mm, 80.00 mm): Horizontal Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin GND has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 80.00 mm): Hierarchical Sheet Pin GND
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(90.00 mm, 20.00 mm): Horizontal Wire, length 150.00 mm
+[hier_label_mismatch]: Sheet pin VBAT has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 90.00 mm): Hierarchical Sheet Pin VBAT
+[pin_not_connected]: Pin not connected
+    ; error
+    @(30.00 mm, 90.00 mm): Hierarchical Sheet Pin VBAT
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 94.00 mm): Horizontal Wire, length 100.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 94.00 mm): Vertical Wire, length 86.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(22.00 mm, 94.00 mm): Label 'GND'
+[multiple_net_names]: Both 3V3_DISP and GND are attached to the same items; 3V3_DISP will be used in the netlist
+    ; warning
+    @(95.00 mm, 20.00 mm): Label '3V3_DISP'
+    @(22.00 mm, 94.00 mm): Label 'GND'
+[label_dangling]: Label not connected to anything
+    ; error
+    @(95.00 mm, 20.00 mm): Label '3V3_DISP'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(80.00 mm, 60.00 mm): Horizontal Wire, length 35.00 mm
+[hier_label_mismatch]: Sheet pin PMIC_INT has no matching hierarchical label inside the sheet
+    ; error
+    @(80.00 mm, 60.00 mm): Hierarchical Sheet Pin PMIC_INT
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(15.00 mm, 100.00 mm): Horizontal Wire, length 15.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(85.00 mm, 60.00 mm): Label 'PMIC_INT'
+[hier_label_mismatch]: Sheet pin VBUS has no matching hierarchical label inside the sheet
+    ; error
+    @(30.00 mm, 100.00 mm): Hierarchical Sheet Pin VBUS
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(80.00 mm, 75.00 mm): Horizontal Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin 3V3_DISP has no matching hierarchical label inside the sheet
+    ; error
+    @(80.00 mm, 75.00 mm): Hierarchical Sheet Pin 3V3_DISP
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(80.00 mm, 85.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin 3V3 has no matching hierarchical label inside the sheet
+    ; error
+    @(80.00 mm, 85.00 mm): Hierarchical Sheet Pin 3V3
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(90.00 mm, 75.00 mm): Vertical Wire, length 55.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(80.00 mm, 95.00 mm): Horizontal Wire, length 30.00 mm
+[hier_label_mismatch]: Sheet pin VSYS has no matching hierarchical label inside the sheet
+    ; error
+    @(80.00 mm, 95.00 mm): Hierarchical Sheet Pin VSYS
+[label_dangling]: Label not connected to anything
+    ; error
+    @(85.00 mm, 95.00 mm): Label 'VSYS'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(115.00 mm, 60.00 mm): Vertical Wire, length 20.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(17.00 mm, 130.00 mm): Label 'VBUS'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(100.00 mm, 85.00 mm): Vertical Wire, length 25.00 mm
+[hier_label_mismatch]: Sheet pin SCL has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 62.00 mm): Hierarchical Sheet Pin SCL
+[hier_label_mismatch]: Sheet pin SDA has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 70.00 mm): Hierarchical Sheet Pin SDA
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(115.00 mm, 80.00 mm): Horizontal Wire, length 5.00 mm
+[hier_label_mismatch]: Sheet pin PMIC_INT has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 80.00 mm): Hierarchical Sheet Pin PMIC_INT
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(110.00 mm, 95.00 mm): Vertical Wire, length 7.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(100.00 mm, 110.00 mm): Horizontal Wire, length 20.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(100.00 mm, 110.00 mm): Vertical Wire, length 85.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(110.00 mm, 102.00 mm): Horizontal Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin GND has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 94.00 mm): Hierarchical Sheet Pin GND
+[hier_label_mismatch]: Sheet pin VSYS has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 102.00 mm): Hierarchical Sheet Pin VSYS
+[hier_label_mismatch]: Sheet pin 3V3 has no matching hierarchical label inside the sheet
+    ; error
+    @(120.00 mm, 110.00 mm): Hierarchical Sheet Pin 3V3
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(15.00 mm, 165.00 mm): Vertical Wire, length 65.00 mm
+[hier_label_mismatch]: Sheet pin BTN1 has no matching hierarchical label inside the sheet
+    ; error
+    @(130.00 mm, 120.00 mm): Hierarchical Sheet Pin BTN1
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 40.00 mm): Horizontal Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin DISP_EN has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 40.00 mm): Hierarchical Sheet Pin DISP_EN
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(130.00 mm, 125.00 mm): Vertical Wire, length 5.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(20.00 mm, 180.00 mm): Horizontal Wire, length 100.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 49.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_BUSY_R has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 49.00 mm): Hierarchical Sheet Pin EPD_BUSY_R
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 56.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_BUSY_L has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 56.00 mm): Hierarchical Sheet Pin EPD_BUSY_L
+[hier_label_mismatch]: Sheet pin BTN2 has no matching hierarchical label inside the sheet
+    ; error
+    @(140.00 mm, 120.00 mm): Hierarchical Sheet Pin BTN2
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(185.00 mm, 15.00 mm): Horizontal Wire, length 175.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 63.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_BUSY_MAIN has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 63.00 mm): Hierarchical Sheet Pin EPD_BUSY_MAIN
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 70.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_RST has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 70.00 mm): Hierarchical Sheet Pin EPD_RST
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(185.00 mm, 40.00 mm): Vertical Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(140.00 mm, 130.00 mm): Vertical Wire, length 10.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 77.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_DC has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 77.00 mm): Hierarchical Sheet Pin EPD_DC
+[hier_label_mismatch]: Sheet pin BTN3 has no matching hierarchical label inside the sheet
+    ; error
+    @(150.00 mm, 120.00 mm): Hierarchical Sheet Pin BTN3
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 84.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_CS_R has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 84.00 mm): Hierarchical Sheet Pin EPD_CS_R
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(150.00 mm, 125.00 mm): Horizontal Wire, length 20.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 91.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_CS_L has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 91.00 mm): Hierarchical Sheet Pin EPD_CS_L
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 39.00 mm): Horizontal Wire, length 25.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 39.00 mm): Label 'EPD_BUSY_R'
+[hier_label_mismatch]: Sheet pin SWDCLK has no matching hierarchical label inside the sheet
+    ; error
+    @(160.00 mm, 120.00 mm): Hierarchical Sheet Pin SWDCLK
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 46.00 mm): Horizontal Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 98.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_CS_MAIN has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 98.00 mm): Hierarchical Sheet Pin EPD_CS_MAIN
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 49.00 mm): Vertical Wire, length 10.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 46.00 mm): Label 'EPD_BUSY_L'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(150.00 mm, 135.00 mm): Vertical Wire, length 15.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 53.00 mm): Horizontal Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 56.00 mm): Vertical Wire, length 10.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 53.00 mm): Label 'EPD_BUSY_MAIN'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 60.00 mm): Horizontal Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 105.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_MOSI has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 105.00 mm): Hierarchical Sheet Pin EPD_MOSI
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 63.00 mm): Vertical Wire, length 10.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 60.00 mm): Label 'EPD_CS_R'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 130.00 mm): Horizontal Wire, length 20.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 67.00 mm): Horizontal Wire, length 25.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 67.00 mm): Label 'EPD_CS_L'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 70.00 mm): Vertical Wire, length 11.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 112.00 mm): Horizontal Wire, length 20.00 mm
+[hier_label_mismatch]: Sheet pin EPD_SCK has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 112.00 mm): Hierarchical Sheet Pin EPD_SCK
+[hier_label_mismatch]: Sheet pin SWDIO has no matching hierarchical label inside the sheet
+    ; error
+    @(170.00 mm, 120.00 mm): Hierarchical Sheet Pin SWDIO
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 70.00 mm): Label 'EPD_RST'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 74.00 mm): Horizontal Wire, length 25.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 74.00 mm): Label 'EPD_CS_MAIN'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 77.00 mm): Vertical Wire, length 11.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 77.00 mm): Label 'EPD_DC'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 81.00 mm): Horizontal Wire, length 25.00 mm
+[hier_label_mismatch]: Sheet pin BTN1 has no matching hierarchical label inside the sheet
+    ; error
+    @(150.00 mm, 150.00 mm): Hierarchical Sheet Pin BTN1
+[hier_label_mismatch]: Sheet pin NRST has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 120.00 mm): Hierarchical Sheet Pin NRST
+[pin_not_connected]: Pin not connected
+    ; error
+    @(175.00 mm, 120.00 mm): Hierarchical Sheet Pin NRST
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 84.00 mm): Vertical Wire, length 24.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(152.00 mm, 150.00 mm): Label 'BTN1'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 88.00 mm): Horizontal Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 91.00 mm): Vertical Wire, length 24.00 mm
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(180.00 mm, 220.00 mm): Vertical Wire, length 100.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 95.00 mm): Horizontal Wire, length 25.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 135.00 mm): Horizontal Wire, length 20.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 95.00 mm): Label 'EPD_MOSI'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 98.00 mm): Vertical Wire, length 24.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(100.00 mm, 195.00 mm): Horizontal Wire, length 35.00 mm
+[hier_label_mismatch]: Sheet pin BTN2 has no matching hierarchical label inside the sheet
+    ; error
+    @(160.00 mm, 150.00 mm): Hierarchical Sheet Pin BTN2
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 102.00 mm): Horizontal Wire, length 25.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(162.00 mm, 150.00 mm): Label 'BTN2'
+[label_dangling]: Label not connected to anything
+    ; error
+    @(196.00 mm, 102.00 mm): Label 'EPD_SCK'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 105.00 mm): Vertical Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin EPD_BUSY_R has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 39.00 mm): Hierarchical Sheet Pin EPD_BUSY_R
+[hier_label_mismatch]: Sheet pin EPD_BUSY_L has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 46.00 mm): Hierarchical Sheet Pin EPD_BUSY_L
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(195.00 mm, 112.00 mm): Vertical Wire, length 10.00 mm
+[hier_label_mismatch]: Sheet pin EPD_BUSY_MAIN has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 53.00 mm): Hierarchical Sheet Pin EPD_BUSY_MAIN
+[hier_label_mismatch]: Sheet pin BTN3 has no matching hierarchical label inside the sheet
+    ; error
+    @(170.00 mm, 150.00 mm): Hierarchical Sheet Pin BTN3
+[hier_label_mismatch]: Sheet pin EPD_CS_R has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 60.00 mm): Hierarchical Sheet Pin EPD_CS_R
+[label_dangling]: Label not connected to anything
+    ; error
+    @(172.00 mm, 150.00 mm): Label 'BTN3'
+[hier_label_mismatch]: Sheet pin EPD_CS_L has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 67.00 mm): Hierarchical Sheet Pin EPD_CS_L
+[hier_label_mismatch]: Sheet pin EPD_CS_MAIN has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 74.00 mm): Hierarchical Sheet Pin EPD_CS_MAIN
+[hier_label_mismatch]: Sheet pin EPD_RST has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 81.00 mm): Hierarchical Sheet Pin EPD_RST
+[hier_label_mismatch]: Sheet pin EPD_DC has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 88.00 mm): Hierarchical Sheet Pin EPD_DC
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 160.00 mm): Horizontal Wire, length 35.00 mm
+[hier_label_mismatch]: Sheet pin NRST has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 160.00 mm): Hierarchical Sheet Pin NRST
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(100.00 mm, 195.00 mm): Horizontal Wire, length 35.00 mm
+[hier_label_mismatch]: Sheet pin EPD_MOSI has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 95.00 mm): Hierarchical Sheet Pin EPD_MOSI
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(240.00 mm, 20.00 mm): Vertical Wire, length 90.00 mm
+[hier_label_mismatch]: Sheet pin 3V3_DISP has no matching hierarchical label inside the sheet
+    ; error
+    @(240.00 mm, 30.00 mm): Hierarchical Sheet Pin 3V3_DISP
+[hier_label_mismatch]: Sheet pin EPD_SCK has no matching hierarchical label inside the sheet
+    ; error
+    @(220.00 mm, 102.00 mm): Hierarchical Sheet Pin EPD_SCK
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 170.00 mm): Horizontal Wire, length 30.00 mm
+[hier_label_mismatch]: Sheet pin SWDIO has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 170.00 mm): Hierarchical Sheet Pin SWDIO
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(150.00 mm, 195.00 mm): Vertical Wire, length 70.00 mm
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(150.00 mm, 195.00 mm): Vertical Wire, length 70.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(175.00 mm, 180.00 mm): Horizontal Wire, length 25.00 mm
+[hier_label_mismatch]: Sheet pin SWDCLK has no matching hierarchical label inside the sheet
+    ; error
+    @(175.00 mm, 180.00 mm): Hierarchical Sheet Pin SWDCLK
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(160.00 mm, 195.00 mm): Vertical Wire, length 65.00 mm
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(160.00 mm, 195.00 mm): Vertical Wire, length 65.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 195.00 mm): Vertical Wire, length 60.00 mm
+[unconnected_wire_endpoint]: Unconnected wire endpoint
+    ; warning
+    @(170.00 mm, 195.00 mm): Vertical Wire, length 60.00 mm
+[hier_label_mismatch]: Sheet pin GND has no matching hierarchical label inside the sheet
+    ; error
+    @(240.00 mm, 110.00 mm): Hierarchical Sheet Pin GND
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(205.00 mm, 170.00 mm): Vertical Wire, length 45.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(200.00 mm, 180.00 mm): Vertical Wire, length 30.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(170.00 mm, 215.00 mm): Vertical Wire, length 95.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(180.00 mm, 220.00 mm): Vertical Wire, length 100.00 mm
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(200.00 mm, 210.00 mm): Horizontal Wire, length 40.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(202.00 mm, 210.00 mm): Label 'SWDCLK'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(205.00 mm, 215.00 mm): Horizontal Wire, length 35.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(207.00 mm, 215.00 mm): Label 'SWDIO'
+[endpoint_off_grid]: Symbol pin or wire end off connection grid
+    ; warning
+    @(210.00 mm, 220.00 mm): Horizontal Wire, length 30.00 mm
+[label_dangling]: Label not connected to anything
+    ; error
+    @(212.00 mm, 220.00 mm): Label 'NRST'
+
+***** Sheet /Power/
+
+***** Sheet /MCU_RF/
+
+***** Sheet /Connectors_UI/
+
+***** Sheet /Displays/
+
+ ** ERC messages: 167  Errors 77  Warnings 90

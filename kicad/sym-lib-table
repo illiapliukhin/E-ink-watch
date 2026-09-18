@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "EInkWatch")(type "KiCad")(uri "${KIPRJMOD}/libraries/EInkWatch.kicad_sym")(options "")(descr "Project-local ICs TBD footprints — BLE-only"))
+)

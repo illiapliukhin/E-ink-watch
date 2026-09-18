@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="252" height="312" viewBox="0 0 252 312">
+<style>text{font-family:monospace;font-size:11px;fill:#222}</style>
+<rect width="100%" height="100%" fill="#fafafa"/>
+<text x="12" y="20">E-Ink watch case — sealed pogo (IP67 intent, not certified)</text>
+<circle cx="126" cy="136" r="86.0" fill="#ddd" stroke="#333" stroke-width="2"/>
+<rect x="70.0" y="80.0" width="112.0" height="112.0" fill="#e8f0ff" stroke="#246"/>
+<rect x="86.4" y="168.4" width="47.2" height="35.2" fill="#cfc" stroke="#060"/>
+<g stroke="#060" fill="#8c8">
+<circle cx="98.0" cy="192.0" r="5.6"/>
+<text x="103.0" y="195.0" font-size="8">VCHG</text>
+<circle cx="110.0" cy="192.0" r="5.6"/>
+<text x="115.0" y="195.0" font-size="8">GND</text>
+<circle cx="122.0" cy="192.0" r="5.6"/>
+<text x="127.0" y="195.0" font-size="8">SWDIO</text>
+<circle cx="98.0" cy="180.0" r="5.6"/>
+<text x="103.0" y="183.0" font-size="8">SWDCLK</text>
+<circle cx="110.0" cy="180.0" r="5.6"/>
+<text x="115.0" y="183.0" font-size="8">nRESET</text>
+<circle cx="122.0" cy="180.0" r="5.6"/>
+<text x="127.0" y="183.0" font-size="8">OPT</text>
+</g>
+<rect x="196.0" y="116.0" width="16.0" height="40.0" fill="#fc6" stroke="#960"/>
+<rect x="40.0" y="116.0" width="16.0" height="40.0" fill="#fc6" stroke="#960"/>
+<text x="12" y="248">OD Ø43.0 · H 11.0 · PCB pocket Ø40.3 · aperture 28.0□</text>
+<text x="12" y="264">Pogo 2×3 pitch 3.0 mm @ (-4.0,-12.5) · align ±0.2 mm</text>
+<text x="12" y="280">Nets: VCHG GND SWDIO / SWDCLK nRESET OPT — cradle mates to back, no USB-C</text>
+<text x="12" y="296">Lugs 20.0 mm @ 3/9 · FPC 10.0×0.5 · plastic back (BLE)</text>
+</svg>

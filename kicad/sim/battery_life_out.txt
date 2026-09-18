@@ -1,0 +1,21 @@
+E Ink Watch — battery life hand calculation
+==========================================
+Battery: 120 mAh LiPo, usable 85% => 102.0 mAh
+Base (System ON idle 3.0 uA + PMIC Iq 8.0 uA) = 11.0 uA
+E Ink: 10.0 mA + MCU 4.0 mA for 1.0s every 60.0s
+  => 1440 refreshes/day, energy 5600.0 uAh/day
+BLE pair: 1.0/day × 60.0s @ 2.0 mA => 33.3 uAh/day
+BLE conn: 2.0/day × 30.0s @ 4.0 mA => 66.7 uAh/day
+Base energy: 264.0 uAh/day
+TOTAL: 5964.0 uAh/day  (Iavg ≈ 248.5 uA)
+Estimated life: 17.1 days (~0.6 months)
+
+Sources / caveats:
+- nRF52840 currents: Nordic Product Specification order-of-magnitude (3 V).
+- E Ink 10 mA @ 1 s: concept estimate; measure real panel + onboard boost.
+- No NFC (design decision). Full SPICE of SoC/RF not available.
+- Dominated by refresh rate: slower updates extend life almost linearly for E Ink term.
+
+
+Alt scenario: refresh every 15 min -> E_eink=373 uAh/day, total=737 uAh/day, life≈138 days (~4.6 mo)
+Alt scenario: refresh every 60 min -> E_eink=93 uAh/day, total=457 uAh/day, life≈223 days (~7.4 mo)

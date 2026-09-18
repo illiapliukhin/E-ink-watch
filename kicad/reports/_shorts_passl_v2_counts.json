@@ -1,0 +1,62 @@
+{
+  "steps": [
+    [
+      "via",
+      true,
+      26
+    ],
+    [
+      "fps",
+      true,
+      29
+    ],
+    [
+      "fan_del",
+      true,
+      20
+    ],
+    [
+      "fan_reb",
+      true,
+      27
+    ],
+    [
+      "vsys_del",
+      true,
+      35
+    ],
+    [
+      "vsys_reb",
+      false,
+      33
+    ]
+  ],
+  "shorting": 35,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "top": [
+    "GND|IPRETERM:10",
+    "ILIM|VBUS:3",
+    "3V3_DISP|VSYS:2",
+    "EPD_DC|EPD_MOSI:2",
+    "CD|GND:2",
+    "SW|VSYS:2",
+    "IPRETERM|VBUS:2",
+    "3V3_DISP|PMID:2",
+    "GND|SDA:1",
+    "GND|ISET:1",
+    "IPRETERM|PMIC_INT:1",
+    "GND|PMID:1",
+    "PMID|VINLS:1",
+    "VBUS|VSYS:1",
+    "IPRETERM|VBAT:1"
+  ]
+}

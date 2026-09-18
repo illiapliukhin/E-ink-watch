@@ -1,0 +1,419 @@
+=== E-INK WATCH — LIVE РЕПОРТАЖ ===
+Время: Пятница, 18 сентября 2026, 13:08 (UTC+3)
+Экран: KiCad PCB слева | этот блокнот справа
+
+СЕЙЧАС:
+- Идёт чистка силовых КЗ (GND↔VBUS и др.)
+- Питать плату НЕЛЬЗЯ пока КЗ питания > 0
+
+ПОСЛЕДНИЙ ШАГ:
+- Поэлементный аудит: 25 PASS / 2 FAIL / 8 GAP
+- Опасные КЗ: GND↔VBUS ×11 и др.
+
+СЛЕДУЮЩЕЕ:
+- Снять GND↔VBUS, GND↔VBAT
+
+(обновляю этот файл по ходу работы)
+
+[13:10:45] gedit справа — принудительный запуск
+
+[13:11:22] POWER SHORTS FIX
+GND↔VBUS: 11→0
+GND↔VBAT: 8→0
+GND↔VBUS_POGO: 2→0
+3V3↔3V3_DISP: 9→0
+Осталось: 3V3_DISP↔GND ×3 (FH12), 3V3↔GND ×2, GND↔SW ×2
+DRC: 1107→983
+VBUS на док пока НЕ подавать
+
+[13:12:13] Экран 50/50: KiCad слева | LIVE_LOG справа (640x724)
+
+[13:22:52] PAD-PAD NUDGE (power cleanup cont.)
+3V3_DISP↔GND: 3→0  (FH12 pad axis 1.3×0.3 @ ±90°)
+3V3↔GND: 2→0  (R_LSCTRL +0.8/+0.35, R2 +0.45)
+GND↔SW: 2→0  (L_SYS +1.55X, C_SYS/C_VINLS −0.7X; SW @ y=105.2)
+Charge: GND↔VBUS/VBAT/VBUS_POGO = 0; 3V3↔3V3_DISP = 0
+DRC: 983→947  shorting: 185→179
+4L OK | SW_DBG SWD-only OK | pogo OK
+VBUS на док пока НЕ подавать (остальные shorts вне power-priority)
+
+[13:30:20] TRACK CROSSING CLEANUP (DRC short cont.)
+shorting: 179→158  (−21)
+DRC: 947→930  (−17)
+Fixes: BTN2/BTN3 B.Cu mash @y=110.8 (stagger 111.5/109.5);
+  EPD F.Cu bus mash @y=85.2 → staggered channels;
+  removed 3V3_DISP via@111.5,105.2; dedup 3V3 vias@106,87.5
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW
+NOT done (density): GND↔VSYS pad/MP (C_SYS↔C_VINLS↔J_STRAP_R MP);
+  SCL/SDA via cluster; FH12 vertical fanouts; 3V3↔VBUS near R_VSYS/C2
+  C_VINLS nudge tried → reintroduced 3V3_DISP↔GND — reverted
+4L OK | SW_DBG SWD-only OK | pogo OK | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain)
+
+[13:40:47] GND↔VSYS CLEANUP (DRC short cont.)
+shorting: 157→138  (−19)
+DRC: 929→903  (−26)
+GND↔VSYS: 8→0
+SCL↔SDA cluster: 10→3  (U2 vias thinned 0.45 @ ≥0.9mm)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW
+Fixes:
+  - deleted VSYS stub through C_SYS body
+  - C_SYS dy=−0.80 (cleared C_VINLS.2 pad stack)
+  - J_STRAP_R south MP 1.8×2.2→1.2×2.0, +0.40X (cleared C_SYS.1)
+  - SW corridor restored y=104.5 (was shorting C_VINLS GND vias)
+  - VSYS corridor y=102.95 + jog west of U2.A5
+  - GND via cleanup C_SYS/C_VINLS/R_IPRETERM
+  - SCL/SDA via cluster rebuild
+Reverts during session (power guard): C_VINLS north nudge; J_STRAP_R whole-FP east; corridor-only without SW fix
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power)
+
+[13:53:21] SCL/SDA + FH12 FANOUT CLEANUP (DRC short cont.)
+shorting: 138→123  (−15)
+DRC: 903→897  (−6)
+SCL↔SDA: 3→0; SDA↔TS: →0; EPD_SCK↔GND: →0; EPD_BUSY↔3V3: →0; EPD_CS_MAIN↔EPD_RST: →0
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes:
+  - U1 I2C mash stubs deleted (wrong-pad SDA→U1.25, SCL horizontal into SDA)
+  - PMIC-side SDA/SCL via cluster removed; F.Cu direct R_SDA/R_SCL↔U2
+  - 3V3 pullup bridge jogged north of R_SCL.1 (was through-pad short)
+  - R_SDA nudged SE (109.95,106.95) clear of R_TS / NTC_BAT
+  - J_DISP_MAIN east MP 1.8×2.2→1.0×1.4 @105.1,86.8 (clear U1.16)
+  - EPD_SCK channel y=83.85 (kept GND via @98.25,84.25 — do NOT delete GND)
+  - EPD_RST west-jog + leftover y=85.2 mash vs CS_MAIN removed
+  - EPD_BUSY_MAIN channel y=86.55 / x=105.4 (clear 3V3 via + DC pad)
+CRITICAL lesson: deleting ANY GND copper (even distant via) flips latent
+  GND↔VSYS clearance @via(111.31,102.9)↔VSYS into shorting_items — reverted those attempts
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power)
+
+[13:58:47] FH12 FANOUT + SIGNAL CROSSING CLEANUP (DRC short cont.)
+shorting: 123→86  (−37)
+DRC: 897→832  (−65)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+FH12 pad-column mash cleared:
+  EPD_BUSY_L↔EPD_CS_L 3→0; EPD_CS_L↔EPD_SCK 2→0; EPD_BUSY_L↔EPD_SCK 2→0
+  EPD_BUSY_R↔EPD_CS_R 2→0; EPD_CS_R↔EPD_DC 2→1; EPD_DC↔EPD_RST 2→1
+Signal crossings: BTN1↔BTN3 2→0; nRESET↔PMIC_INT 2→0
+Fixes:
+  - deleted vertical bus tracks/vias ON J_STRAP_L/R pad columns (x=83.15/116.85)
+  - rebuilt per-pad stubs off-column (jog to pad Y, no shared vertical spine)
+  - CS_L/CS_R B.Cu moved off pad column; BUSY_R F via-jog to pad Y
+  - BTN1/BTN3 escape cleaned (no pad mash); nRESET jogged west of PMIC_INT
+  - EPD_BUSY_MAIN channel y=87.05 (clear U1.15 GND); MAIN stub dedup
+  - 3V3 U1 overrun into pad31 trimmed
+REVERT: pass-C channel nudges reintroduced GND↔VSYS@via(111.31,102.9) — discarded
+  (kept post-A/B board). Do NOT delete GND copper; avoid MAIN SCK y moves near GND via.
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power)
+
+[14:07:47] FH12/CS/DC/RST + CROSSING CLEANUP (DRC short cont.)
+shorting: 86→63  (−23)
+DRC: 832→790  (−42)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes:
+  - MAIN EPD_SCK: removed F y=83.85 channel (into 3V3_DISP pad); B.Cu @84.90 + F stub
+  - L SCK/DC: B.Cu escapes (under 3V3_DISP / around GND through-via@86,100)
+  - L BUSY_L: north/west jog clear of GND via@90.5,98.5
+  - L RST: F jog south (still skims 3V3_DISP — left for next pass)
+  - R MOSI: new via@116.20,98.60 (was sitting on GND via@114.65)
+  - R DC jog + deleted orphan CS_R via@114,100
+  - MAIN BUSY west corridor (clear MP GND); CS/RST cleaned
+  - SWDCLK horiz @y=100.40 (was sharing CS_L pad Y)
+  - BTN2 east escape via@98.50 — cleared BTN2↔SWDIO/GND/VBAT/nRESET_POGO cluster
+REVERTS (power guard / shorting up): full Pass-D SCK y=84.85; Pass-D3 bulk;
+  SCK via→85.25; L DC via near SCK; L RST B.Cu; MAIN CS y=85.50
+  Latent GND↔VSYS@via(111.31,102.9) — do NOT delete GND; avoid bulk MAIN nudges
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power)
+
+[14:18:58] PASS-E SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 63→52  (−11)
+DRC: 790→769  (−21)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - SWDCLK_POGO: east to x=95 then south (cleared 3V3/VBAT/3V3_DISP via cluster)
+  - SWDIO stub into J_STRAP_L MP deleted
+  - J_STRAP_L north MP 1.8×2.2→1.0×1.4 @85.70,104.65 (clear SW_DBG pads)
+  - R1 west −0.50 (clear U1 SWDCLK/SWDIO pads)
+  - L EPD_RST F corridor y=97.80→96.90 (cleared 3V3_DISP@98.25)
+  - nRESET stub truncated + north jog (cleared SWDCLK@x=89.08)
+  - BTN3 B.Cu @y=109.15 (cleared via forest; pad-pad vs R_LSCTRL remain)
+  - R EPD_MOSI via→115.90,99.00 (cleared J_STRAP_R pad1 3V3_DISP)
+REVERTS (power guard / shorting up): Pass-E bulk; L DC B rebuild; R DC x nudge
+  (flipped GND↔VSYS@via(111.31,102.9)); MAIN CS/MOSI/SCK; R_LSCTRL/SW3 nudges
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power)
+
+[14:26:09] PASS-F SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 52→44  (−8)
+DRC: 769→756  (−13)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - U1 3V3: deleted 5× orphan stubs @x=97.00 into pad31 <no net>
+  - R EPD_SCK: vertical x=115.65→115.20 (clear MOSI via@115.90)
+  - nRESET_POGO: east corridor x=98.30 (clear GND stub@97.48; residual VBAT via skim)
+  - PMIC_INT: truncated B.Cu overrun y→107.5 into GND vias@94.16/94.50
+REVERTS (power guard / shorting up): L RST high/east; south MP shrink (GND copper);
+  MAIN CS/MOSI y; nRESET jog; BTN3 y110; R DC x → flipped GND↔VSYS@via(111.31,102.9);
+  SWDCLK_POGO x; nRESET_POGO y/north; 3V3 via↔BTN3 / PMIC_INT via nudges
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; non-power / dense pad-pad)
+
+[14:38:19] PASS-G SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 44→34  (−10)
+DRC: 756→732  (−24)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - EPD_RST: removed F corridor through J_STRAP_L south MP (y=96.90); high stub @99.80
+  - VBUS west-only south jog y=102.90→102.40 (x≤108.12; clear R_VSYS 3V3) — 3V3↔VBUS 5→2
+  - C_PMID dy=+0.40 toward U2 (clear resistor-row pad mash ISET/ILIM/IPRETERM)
+  - EPD_DC: jog south of RST via@112.65,99.80 + reconnect to pad channel y=100.75
+  - NTC_BAT dy=+0.35 (TS/R_TS density; net short down)
+REVERTS (power guard / shorting up / latent flip):
+  - VSYS stubs on PMID B4/C4 (even precise delete flips GND↔VSYS)
+  - VBUS east extension under R_VSYS; VSYS east jog; 3V3_DISP via move
+  - R_ISET/R_IPRETERM/R_LSCTRL/SW3/R_SDA nudges; CD-only rebuild
+  - MP shrink; RST via-south jog; BTN3 B y110; SCL 3V3 via; GND via west
+  - 3V3_DISP→PMID stub trim; zone-refill attempts
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; dense pad-pad / power-pocket)
+Top remaining: PMID↔VSYS×5, 3V3_DISP↔VSYS×3, GND↔PMID×2, 3V3↔VBUS×2, TS↔VBUS×2,
+  BTN1↔VBUS×2, 3V3↔LSCTRL×2, 3V3↔BTN3×2, 3V3_DISP↔PMID×2, …
+
+[14:48:32] PASS-H SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 34→30  (−4)
+DRC: 732→690  (−42)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - SW3 +0.90X (116.5→117.4) — cleared BTN3 pad-overlap vs R_LSCTRL
+  - BTN3 B.Cu dogbone around 3V3 via@102.52,109.40
+  - TS vertical end 107.30→107.55 (clear R_TS VBUS pad) — TS↔VBUS 2→0
+  - VBUS west spine x=107→105.70 (clear SW1 BTN1 + VBAT) — BTN1↔VBUS 2→0
+  - EPD_RST y=99.80→99.55 (clear GND via@86,100)
+  - nRESET_POGO y=106.50→107.10 (clear VBAT via@96.20)
+  - EPD_MOSI channel y=84.90→85.25 (clear SCK; residual DC skim)
+  - R_SDA +0.45Y (clear U2 CD / 3V3|CD 3→0)
+  - R_VSYS −0.40X (clear VBUS) — 3V3↔VBUS 2→0
+REVERTS (power guard / shorting up / latent flip):
+  - TS west rebuild; VBUS delete+rebuild corridor (flipped GND↔VSYS@via(111.31,102.9))
+  - LSCTRL F jog / 3V3 via delete / R_LSCTRL move / LSCTRL B.Cu escape
+  - SW3 further +0.9; MOSI south/rebuild (EPD_MOSI↔GND)
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+VBUS на док пока НЕ подавать (shorting 23 remain; dense pad-pad / power-pocket)
+Top remaining: PMID↔VSYS×5, PMIC_INT↔VBAT×3, 3V3_DISP↔VSYS×2, PMID↔VBUS×2, GND↔PMID×2,
+  3V3↔LSCTRL×2, GND↔IPRETERM×2, 3V3↔SCL×2, 3V3_DISP↔PMID×2, …
+
+[15:02:32] PASS-I SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 30→23  (−7)
+DRC: 690→693  (+3; new LSCTRL vias / dangling noise)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - PMIC_INT: dedupe stacked via@110.6,106.4 (VBAT skim 3→2)
+  - 3V3 via@112.01,106.9 → onto R_SCL pad2@107.60 (cleared SCL track)
+  - EPD_DC zero-len fat stub@99,85.4 deleted
+  - LSCTRL: F through-pad removed; B.Cu escape vias@111.55,107.15 + @115.00,108.76
+  - R_CD dy=−0.55 (pad1 clear of pre-existing GND stub — no GND copper deleted)
+  - restored 3V3 via@114.3 net (had flipped to LSCTRL); trimmed 3V3→SW3 skim stub
+  - 3V3 via@114.3 south→107.95 (clear R_LSCTRL pad1)
+  - R_SDA to y=107.55 (SCL/TS compromise)
+  - EPD_CS_MAIN vertical x=100.80→101.05 (clear EPD_RST@100.75)
+  - nRESET_POGO y=107.10→106.80 (clear GND via@94.16)
+REVERTS (power guard / shorting up / latent flip):
+  - VBAT west corridors (C_BAT / latent GND↔VSYS)
+  - PMIC_INT via NE nudge; R_IPRETERM/R_ILIM moves (latent flip)
+  - LSCTRL F east-of-SW3 / north-enter alone (revealed CD↔GND)
+  - R_SDA west; TS y=107.30 (reintroduced TS↔VBUS); SW3 further east
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK (GetCopperLayerCount=4) | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+Archive: e-ink-watch-backups/passi_20260918_150311_s23.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 23 remain; dense pad-pad / power-pocket)
+Top remaining: PMID↔VSYS×5, PMIC_INT↔VBAT×2, 3V3_DISP↔VSYS×2, PMID↔VBUS×2, GND↔PMID×2,
+  GND↔IPRETERM×2, 3V3_DISP↔PMID×2, …
+
+
+[15:12:34] PASS-J SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 23→21  (−2)   [zone-refilled DRC]
+DRC: ~693→654  (−39)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+Fixes kept:
+  - PMIC_INT via@110.6,106.4 → 109.5,106.4 (west of D2) + F stub — PMIC_INT↔VBAT 2→1
+  - R_SCL +0.40X (111.5→111.9) — cleared 3V3↔SCL; residual 3V3↔CD×3 collateral
+REVERTS (power guard / shorting up / latent flip / no net gain):
+  - VBAT west-jog / y=105.6 escape (flips GND↔VBAT + latent GND↔VSYS@via(111.31,102.9))
+  - R_ISET west (GND↔ISET spike)
+  - R_SDA west (latent flip)
+  - R_VSYS north (shorting↑ + latent)
+  - SW south (zero-gain swap SW↔VSYS↔GND↔ISET) — not kept
+  - VSYS↔PMID dedupe (latent flip)
+  - PMIC dogbone north + B.Cu highway (SDA/GND hits; shorting 21→30)
+  - R_CD south / 3V3 via NW (CD↔GND / shorting↑)
+PMID pocket BLOCKED:
+  - PMID↔VSYS×5 @ F.Cu mash y=105.60 (tracks at 111.40/111.45/111.80/112.80 overlapping)
+  - Any VSYS stub delete near B4/C4 flips latent GND↔VSYS@via(111.31,102.9)
+GND↔IPRETERM BLOCKED (latent-adjacent):
+  - via(111.31,102.9)↔R_IPRETERM.1@111.49,103.50
+  - R_ILIM.2 GND@111.31,103.50↔R_IPRETERM.1 — moving IPRETERM east previously flipped latent
+PMIC_INT↔VBAT residual BLOCKER:
+  - VBAT F track (110.2,106.4)→west length 4.0 still through via@109.5,106.4
+  - Cannot truncate/reroute VBAT without C_BAT GND skim or latent flip
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+Archive: e-ink-watch-backups/passj_20260918_151222_s21.kicad_pcb (filled)
+  also: e-ink-watch-backups/passj_20260918_151222_s21_prefill.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 21 remain; dense pad-pad / power-pocket)
+Top remaining: PMID↔VSYS×5, 3V3↔CD×3, 3V3_DISP↔VSYS×2, GND↔PMID×2, GND↔IPRETERM×2,
+  PMIC_INT↔VBAT×1, GND↔ISET×1, SW↔VSYS×1, …
+
+[15:21:39] PASS-K SURGICAL SHORT CLEANUP (DRC short cont.)
+shorting: 21→21  (0 net)   [zone-refilled DRC]
+DRC: 654→644  (−10)
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+PRIORITY A kept:
+  - R_SCL −0.25X (111.90→111.65) + on-pad 3V3 via/spine — cleared 3V3↔CD×3
+    (Pass-J east had pushed R_SCL.2/via/track into R_CD.1; Pass-I 3V3↔SCL was R_SCL.1↔R_SDA.2)
+  - deleted dangling TS spur (107.69,107.55)→(111.39,107.60) into R_SCL pad1
+  - 3V3↔CD 3→0; SCL↔3V3 remains 0
+DRC reshuffle (same count): exposing pre-existing PMID↔VBUS×2 + 3V3_DISP↔PMID×2
+  (C_PMID.1 already collides VBUS@x=110.6 on baseline copper; was unreported at s21)
+REVERTS (power/latent/shorting↑):
+  - VBUS dogbone west around C_PMID (GND↔VBUS + latent GND↔VSYS)
+  - R_CD +0.40/+0.30 east + GND via NE + CD north rebuild (CD↔GND / power)
+  - 3V3_DISP stub trim @112.8,106.32 (flipped latent GND↔VSYS)
+  - C_PMID +0.50/+0.75X rebuild (PMID↔VSYS↑ / latent)
+  - PMIC_INT via south to y=106.72/107.05 (GND/SDA hits or no gain)
+  - R_ILIM +0.35X (ILIM↔VBAT↑; ISET residual)
+PRIORITY B PMID pocket BLOCKED (one careful attempt done — stop):
+  Blocker: C_PMID.1@110.52 overlaps VBUS vertical@x=110.6 w=0.35; any C_PMID east
+  rebuild or VBUS jog near y=102.9 flips latent GND↔VSYS@via(111.31,102.9) or PMID↔VSYS↑.
+  Recommended next: PMIC/passives re-placement — shift C_PMID+R_IPRETERM/R_ILIM row
+  south/east as a group, or move VBUS spine west of x=110.0 before U2 fanout (full
+  charge-path redesign), then clear PMID↔VSYS mash @F.Cu y≈105.60.
+GND↔IPRETERM still blocked (latent-adjacent via@111.31,102.9↔R_IPRETERM.1).
+PMIC_INT↔VBAT residual: VBAT F @y=106.4 through via — south via hits SDA/GND.
+Latent GND↔VSYS@via(111.31,102.9) — PRESENT untouched; do NOT delete GND copper
+4L OK | SW_DBG SWD-only OK | pogo nets OK | seal vias=0 | charge path untouched
+Archive: e-ink-watch-backups/passk_20260918_152130_s21.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 21 remain; dense pad-pad / power-pocket)
+Top remaining: PMID↔VSYS×5, 3V3_DISP↔VSYS×2, PMID↔VBUS×2, GND↔PMID×2, GND↔IPRETERM×2,
+  3V3_DISP↔PMID×2, PMIC_INT↔VBAT×1, PMIC_INT↔TS×1, SW↔VSYS×1, ILIM↔ISET×1, …
+
+[15:43:30] PASS-L PMIC PASSIVES RE-PLACE + TOPOLOGY (DRC short cont.)
+shorting: 21→19   [zone-refilled DRC]
+DRC: ~644→591
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+I_peak assume 0.5 A; widths: VBUS 0.40 / PMID 0.40–0.50 / VSYS 0.45 / signal 0.15–0.18
+(see reports/CALC_PASSL_PMIC.txt)
+
+MOVED / KEPT:
+  - GND via (111.31,102.9) → (112.20,102.20) [DRC-verified; cleared latent]
+  - C_PMID: (111.0,104.3) → (113.9,107.0) east of C_VINLS (~3.4 mm from U2.A3)
+  - R_IPRETERM: (112.0,103.5) → (113.8,102.8)
+  - R_ISET: (109.8,103.5) → (109.2,103.5); R_ILIM: (110.8,103.5) → (111.2,103.5)
+  - VSYS B5 vertical widened 0.30→0.45; C_SYS↔B5 0.45
+  - VBUS spine segments widened to 0.40 (vertical still @x=110.6 — see blocked)
+  - PMID: U2 A3–B3–B4–C4 stitch + fat hop intent; copper items=6
+  - ILIM/IPRETERM/SW reconnects kept; ISET copper=2
+  - SW escape via B.Cu (A4↔L_SYS) to clear C_SYS
+
+BLOCKED / REVERTED (power or topology):
+  - VBUS spine west of x≈110 @0.40/0.50: GND↔VBUS + 3V3↔VBUS — REVERTED; left @x=110.6 w=0.40
+  - Fat PMID B.Cu rebuild variants: PMID↔SW / PMID↔VBUS spikes — partial
+  - Residual: 3V3_DISP↔PMID (C5/C_LDO vs C_VINLS/C_PMID east), PMID↔SW via skim,
+    ILIM↔PMID, GND↔ISET, 3V3_DISP↔VSYS (J_STRAP_R / L_SYS)
+
+PRESERVE: 4L OK | SW_DBG SWD-only OK | pogo OK | seal vias=0 | no GND copper deleted
+Archive: e-ink-watch-backups/passl_topo_20260918_s19.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 19; power pairs 0)
+Top remaining: 3V3_DISP↔PMID×3, 3V3_DISP↔VSYS×2, ILIM↔PMID×2, GND↔ISET×2, IPRETERM↔VBAT×1, EPD_BUSY_MAIN↔EPD_MOSI×1, PMID↔SW×1, 3V3↔SDA×1
+
+[15:45:09] PASS-L TOPOLOGY CLOSE (PMIC passives re-place)
+shorting: 21→20   [zone-refilled]
+DRC: →602
+Power pairs STILL 0 (incl. GND↔VSYS)
+I_peak=0.5A | VBUS≤0.40 | PMID 0.40–0.50+2via | VSYS 0.45 | sig 0.15 — reports/CALC_PASSL_PMIC.txt
+
+KEPT topology:
+  C_PMID @(111.70,103.85) dist(A3)=1.52mm fat 0.45 link; U2 PMID A3-B3-B4-C4 stitch 0.40
+  R_IPRETERM@(113.8,102.8) B.Cu escape; R_ILIM@(112.4,103.5); R_ISET@(109.2,103.5)
+  GND via moved→(112.20,102.20); VSYS B5 0.45; VBUS segments 0.40 @x=110.6
+  SW B.Cu escape; ILIM/IPRETERM connected; 4L; seal vias=0; no GND copper deleted
+
+BLOCKED:
+  VBUS spine west of x=110 (GND↔VBUS / 3V3↔VBUS) — coords spine would be x≈109.7–109.9
+  C_VINLS F fanout y=106.55 (3V3_DISP/CD/SDA mash) — B.Cu attempt may or may not have kept
+  ISET clean route (GND↔ISET) — footprint kept, copper dropped if still shorting
+
+Archive: e-ink-watch-backups/passl_topo_20260918_s20.kicad_pcb
+Top: ILIM↔PMID×4, 3V3_DISP↔PMID×3, 3V3_DISP↔VSYS×2, GND↔ISET×2, EPD_BUSY_MAIN↔EPD_MOSI×1, PMID↔SW×1, IPRETERM↔VBAT×1, PMIC_INT↔TS×1
+VBUS на док пока НЕ подавать
+
+[15:45:41] PASS-L FINAL SNAPSHOT
+shorting 20 | power all 0 | 4L | GND via@(112.20,102.20) | C_PMID@(111.70,103.85) dA3=1.52mm
+fps={'R_ISET': (109.2, 103.5), 'R_ILIM': (112.5, 103.5), 'C_PMID': (111.7, 103.85), 'R_IPRETERM': (113.8, 102.8)}
+Archive e-ink-watch-backups/passl_topo_20260918_s20.kicad_pcb
+Top: [(('GND', 'ILIM'), 4), (('3V3_DISP', 'VSYS'), 3), (('ILIM', 'TS'), 2), (('IPRETERM', 'VBAT'), 1), (('EPD_BUSY_MAIN', 'EPD_MOSI'), 1), (('PMID', 'VBUS'), 1), (('PMID', 'SW'), 1), (('ILIM', 'PMID'), 1)]
+
+[15:57:30] PASS-M TOPOLOGY CLEANUP (post Pass-L)
+shorting: 20→14  (−6)   [zone-refilled DRC]
+DRC: ~602→599
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+I_peak=0.5A | VBUS 0.40 @x=110.6 | PMID 0.40–0.50 | VSYS 0.45 | ILIM/sig 0.15
+(see reports/CALC_PASSM_TOPO.txt)
+
+KEPT:
+  - C_PMID (111.70,103.85)→(112.40,103.85) east — cleared C_PMID.GND pad vs R_ILIM.ILIM (GND↔ILIM 4→0)
+  - ILIM pad via dogbone (111.99,103.50)→(111.80,103.50) — cleared GND F skim
+  - ILIM B.Cu vertical jog x=110.9→110.50 — cleared PMID via skim (ILIM↔PMID via hits gone; pad-pad residual 1)
+  - C_PMID dist(U2.A3)=1.95mm (≤3mm OK)
+
+BLOCKED / REVERTED:
+  - C_PMID Y south/north / rot90: Y-move flips latent GND↔VSYS; further east hits R_ILIM.GND
+  - ISET fanout restore (F or B): mash GND/IPRETERM/VBAT near U2.C1 — copper still dropped
+  - C_VINLS PMID reconnect (F trim or B stitch): 3V3_DISP/CD mash or short↑
+  - ILIM↔TS F y=107 or B south: collateral PMIC_INT/SDA/SCL or short↑
+  - VBUS west of x=110: still GND↔VBUS / 3V3↔VBUS — left @x=110.6 w=0.40
+  - EPD_MOSI nudge: DRC flake exposes borderline PMID↔VBUS @x=110.6/111.0 — not kept
+
+PRESERVE: 4L OK | SW_DBG/J_SWD SWD-only untouched | pogo OK | seal vias=0 | no GND copper deleted | charge path intent
+Archive: e-ink-watch-backups/passm_topo_20260918_s14.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 14; power pairs 0)
+Top remaining: 3V3_DISP↔VSYS×3, ILIM↔TS×2, IPRETERM↔VBAT×1, EPD_BUSY_MAIN↔EPD_MOSI×1,
+  PMID↔SW×1, PMIC_INT↔TS×1, 3V3_DISP↔PMID×1, GND↔IPRETERM×1, IPRETERM↔VSYS×1,
+  SWDCLK↔nRESET×1, ILIM↔PMID×1
+Recommended next: U2 rotate 90° OR shift R_ILIM+C_PMID row south ≥1.0mm (pad-pad ILIM↔PMID
+  blocker), then ISET B west of x=109.2 + C_VINLS B PMID stitch.
+
+[16:18:15] PASS-N TOPOLOGY (R_ILIM+C_PMID south ≥1.0mm, no U2 rotate)
+shorting: 14→12  (−2)   [zone-refilled DRC]
+DRC: ~599→~603
+Power priority STILL 0: GND↔VBUS/VBAT/VBUS_POGO, 3V3↔3V3_DISP, 3V3_DISP↔GND, 3V3↔GND, GND↔SW, GND↔VSYS
+I_peak=0.5A | VBUS 0.40 @x=110.6 | PMID 0.40–0.45 | VSYS 0.45 | ILIM/sig 0.15
+(see reports/CALC_PASSN_TOPO.txt)
+
+KEPT:
+  - R_ILIM (112.50,103.50)→(114.80,106.15) south +2.65mm / east +2.30mm
+  - C_PMID (112.40,103.85)→(113.80,105.25) south +1.40mm / east +1.40mm; dist(A3)=2.32mm
+  - R_IPRETERM (113.80,102.80)→(114.80,102.90)
+  - ILIM↔PMID pad-pad residual CLEARED (was 1)
+  - ILIM C2 via west 110.90→110.75 (ILIM↔TS 2→1)
+  - trim fat 3V3_DISP F @y=106 (3V3_DISP↔VSYS 3→2)
+
+BLOCKED / DEFERRED:
+  - ISET B.Cu west of x≈109.2: IPRETERM/VBAT/GND mash — copper still dropped
+  - C_VINLS dedicated PMID stitch: 3V3_DISP/C_LDO mash
+  - Full ILIM/PMID/IPRETERM fanout retarget to new pads: raises short or power (3V3_DISP|GND, GND|SW vs L_SYS)
+  - ILIM↔TS residual 1 (TS diagonal vs C2 stub)
+  - VBUS west of x=110: still GND↔VBUS / 3V3↔VBUS — left @x=110.6 w=0.40
+
+PRESERVE: 4L OK | SW_DBG/J_SWD SWD-only untouched | pogo OK | seal vias=0 | no GND copper deleted | charge path intent | no U2 rotate
+Archive: e-ink-watch-backups/passn_topo_20260918_161511_s12.kicad_pcb
+VBUS на док пока НЕ подавать (shorting 12; power pairs 0; fanout retarget incomplete)
+Top remaining: 3V3_DISP↔VSYS×2, GND↔PMID×2, IPRETERM↔VBAT×1, EPD_BUSY_MAIN↔EPD_MOSI×1,
+  PMID↔SW×1, PMIC_INT↔TS×1, GND↔IPRETERM×1, ILIM↔TS×1, IPRETERM↔VSYS×1, SWDCLK↔nRESET×1
+Recommended next: U2 rotate 90° OR shift C_LDO / trim J_STRAP_R MP keepout to free PMID/ILIM
+  fanout corridors, then ISET B west + C_VINLS B PMID stitch + finish ILIM/IPRETERM dogbones.

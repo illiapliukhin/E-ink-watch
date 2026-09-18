@@ -1,0 +1,6 @@
+# Pass-O SPREAD + scripted fanout
+Method: pcbnew Python batch (NOT freerouter). Atomic place+wipe+HV fanout.
+MP ease: BLOCKED — easing J_STRAP_R MP alone → GND|SW x3 after zone fill. Documented; left 1.2x2.0@(114.0,104.65).
+Spread attempt: C_PMID/R_ILIM/C_LDO/R_IPRETERM/R_ISET/R_CD; VBUS left @x=110.6; no U2 rotate.
+shorting 12 -> attempt 41 kept=False final=12
+power: {'GND|VBUS': 2, 'GND|VBAT': 0, 'GND|VBUS_POGO': 0, '3V3|GND': 0, '3V3_DISP|GND': 1, 'GND|SW': 0, '3V3|3V3_DISP': 1, 'GND|VSYS': 0}

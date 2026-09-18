@@ -1,0 +1,76 @@
+{
+  "before": 20,
+  "after": 14,
+  "drc": 599,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "fps": {
+    "R_ISET": [
+      109.2,
+      103.5
+    ],
+    "U2": [
+      111.0,
+      106.0
+    ],
+    "R_ILIM": [
+      112.5,
+      103.5
+    ],
+    "C_VINLS": [
+      112.8,
+      105.8
+    ],
+    "C_PMID": [
+      112.4,
+      103.85
+    ],
+    "R_IPRETERM": [
+      113.8,
+      102.8
+    ]
+  },
+  "top": [
+    "3V3_DISP|VSYS:3",
+    "ILIM|TS:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMIC_INT|TS:1",
+    "3V3_DISP|PMID:1",
+    "GND|IPRETERM:1",
+    "IPRETERM|VSYS:1",
+    "SWDCLK|nRESET:1",
+    "ILIM|PMID:1"
+  ],
+  "I_peak_A": 0.5,
+  "widths_mm": {
+    "VBUS": 0.4,
+    "PMID": "0.40-0.50",
+    "VSYS": 0.45,
+    "ILIM": 0.15,
+    "Signal": 0.15
+  },
+  "C_PMID_dist_A3_mm": 1.945,
+  "kept": [
+    "C_PMID east 111.70,103.85 -> 112.40,103.85 (cleared GND pad vs R_ILIM ILIM pad)",
+    "ILIM pad via dogbone west 111.99 -> 111.80 (cleared GND F track skim)",
+    "ILIM B.Cu vertical jog x=110.9 -> 110.50 (cleared PMID via skim; ILIM\u2194PMID via hit gone)"
+  ],
+  "blocked": [
+    "ILIM\u2194PMID residual: C_PMID.1 pad vs R_ILIM.1 pad \u2014 Y-move flips latent GND\u2194VSYS; east hits R_ILIM GND pad",
+    "ISET restore: F/B corridors mash VBAT/IPRETERM/GND near U2.C1",
+    "C_VINLS PMID reconnect: 3V3_DISP F stubs at y=106 mash pad1; B rebuild spiked shorts",
+    "ILIM\u2194TS: TS diagonal vs ILIM stub/via; F y=107 / B south routes collateral",
+    "VBUS west of x=110: still flips GND\u2194VBUS / 3V3\u2194VBUS"
+  ],
+  "recommend_next": "U2 rotate 90\u00b0 or shift R_ILIM+C_PMID row south (+\u22651.0mm) before further ILIM/PMID pad surgery; then ISET B.Cu west of x=109.2 and C_VINLS B.Cu PMID stitch"
+}

@@ -1,0 +1,93 @@
+{
+  "timestamp": "2026-09-18 14:26:09",
+  "drc_before": 769,
+  "shorting_before": 52,
+  "drc_after": 756,
+  "shorting_after": 44,
+  "delta_shorting": -8,
+  "delta_drc": -13,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0,
+    "GND_VSYS": 0
+  },
+  "fixes": {
+    "u1_3v3_trim": "deleted 5x orphan 3V3 stubs (97.00,86.35)-(97.00,87.50) into U1.31 no-net",
+    "r_sck_x": "R EPD_SCK vertical 115.65\u2192115.20 (clear MOSI via@115.90)",
+    "nreset_pogo_x": "nRESET_POGO vertical \u2192x=98.30 (clear GND stub@97.48); residual VBAT via skim",
+    "pmic_int_trunc": "deleted PMIC_INT B.Cu overrun to y=107.5 into GND vias@94.16/94.50"
+  },
+  "reverts": [
+    "l_rst_high/east (shorting up / collateral)",
+    "mp_south_shrink (GND copper \u2192 shorting up)",
+    "main_cs_y / main_mosi_y (CS\u2194DC / shorting up)",
+    "nreset_jog (shorting up)",
+    "btn3_y110/y1105 (shorting up)",
+    "r_dc_x \u2192 flipped GND\u2194VSYS@via(111.31,102.9)",
+    "swdclk_pogo_x / nreset_pogo_y/north (shorting up)",
+    "via3v3_btn3 / pmic_int_via (no net gain)"
+  ],
+  "4L": true,
+  "seal_vias_in_pogo_rect": 0,
+  "SW_DBG_nets": [
+    "<none>",
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "latent_GND_via_111_31_102_9": "PRESENT (untouched)",
+  "note": "Never deleted GND copper; power priority held at 0; separate-process pcbnew edit pattern",
+  "remaining_top": [
+    {
+      "3V3|VBUS": 5
+    },
+    {
+      "PMID|VSYS": 5
+    },
+    {
+      "3V3|CD": 3
+    },
+    {
+      "EPD_RST|GND": 2
+    },
+    {
+      "3V3_DISP|VSYS": 2
+    },
+    {
+      "PMIC_INT|VBAT": 2
+    },
+    {
+      "GND|PMID": 2
+    },
+    {
+      "3V3|LSCTRL": 2
+    },
+    {
+      "3V3|BTN3": 2
+    },
+    {
+      "3V3_DISP|PMID": 2
+    },
+    {
+      "GND|IPRETERM": 2
+    },
+    {
+      "BTN1|VBUS": 1
+    }
+  ],
+  "archive": "/workspace/e-ink-watch-kicad-shorts-passf.tar.gz"
+}

@@ -1,0 +1,50 @@
+{
+  "drc_before": 1107,
+  "drc_after": 983,
+  "shorting_before": 199,
+  "shorting_after": 185,
+  "GND_VBUS": {
+    "before": 11,
+    "after": 0
+  },
+  "GND_VBAT": {
+    "before": 8,
+    "after": 0
+  },
+  "GND_VBUS_POGO": {
+    "before": 2,
+    "after": 0
+  },
+  "TS_VBAT": {
+    "before": 2,
+    "after": 0
+  },
+  "VBAT_VBUS": {
+    "before": 0,
+    "after": 0
+  },
+  "3V3_3V3_DISP": {
+    "before": 9,
+    "after": 0
+  },
+  "3V3_DISP_GND": {
+    "before": 6,
+    "after": 3
+  },
+  "3V3_GND": {
+    "before": 2,
+    "after": 2
+  },
+  "GND_SW": {
+    "before": 1,
+    "after": 2
+  },
+  "charge_topology_ok": true,
+  "vbus_safe": false,
+  "stuck": [
+    "FH12 pad-pad 3V3_DISP\u2194GND",
+    "C_LDO\u2194R_LSCTRL",
+    "U1\u2194R2",
+    "C_SYS/C_VINLS\u2194L_SYS"
+  ]
+}

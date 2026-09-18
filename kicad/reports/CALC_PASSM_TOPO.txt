@@ -1,0 +1,8 @@
+# Pass-M topology calc notes
+I_peak: 0.5 A wearable charge class on VBUS/VBAT/PMID/VSYS
+Widths: VBUS 0.40 mm @x=110.6 (west-of-110 blocked); PMID 0.40–0.50 + vias; VSYS 0.45; ILIM sense 0.15; signals 0.15–0.18
+C_PMID @ (112.40, 103.85) ~1.95 mm from U2.A3 (≤3 mm decoupling OK)
+ILIM B.Cu spine at x=110.50 clears PMID vias at x=111.0; pad via dogbone at x=111.80 clears GND F @y=103.52
+GND↔ILIM cleared 4→0 without thinning ILIM below 0.15 mm
+Residual ILIM↔PMID is pad-pad (C_PMID.1 vs R_ILIM.1) — needs placement room, not track surgery
+No GND copper deleted; latent GND↔VSYS stays 0

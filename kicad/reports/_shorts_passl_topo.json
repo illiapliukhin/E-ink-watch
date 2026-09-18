@@ -1,0 +1,60 @@
+{
+  "before": 21,
+  "after": 20,
+  "drc": 593,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 0,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 0,
+    "GND|VSYS": 0
+  },
+  "fps": {
+    "R_ISET": [
+      109.2,
+      103.5
+    ],
+    "R_ILIM": [
+      112.5,
+      103.5
+    ],
+    "C_PMID": [
+      111.7,
+      103.85
+    ],
+    "R_IPRETERM": [
+      113.8,
+      102.8
+    ]
+  },
+  "top": [
+    "GND|ILIM:4",
+    "3V3_DISP|VSYS:3",
+    "ILIM|TS:2",
+    "IPRETERM|VBAT:1",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|VBUS:1",
+    "PMID|SW:1",
+    "ILIM|PMID:1",
+    "GND|IPRETERM:1",
+    "3V3_DISP|PMID:1",
+    "PMIC_INT|TS:1",
+    "SWDCLK|nRESET:1"
+  ],
+  "I_peak_A": 0.5,
+  "widths_mm": {
+    "VBUS": 0.4,
+    "PMID": "0.40-0.50",
+    "VSYS": 0.45,
+    "Signal": 0.15
+  },
+  "C_PMID_dist_A3_mm": 1.52,
+  "blocked": [
+    "VBUS west of x=110",
+    "C_VINLS full reconnect",
+    "ISET without GND skim"
+  ]
+}

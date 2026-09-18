@@ -1,0 +1,37 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: E Ink Watch power path (LiPo -> switch -> pulsed E Ink)
+
+Warning: Model issue on line 14 :
+  .model swdisp sw(vt=0.5 von=0.1 voff=1meg) ...
+unrecognized parameter (von) - ignored
+unrecognized parameter (voff) - ignored
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+n_bat                                      3.8
+n_vsys                                     3.8
+n_disp                               1.444e-09
+n_ctrl                                       0
+v_ctrl#branch                                0
+vlipo#branch                          -1.5e-05
+
+ Reference value :  1.21684e+02
+No. of Data Rows : 180165
+tran.v(n_vsys)[0] = 3.799999e+00
+vsys_idle           =  3.799999e+00
+vsys_pulse          =  3.799201e+00
+vdisp_pulse         =  3.789230e+00
+ibat_idle           =  -1.500000e-05
+ibat_pulse          =  -9.986782e-03
+SIM_OK
+Note: Simulation executed from .control section 

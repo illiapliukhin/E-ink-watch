@@ -1,0 +1,10 @@
+# Pass-N topology calc notes
+I_peak: 0.5 A wearable charge class on VBUS/VBAT/PMID/VSYS
+Widths: VBUS 0.40 mm @x=110.6 (west-of-110 blocked); PMID 0.40–0.45 + existing vias; VSYS 0.45; ILIM 0.15; signals 0.15
+Placement (no U2 rotate):
+  R_ILIM (112.50,103.50)->(114.80,106.15)  ΔY=+2.65 mm (≥1.0 south), east of C_SYS / clear J_STRAP_R MP in Y
+  C_PMID (112.40,103.85)->(113.80,105.25)  ΔY=+1.40 mm (≥1.0 south), east; dist(U2.A3 pad1)≈2.32 mm (≤3 mm OK)
+  R_IPRETERM (113.80,102.80)->(114.80,102.90)
+Pad-pad ILIM↔PMID cleared (was overlapping 0402 pads dy=0.35 vs half-heights ~0.63)
+Corridor blockers for fanout rebuild: C_LDO@(113.5,106.8), J_STRAP_R MP GND@(114.0,104.65) 1.2×2.0, L_SYS SW pad, VBUS@x=110.6
+No GND copper deleted; power priority pairs remain 0; latent GND↔VSYS stays 0

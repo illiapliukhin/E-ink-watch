@@ -1,0 +1,64 @@
+{
+  "pass": 25,
+  "fail": 2,
+  "gap": 8,
+  "drc": 1107,
+  "shorting": 199,
+  "unconnected": 77,
+  "top10": [
+    {
+      "a": "GND",
+      "b": "VBUS",
+      "n": 11
+    },
+    {
+      "a": "GND",
+      "b": "VBAT",
+      "n": 8
+    },
+    {
+      "a": "3V3_DISP",
+      "b": "GND",
+      "n": 6
+    },
+    {
+      "a": "TS",
+      "b": "VBAT",
+      "n": 2
+    },
+    {
+      "a": "3V3",
+      "b": "GND",
+      "n": 2
+    },
+    {
+      "a": "GND",
+      "b": "VBUS_POGO",
+      "n": 2
+    },
+    {
+      "a": "3V3_DISP",
+      "b": "VBAT",
+      "n": 2
+    },
+    {
+      "a": "3V3",
+      "b": "VBAT",
+      "n": 1
+    },
+    {
+      "a": "GND",
+      "b": "SW",
+      "n": 1
+    },
+    {
+      "a": "3V3",
+      "b": "3V3_DISP",
+      "n": 9
+    }
+  ],
+  "charge_topology_ok": true,
+  "charge_path_power_safe": false,
+  "vbat_vbus_short": 0,
+  "gnd_vbus_short": 11
+}

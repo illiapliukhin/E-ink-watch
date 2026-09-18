@@ -1,0 +1,20 @@
+POGO MATRIX (case coords, mm) — sealed charge + SWD cradle (IP67 intent)
+Origin center: (-4.0, -12.5)  pitch 3.0  rows=2 cols=3
+Align tolerance: ±0.2 mm
+Key notch: -X side of window
+Seal mode: elastomer  pocket depth=0.55  margin=1.8
+Seal sheet envelope: 15.4 x 12.4 mm
+IP_TARGET=IP67  IP_CERTIFIED=False (lab test required)
+
+Row toward 6 o'clock (y=-14):
+  (-7.00,-14.00) VCHG
+  (-4.00,-14.00) GND
+  (-1.00,-14.00) SWDIO
+Row toward center (y=-11):
+  (-7.00,-11.00) SWDCLK
+  (-4.00,-11.00) nRESET
+  (-1.00,-11.00) OPT
+
+PCB must provide matching B.Cu pads under elastomer (no vias in seal land).
+SW_DBG remains internal — no case opening. No USB-C.
+KiCad refs nearby: J_BAT (0,-15.8), J_SWD (-11,-11.5) in case coords.

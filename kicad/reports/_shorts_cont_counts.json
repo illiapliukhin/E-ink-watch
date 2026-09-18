@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-09-18 14:07:37",
+  "drc_before": 832,
+  "shorting_before": 86,
+  "drc_after": 790,
+  "shorting_after": 63,
+  "delta_shorting": -23,
+  "delta_drc": -42,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0,
+    "GND_VSYS": 0
+  },
+  "fixes": {
+    "MAIN_EPD_SCK": "F channel removed; B.Cu @y=84.90 + F stub via@99.25 (clear 3V3_DISP pad)",
+    "L_EPD_SCK": "B.Cu under 3V3_DISP spine; F via@83.70,101.25",
+    "L_EPD_DC": "B.Cu jog around GND through-via@86,100",
+    "L_EPD_RST": "F south then west @y=98.40 (partial; still 3V3_DISP skim)",
+    "L_EPD_BUSY_L": "north/west jog clear of GND via@90.5,98.5",
+    "R_EPD_MOSI": "new via@116.20,98.60 east of SCK (was on GND via)",
+    "R_EPD_DC": "jogged west; deleted orphan CS_R via@114,100",
+    "MAIN_BUSY_CS_RST": "BUSY west corridor; CS south; RST @y=85.90",
+    "SWDCLK": "horiz @y=100.40 south of CS_L pad Y",
+    "BTN2": "east escape via@98.50,95.60; B @x=97.8\u219298.5 clear of via cluster"
+  },
+  "reverts": [
+    "Pass-D full (MAIN SCK y=84.85) \u2192 GND\u2194VSYS@via(111.31,102.9)",
+    "Pass-D3 bulk polish \u2192 GND\u2194VSYS\u00d72",
+    "D3b-2 MAIN SCK via\u219285.25 \u2192 shorting up (CS mash)",
+    "D3b-4/5 L DC y=101 via near SCK via \u2192 shorting up",
+    "D3b-6 L RST B.Cu \u2192 shorting up",
+    "D3b-8 MAIN CS y=85.50 \u2192 shorting up"
+  ],
+  "4L": true,
+  "seal_vias_in_pogo_rect": 0,
+  "SW_DBG_nets": [
+    "<none>",
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "note": "Never deleted GND copper; power priority held at 0",
+  "archive": "/workspace/e-ink-watch-kicad-shorts-cont.tar.gz"
+}

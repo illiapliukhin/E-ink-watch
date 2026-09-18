@@ -1,0 +1,27 @@
+{
+  "drc_before_session": 983,
+  "drc_after": 947,
+  "shorting_before_session": 185,
+  "shorting_after": 179,
+  "3V3_DISP_GND": {
+    "before": 3,
+    "after": 0
+  },
+  "3V3_GND": {
+    "before": 2,
+    "after": 0
+  },
+  "GND_SW": {
+    "before": 2,
+    "after": 0
+  },
+  "GND_VBUS": 0,
+  "GND_VBAT": 0,
+  "GND_VBUS_POGO": 0,
+  "TS_VBAT": 0,
+  "3V3_3V3_DISP": 0,
+  "charge_topology_ok": true,
+  "gaps_ok": true,
+  "4L": true,
+  "SW_DBG_preserved": true
+}

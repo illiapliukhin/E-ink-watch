@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-18 13:53:21 ",
+  "drc_before": 903,
+  "shorting_before": 138,
+  "drc_after": 897,
+  "shorting_after": 123,
+  "SCL_SDA_before": 3,
+  "SCL_SDA_after": 0,
+  "SDA_TS_after": 0,
+  "EPD_CS_MAIN_EPD_RST_after": 0,
+  "EPD_SCK_GND_after": 0,
+  "EPD_BUSY_3V3_after": 0,
+  "power_priority": {
+    "GND_VBUS": 0,
+    "GND_VBAT": 0,
+    "GND_VBUS_POGO": 0,
+    "3V3_GND": 0,
+    "3V3_DISP_GND": 0,
+    "GND_SW": 0,
+    "3V3_3V3_DISP": 0,
+    "GND_VSYS": 0
+  },
+  "4L": true,
+  "seal_vias": 0,
+  "SW_DBG_nets": [
+    "SWDCLK",
+    "SWDCLK_POGO",
+    "SWDIO",
+    "SWDIO_POGO",
+    "nRESET",
+    "nRESET_POGO"
+  ],
+  "pogo_nets_present": [
+    "SWDCLK_POGO",
+    "SWDIO_POGO",
+    "VBUS_POGO",
+    "nRESET_POGO"
+  ],
+  "delta_shorting": -15,
+  "archive": "/workspace/e-ink-watch-kicad-sclsda-fh12.tar.gz",
+  "note": "Never delete GND copper \u2014 distant GND via delete flips latent GND\u2194VSYS into shorting_items"
+}

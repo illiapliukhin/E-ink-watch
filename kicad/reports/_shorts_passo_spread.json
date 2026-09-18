@@ -1,0 +1,32 @@
+{
+  "method": "pcbnew_minimal_north_C_PMID_v4",
+  "before": 12,
+  "attempt": 29,
+  "kept": false,
+  "power": {
+    "GND|VBUS": 0,
+    "GND|VBAT": 0,
+    "GND|VBUS_POGO": 0,
+    "3V3|GND": 0,
+    "3V3_DISP|GND": 1,
+    "GND|SW": 0,
+    "3V3|3V3_DISP": 3,
+    "GND|VSYS": 1
+  },
+  "dA3": 1.939,
+  "mp_ease": "BLOCKED",
+  "top": [
+    "3V3|3V3_DISP:3",
+    "PMID|VSYS:3",
+    "IPRETERM|ISET:3",
+    "3V3_DISP|PMID:2",
+    "3V3_DISP|VSYS:2",
+    "GND|IPRETERM:2",
+    "3V3_DISP|ILIM:2",
+    "IPRETERM|VBAT:2",
+    "GND|LSCTRL:2",
+    "EPD_BUSY_MAIN|EPD_MOSI:1",
+    "PMID|SW:1",
+    "PMID|VBUS:1"
+  ]
+}
