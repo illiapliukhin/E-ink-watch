@@ -827,3 +827,33 @@ cursor.md (agent lessons)
 
 ### Verdict
 Improved: unc 12→10, shorting stayed 0, UUID collisions cleared. FH12 GND and SW2 closed. West DISP / I2C / PMIC pocket still blocked.
+
+## Pass-AG — in-place ISET via, latent U2 shorts (2026-09-20)
+Board: e-ink-watch.kicad_pcb
+From Pass-AF: unc=10 shorting=0 md5=26fe713b0c6dc5f70b8bc6eb2a57d6cd
+To Pass-AG:   unc=10 shorting=0 (iset_via_west KEEP)
+
+### KEEP
+- iset_via_west (in-place, no sexpr reorder): ISET via (109.5,106.0) 0.5/0.25 → (108.55,106.0) 0.35/0.15; F stub extended to the new via. Frees the 109.5,106 pocket for a later ILIM/TS via. Gate: shorting=0 unc=10.
+
+### REVERT
+- ts_via_off_vbat (delete TS via cluster): flake SCL↔SDA, ILIM↔PMID, CD↔SCL
+- cd_erow_del / cd_off_erow: flake TS↔VBAT (via 110.4,105.65 on B1–B2) and CD↔3V3/SDA
+- move_rscl_east (112.0,107.8)→(112.5,107.7): 3V3↔SCL (via 112.16,107.6), 3V3↔GND (R_CD/C_LDO pads)
+
+### Latent shorts (geometry overlap, DRC-quiet until reorder)
+- TS via @(110.4,105.65) on VBAT F y=105.6 / B1/B2
+- ILIM via @(111.45,105.8) 0.5 on PMID B4/C4
+- CD F @y=106.8 through U2 E3/E4/E5
+- R_SCL pad 1 on SDA vertical x=111.4
+
+### Next (paused)
+Move/rotate R_SCL+R_CD+C_LDO together; in-place nudge TS via off VBAT; ILIM via off PMID; CD off E-row. Prefer orthogonal escapes. Do not delete copper first.
+
+### Archives
+tools/_pass_ag_sexpr_lib.py, _pass_ag_gate.py, _pass_ag_try.py, _pass_ag_apply_keeps.py, _pass_ag_run.sh
+reports/PASS_AG.md
+cursor.md (in-place vs delete flake)
+
+### Verdict
+Hard gates held. Unconnected still 10. West ISET via cleared without promoting shorts. U2 east/south corridors still blocked by latent overlaps.
