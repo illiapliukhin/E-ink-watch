@@ -10,6 +10,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _pass_ag_sexpr_lib import (
     add_segment,
+    add_via,
     load,
     netnum,
     save,
@@ -78,6 +79,25 @@ if "(at 114.6 108.25 90)" in text and not has_lsctrl_tie:
     applied.append("sol_3v3_lsctrl_tie")
     has_lsctrl_tie = True
 
+has_cd_e2 = "(at 110.6 106.95)" in text
+if has_lsctrl_tie and not has_cd_e2:
+    cd_net = netnum(text, "CD")
+    text = add_via(text, 110.6, 106.95, 0.25, 0.15, cd_net)
+    text = add_segment(text, 110.6, 106.8, 110.6, 106.95, 0.15, "F.Cu", cd_net)
+    text = add_segment(text, 110.6, 106.95, 112.65, 106.95, 0.12, "B.Cu", cd_net)
+    text = add_segment(text, 112.65, 106.95, 112.65, 108.41, 0.12, "B.Cu", cd_net)
+    text = add_segment(text, 112.65, 108.41, 113.3, 108.41, 0.12, "B.Cu", cd_net)
+    applied.append("sol_cd_e2_via")
+    has_cd_e2 = True
+
+has_ilim_dog = "(start 110.75 106.0)" in text
+if has_cd_e2 and not has_ilim_dog:
+    ilim_net = netnum(text, "ILIM")
+    text = add_segment(text, 110.6, 106.0, 110.75, 106.0, 0.08, "F.Cu", ilim_net)
+    text = add_segment(text, 110.75, 106.0, 110.75, 105.8, 0.08, "F.Cu", ilim_net)
+    applied.append("sol_ilim_c2_dogbone")
+    has_ilim_dog = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and "(at 108.8 109.8 90)" in text:
         extra = ""
@@ -85,6 +105,10 @@ if not applied:
             extra += ", sol_rscl_3v3"
         if has_lsctrl_tie:
             extra += ", sol_3v3_lsctrl_tie"
+        if has_cd_e2:
+            extra += ", sol_cd_e2_via"
+        if has_ilim_dog:
+            extra += ", sol_ilim_c2_dogbone"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

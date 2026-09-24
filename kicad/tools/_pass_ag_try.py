@@ -350,6 +350,26 @@ elif edit_name == "sol_3v3_lsctrl_tie":
     text = add_segment(text, 112.51, 107.8, 112.16, 107.8, 0.2, "F.Cu", rail_3v3_net)
     print("sol_3v3_lsctrl_tie added F.Cu 3V3 (112.51,107.8)-(112.16,107.8)")
 
+elif edit_name == "sol_cd_e2_via":
+    # Sol variant 2 (CD F→B→existing CD via). Independent probe, not VIP.
+    # Rejected: via-in-pad on E2 (110.6,106.8) and B vertical x=112.4
+    # (OVERLAP −0.120 vs 3V3 via 0.6@(112.16,107.60)).
+    # KEEP: dogbone south of E2, then B.Cu L at y=106.95 / x=112.65.
+    text = add_via(text, 110.6, 106.95, 0.25, 0.15, cd_net)
+    text = add_segment(text, 110.6, 106.8, 110.6, 106.95, 0.15, "F.Cu", cd_net)
+    text = add_segment(text, 110.6, 106.95, 112.65, 106.95, 0.12, "B.Cu", cd_net)
+    text = add_segment(text, 112.65, 106.95, 112.65, 108.41, 0.12, "B.Cu", cd_net)
+    text = add_segment(text, 112.65, 108.41, 113.3, 108.41, 0.12, "B.Cu", cd_net)
+    print("sol_cd_e2_via via (110.6,106.95) 0.25 + F stub + B L x=112.65")
+
+elif edit_name == "sol_ilim_c2_dogbone":
+    # Orthogonal F.Cu C2 → KEEP ILIM via (110.75,105.80). Do not drop
+    # ILIM onto x=110.6 / y=105.80 (VBAT RISK +0.020). w=0.08 keeps
+    # VBAT +0.070 and PMID +0.080 on the via vertical.
+    text = add_segment(text, 110.6, 106.0, 110.75, 106.0, 0.08, "F.Cu", ilim_net)
+    text = add_segment(text, 110.75, 106.0, 110.75, 105.8, 0.08, "F.Cu", ilim_net)
+    print("sol_ilim_c2_dogbone F L (110.6,106.0)->(110.75,106.0)->(110.75,105.8)")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

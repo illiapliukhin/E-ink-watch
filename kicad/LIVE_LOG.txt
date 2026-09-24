@@ -944,3 +944,23 @@ CD E2 around the SDA diagonal, not onto E1. SCL E5→R_SCL pad1. TS C3, ILIM C2.
 ### Archives
 reports/PASS_AG_SOL_STEP.md
 
+## Pass-AG follow-up (2026-09-24) — sol_cd_e2_via + sol_ilim_c2_dogbone
+Sol quota 429 at 01:57 UTC on the CD round (via-in-pad on E2; B.Cu x=112.4). Independent probe after 02:00 reset. East 0402 column not moved.
+
+### REJECT (not applied)
+- CD via-in-pad on E2 (110.60,106.80) size 0.20 — DSBGA VIP; IPRETERM B RISK +0.049
+- CD B.Cu vertical x=112.4 — OVERLAP −0.120 vs 3V3 via 0.6@(112.16,107.60)
+- ILIM F drop on x=110.6 at y=105.80 — VBAT RISK +0.020
+
+### KEEP
+sol_cd_e2_via: via CD (110.6,106.95) 0.25/0.15; F (110.6,106.8)-(110.6,106.95) w=0.15; B L (110.6,106.95)-(112.65,106.95)-(112.65,108.41)-(113.3,108.41) w=0.12. Probe overlap=0 (SDA +0.102, 3V3_DISP B +0.115, 3V3 via +0.130). DRC shorting=0 unc 14→13.
+
+sol_ilim_c2_dogbone: F L w=0.08 (110.6,106.0)-(110.75,106.0)-(110.75,105.8) onto ILIM via. Probe overlap=0 (VBAT +0.070, PMID +0.080). DRC shorting=0 unc 13→12.
+
+### Next
+TS C3 to TS via (107.8,105.65). SCL E5 to R_SCL pad1 (108.8,110.31). Through vias on new CD B y=106.95 x=110.60–112.65 short CD. No In1/In2. No VBUS on dock.
+
+### Archives
+reports/PASS_AG_SOL_STEP2.md
+reports/sol_views/
+

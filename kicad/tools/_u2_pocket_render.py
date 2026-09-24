@@ -39,8 +39,8 @@ NET_COLORS = {
 LATENTS = [
     "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; R_SCL (108.8,109.8,90)",
     "KEEP: R_SCL pad2 3V3 L; R_LSCTRL 3V3 tied at y=107.80 to via x=112.16",
-    "C3 TS, C2 ILIM, E2 CD, E5 SCL still islands. E1 is NC — never haul CD west",
-    "SW2 (114.5,111) and TP6 B.Cu (108.5,111) bound the south-east / south-west",
+    "KEEP: CD E2 dogbone via (110.6,106.95) 0.25 + B L x=112.65 to CD via (113.3,108.41)",
+    "KEEP: ILIM C2 F L w=0.08 onto via (110.75,105.80). C3 TS and E5 SCL still islands",
 ]
 
 
@@ -245,6 +245,7 @@ def render_layer(text, layer, title, callouts):
         ((110.55, 105.62, 110.95, 105.98), "ILIM via KEEP"),
         ((108.45, 108.95, 109.15, 110.65), "R_SCL KEEP"),
         ((107.5, 105.4, 108.1, 105.9), "TS via KEEP"),
+        ((110.45, 106.80, 110.75, 107.10), "CD via KEEP"),
     ]
     if layer == "F.Cu":
         for (bx0, by0, bx1, by1), _label in boxes:
@@ -281,7 +282,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after sol_rscl_3v3 KEEP (shorting=0, unc=15)",
+        "U2 pocket F.Cu — after CD+ILIM KEEPs (shorting=0, unc=12)",
         LATENTS,
     )
     bcu = render_layer(
@@ -289,10 +290,10 @@ def main():
         "B.Cu",
         "U2 pocket B.Cu — same window, F.Cu ghosted dark",
         [
+            "KEEP CD B.Cu L: (110.6,106.95)->(112.65,106.95)->(112.65,108.41)->(113.3,108.41)",
             "TS B.Cu L: (108.51,107)->(107.8,107)->(107.8,105.65)->(110.4,105.65)",
             "ILIM B.Cu y=105.80 from 111.45 to 110.30 then south/east to R_ILIM",
-            "ISET B.Cu x=108.20 and leftover stub to 109.50,106.00",
-            "Through via hits In1 GND + In2 3V3 planes (isolation rings)",
+            "Do not B.Cu CD at x=112.4 — clips 3V3 via 0.6@(112.16,107.60)",
         ],
     )
     fcu_path = OUT / "u2_pocket_fcu_annotated.png"

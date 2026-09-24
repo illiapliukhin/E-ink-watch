@@ -60,3 +60,8 @@ add_segment(net=3V3, layer=F.Cu,
 ```
 
 `set_via_at`, `set_seg_ends`, `set_fp_at`, `add_via` — **нет**. Конец `(112.16,107.80)` попадает на осмотренную существующую вертикаль 3V3 `(112.16,108.25)–(112.16,107.60)`. Плату я не редактировал: называть этот кандидат сохранённым KEEP можно лишь после применения одной транзакцией и проверки DRC с `shorting_items=0`, нулём приоритетных силовых и PMID-карманных КЗ; при провале — откатить. VBUS на док не подавать.
+
+## Applied KEEP
+
+Independent probe matched Sol: overlap=0. Applied as `sol_3v3_lsctrl_tie`. DRC: **`shorting_items=0`**, `unc=15→14`, power/pocket gates held. East 0402 column was not moved.
+
