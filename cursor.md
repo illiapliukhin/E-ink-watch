@@ -27,6 +27,10 @@ Do not skip these on the next PCB pass.
 - ILIM via-only slide to `(110.75, 105.80)` `0.20` was overlap-clear of PMID/VBAT but DRC still reported CD↔3V3 and CD↔SCL. File length did not change. Moving the ILIM via promotes the CD E-row latents; clear CD (and R_SCL pad-on-SDA) in the **same** save as the ILIM via.
 - Send Sol annotated F.Cu/B.Cu maps plus KiCad 3D of U2. If it is wrong, reply with the overlap numbers and new pictures; do not apply blindly. Vision KEEP `R_SCL (108.8, 109.8, 90)` was F.Cu-clear (TP6 pad is **B.Cu** only). Its ILIM via `0.25@(110.80,105.80)` still clipped PMID F (edge −0.042) — use `0.20@(110.75,105.80)`. CD vertical `x=112.8` crosses 3V3 F `y=107.8`; retract it with the E-row.
 - Combined KEEP `sol_combo_west`: ILIM via + ILIM F stub + CD E-row + CD vertical + TS F onto C3 + `R_SCL` rotate-move, one save. `shorting=0`, unc 11→16.
+- gpt-6-sol Chat Completions tool loop works on Experiential (`list_dir` / `read_file` / `grep` / `glob` / `read_image` / `inspect_pcb_window` / `probe_clearance`). Do not replace it with a pasted coordinate brief. Deny `*explabs_key*` / `.env`. Round BGA pads as circles in the probe (AABB false-overlaps VBAT B2).
+- `inspect_pcb_window` must list **NC** pads. Sol's first self-browse KEEP hauled CD west onto U2.E1 `(110.20, 106.80)` which has no net. CD is E2 only. Reconnect CD toward via `(113.30, 108.41)`, never onto E1.
+- ILIM F down to `y=105.80` has probe RISK edge `+0.000` vs VBAT F `y=105.60` w=0.28. Do not drop ILIM onto that street.
+- After a correction round, Sol's 3V3 L from `R_SCL` pad2 `(108.80, 109.29)` → `(110.50, 109.29)` → `(110.50, 108.25)` → island `(110.16, 108.25)` DRC-gated as `sol_rscl_3v3`: `shorting=0`, unc 16→15. Add-segment insert still needs the full gate (item-order flake).
 
 ## Hard gates (do not relax)
 

@@ -915,3 +915,20 @@ Orthogonal reconnect of C2/C3/E2/E5 and R_SCL pads. Show Sol the after-KEEP pock
 reports/sol_views/, tools/_u2_pocket_render.py, tools/_sol_vision_ask.py
 reports/PASS_AG_SOL_VISION.md, reports/_drc_passag_sol_combo_west.txt
 
+## Pass-AG follow-up (2026-09-24) — Sol browses the repo
+Gave gpt-6-sol read-only tools (`_sol_repo_explore.py`): list_dir, read_file, grep, glob, read_image, inspect_pcb_window, probe_clearance. Key not in repo. Sol itself opened cursor.md, LIVE_LOG, PASS_AG*, pocket maps, 3D, and U2 copper.
+
+### REJECT (not applied)
+- CD F (110.20,106.80)–(110.63,106.80): U2.E1 is NC, CD is E2 only. Probe missed NC pads until parse was fixed.
+- ILIM F down to y=105.80: RISK edge +0.000 vs VBAT F y=105.60 w=0.28.
+
+### KEEP
+sol_rscl_3v3 after a correction round: 3V3 F L from R_SCL pad2 (108.80,109.29) → (110.50,109.29) → (110.50,108.25) → island (110.16,108.25). Independent probe overlap=0 (tightest +0.110 vs R_SDA pad1). DRC shorting=0 unc 16→15. Power/pocket gates held.
+
+### Next
+CD E2 toward via (113.30,108.41), not onto E1. SCL E5→R_SCL pad1. TS C3, ILIM C2. No In1/In2. No VBUS on dock.
+
+### Archives
+tools/_sol_repo_explore.py, _sol_board_query.py
+reports/PASS_AG_SOL_EXPLORE.md, PASS_AG_SOL_EXPLORE_FOLLOWUP.md
+

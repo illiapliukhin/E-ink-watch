@@ -9,7 +9,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _pass_ag_sexpr_lib import (
+    add_segment,
     load,
+    netnum,
     save,
     set_fp_at,
     set_seg_ends,
@@ -60,9 +62,22 @@ if n_via == 1:
         raise SystemExit("sol_combo_west partial match")
     applied.append("sol_combo_west")
 
+has_rscl_3v3 = "(start 108.8 109.29)" in text or "(end 108.8 109.29)" in text
+if "(at 108.8 109.8 90)" in text and not has_rscl_3v3:
+    rail_3v3_net = netnum(text, "3V3")
+    text = add_segment(text, 108.8, 109.29, 110.5, 109.29, 0.12, "F.Cu", rail_3v3_net)
+    text = add_segment(text, 110.5, 109.29, 110.5, 108.25, 0.12, "F.Cu", rail_3v3_net)
+    text = add_segment(text, 110.5, 108.25, 110.16, 108.25, 0.12, "F.Cu", rail_3v3_net)
+    applied.append("sol_rscl_3v3")
+    has_rscl_3v3 = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and "(at 108.8 109.8 90)" in text:
-        print("Pass-AG keeps already present: iset_via_west, ts_via_corner, sol_combo_west")
+        extra = ", sol_rscl_3v3" if has_rscl_3v3 else ""
+        print(
+            "Pass-AG keeps already present: "
+            f"iset_via_west, ts_via_corner, sol_combo_west{extra}"
+        )
         sys.exit(0)
     raise SystemExit("no Pass-AG KEEP source vias found")
 

@@ -507,7 +507,12 @@ def compact_assistant(message: dict) -> dict:
     return kept
 
 
-def write_report(trace: list[dict], final_text: str, usage: dict | None) -> None:
+def write_report(
+    trace: list[dict],
+    final_text: str,
+    usage: dict | None,
+    report_path: Path = REPORT,
+) -> None:
     calls = []
     for row in trace:
         if row.get("role") == "tool":
@@ -526,7 +531,7 @@ def write_report(trace: list[dict], final_text: str, usage: dict | None) -> None
         + (final_text or "_(empty)_")
         + "\n"
     )
-    REPORT.write_text(body)
+    report_path.write_text(body)
     TRACE.write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in trace) + "\n")
 
 
@@ -564,6 +569,12 @@ def main() -> None:
         {"role": "system", "content": SYSTEM},
         {"role": "user", "content": USER},
     ]
+    extra = Path(sys.argv[1]).read_text() if len(sys.argv) > 1 else ""
+    report_path = REPORT
+    if extra.strip():
+        messages.append({"role": "user", "content": extra.strip()})
+        report_path = ROOT / "kicad/reports/PASS_AG_SOL_EXPLORE_FOLLOWUP.md"
+        print("FOLLOWUP attached", len(extra), "chars", flush=True)
     final_text = ""
     usage = None
     TRACE.write_text("")
@@ -637,8 +648,8 @@ def main() -> None:
         break
     else:
         final_text = final_text or "(max rounds, no final text)"
-    write_report(explorer.trace, final_text, usage)
-    print("WROTE", REPORT)
+    write_report(explorer.trace, final_text, usage, report_path)
+    print("WROTE", report_path)
     print(final_text)
 
 

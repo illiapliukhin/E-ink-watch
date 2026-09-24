@@ -334,6 +334,15 @@ elif edit_name == "ilim_via_out":
     text = add_segment(text, 109.15, 105.85, 109.15, 105.35, 0.12, "B.Cu", ilim_net)
     text = add_segment(text, 109.15, 105.35, 110.3, 105.35, 0.12, "B.Cu", ilim_net)
 
+elif edit_name == "sol_rscl_3v3":
+    # gpt-6-sol repo-explore follow-up KEEP: reconnect R_SCL pad2 (3V3)
+    # at (108.80,109.29) to the existing 3V3 island at y=108.25.
+    # Orthogonal F.Cu only. Combined CD/E1 KEEP was rejected (E1 is NC).
+    text = add_segment(text, 108.8, 109.29, 110.5, 109.29, 0.12, "F.Cu", rail_3v3_net)
+    text = add_segment(text, 110.5, 109.29, 110.5, 108.25, 0.12, "F.Cu", rail_3v3_net)
+    text = add_segment(text, 110.5, 108.25, 110.16, 108.25, 0.12, "F.Cu", rail_3v3_net)
+    print("sol_rscl_3v3 added 3 F.Cu 3V3 segments")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

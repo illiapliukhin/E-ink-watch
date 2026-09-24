@@ -38,8 +38,8 @@ NET_COLORS = {
 
 LATENTS = [
     "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; R_SCL (108.8,109.8,90)",
-    "C3 TS, C2 ILIM, E2 CD, E5 SCL, R_SCL pads are islands — reconnect F/B orthogonal next",
-    "Do not haul signals on In1 (GND plane) or In2 (3V3 plane)",
+    "KEEP: R_SCL pad2 3V3 L to y=108.25 (sol_rscl_3v3). C3 TS, C2 ILIM, E2 CD, E5 SCL still islands",
+    "E1 is NC — do not haul CD west onto it. In1=GND plane, In2=3V3 plane",
     "SW2 (114.5,111) and TP6 B.Cu (108.5,111) bound the south-east / south-west",
 ]
 
@@ -124,18 +124,24 @@ def parse_footprints(text):
         rot = float(parts[2]) if len(parts) > 2 else 0.0
         pads = []
         for pad_m in re.finditer(
-            r'\(pad "([^"]+)" smd [^\n]*\n'
+            r'\(pad "([^"]+)" (?:smd|thru_hole) [^\n]*\n'
             r'\t\t\t\(at ([^)]+)\)\n'
             r'\t\t\t\(size ([^)]+)\)\n'
-            r'\t\t\t\(layers ([^\n]+)\)[\s\S]*?'
-            r'\(net (\d+) "([^"]+)"\)',
+            r'\t\t\t\(layers ([^\n]+)\)',
             body,
         ):
             pxy = pad_m.group(2).split()
             lx, ly = float(pxy[0]), float(pxy[1])
             sx, sy = map(float, pad_m.group(3).split()[:2])
+            tail = body[pad_m.end() : pad_m.end() + 360]
+            next_pad = tail.find("(pad ")
+            net_m = re.search(r'\(net \d+ "([^"]+)"\)', tail)
+            if net_m and (next_pad < 0 or net_m.start() < next_pad):
+                net_name = net_m.group(1)
+            else:
+                net_name = "NC"
             pads.append(
-                (pad_m.group(1), pad_m.group(6), lx, ly, sx, sy, pad_m.group(4))
+                (pad_m.group(1), net_name, lx, ly, sx, sy, pad_m.group(4))
             )
         fps.append({"ref": ref_m.group(1), "x": x, "y": y, "rot": rot, "pads": pads})
     return fps
