@@ -1,18 +1,40 @@
 #!/usr/bin/env python3
-"""Replay Pass-AG KEEP edits onto the Pass-AF board (in-place, no sexpr reorder)."""
+"""Replay Pass-AG KEEP edits (in-place, no sexpr reorder).
+
+Applies any KEEP whose source via is still at the pre-KEEP coordinate.
+Safe on a board that already has a prefix of the KEEP list.
+"""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _pass_ag_sexpr_lib import save, set_seg_ends, set_via_at, set_via_size_drill, load
+from _pass_ag_sexpr_lib import load, save, set_seg_ends, set_via_at, set_via_size_drill
 
 text = load()
+applied = []
+
 text, n_via = set_via_at(text, 109.5, 106.0, 108.55, 106.0)
-text, n_sz = set_via_size_drill(text, 108.55, 106.0, 0.35, 0.15)
-text, n_f = set_seg_ends(
-    text, 109.5, 106.0, 110.2, 106.0, 108.55, 106.0, 110.2, 106.0, layer="F.Cu"
-)
-if n_via != 1 or n_sz != 1 or n_f != 1:
-    raise SystemExit(f"Pass-AG keep match failed via={n_via} size={n_sz} F={n_f}")
+if n_via == 1:
+    text, n_sz = set_via_size_drill(text, 108.55, 106.0, 0.35, 0.15)
+    text, n_f = set_seg_ends(
+        text, 109.5, 106.0, 110.2, 106.0, 108.55, 106.0, 110.2, 106.0, layer="F.Cu"
+    )
+    if n_sz != 1 or n_f != 1:
+        raise SystemExit(f"iset_via_west partial via={n_via} size={n_sz} F={n_f}")
+    applied.append("iset_via_west")
+
+text, n_via = set_via_at(text, 110.4, 105.65, 107.8, 105.65)
+if n_via == 1:
+    text, n_sz = set_via_size_drill(text, 107.8, 105.65, 0.25, 0.15)
+    if n_sz != 1:
+        raise SystemExit(f"ts_via_corner size match failed {n_sz}")
+    applied.append("ts_via_corner")
+
+if not applied:
+    if "(at 108.55 106.0)" in text and "(at 107.8 105.65)" in text:
+        print("Pass-AG keeps already present: iset_via_west, ts_via_corner")
+        sys.exit(0)
+    raise SystemExit("no Pass-AG KEEP source vias found")
+
 save(text)
-print("Pass-AG keeps applied: iset_via_west")
+print("Pass-AG keeps applied: " + ", ".join(applied))

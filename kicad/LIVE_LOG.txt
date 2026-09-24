@@ -865,4 +865,29 @@ Hard gates held. Unconnected still 10. West ISET via cleared without promoting s
 - cd_stub_south (in-place CD E-row → E2 stub) promoted ILIM↔PMID + CD↔SDA. Reverted.
 - Board remains Pass-AG KEEP only (ISET via west). shorting=0 unc=10.
 
-Next: fix ILIM via@(111.45,105.8) and TS via@(110.4,105.65) in-place **before** any other copper; then rotate R_SCL with pad1 at +Y.
+## Pass-AG follow-up (2026-09-24) — gpt-6-sol U2 variants + ts_via_corner KEEP
+Key in session env only (not in repo). Sol proposed 3 floorplans + first KEEP TS via → (108.00, 105.65) 0.35/0.15.
+
+### Geometry review (do not apply Sol TS park)
+- (108.00, 105.65) 0.35 overlaps VBAT F x=108.12 w=0.35, VBAT y=105.60 w=0.28, ISET B x=108.20 w=0.15
+- ILIM park (109.65, 106.30) 0.30 is pad/track-clear, but one-segment F C2→park clips C1 ISET
+- Sol CD/SDA on In1/In2: In1=GND plane, In2=3V3 plane — skip those hauls
+- 0402 rot 90 pad1 = +Y: Sol variants A–C now use this correctly
+- SW2 @(114.5, 111) sits next to Sol R_SCL east cluster
+
+### KEEP
+- ts_via_corner (in-place): TS via (110.4, 105.65) 0.35/0.15 → (107.8, 105.65) 0.25/0.15, already the west elbow of TS B.Cu. shorting=0 unc=10→11. C3 F island until later reconnect. F stubs at x=110.4 still overlap VBAT/C2 (latent).
+
+### REVERT
+- ts_f_retract (collapse TS F onto C3 stub): SCL↔SDA, TS↔ILIM ×2 (C3 stub vs ILIM F diagonal)
+- ilim_via_slide via-only (111.45, 105.8) 0.5 → (110.75, 105.8) 0.20 (geometry-clear of PMID): CD↔3V3 (R_SCL pad2), CD↔SCL (E-row through E5). No file-length change.
+
+### Latent still in copper
+- TS F x=110.4 y=105.65–106.0 on VBAT; TS F y=106.0 through C2; ILIM via still on PMID B4/C4; CD F y=106.8 through E3/E4/E5; R_SCL pad1 on SDA x=111.4
+
+### Next
+One save: ILIM via off PMID + CD off E-row + R_SCL pad1 off SDA (no new copper). Then orthogonal TS/CD/SDA/SCL escapes. Do not use In1/In2 for those nets. Do not apply VBUS on dock.
+
+### Archives
+kicad/reports/PASS_AG_SOL.md
+reports/_drc_passag_ts_via_corner.txt, _drc_passag_ts_f_retract.txt, _drc_passag_ilim_via_slide.txt

@@ -112,6 +112,57 @@ elif edit_name == "nudge_cd_south":
     if n1 != 1 or n2 != 1:
         raise SystemExit("nudge_cd_south failed to match")
 
+elif edit_name == "ts_via_corner":
+    # gpt-6-sol first KEEP was (108.00, 105.65) 0.35 — that overlaps VBAT F @x=108.12
+    # w=0.35 and ISET B @x=108.20. Park on the existing TS B.Cu elbow instead.
+    # In-place only: via already sits on (107.8, 105.65)-(110.4, 105.65).
+    text, n_via = set_via_at(text, 110.4, 105.65, 107.8, 105.65)
+    text, n_sz = set_via_size_drill(text, 107.8, 105.65, 0.25, 0.15)
+    print(f"ts_via_corner via={n_via} size={n_sz}")
+    if n_via != 1 or n_sz != 1:
+        raise SystemExit("ts_via_corner failed to match")
+
+elif edit_name == "ts_f_retract":
+    # After ts_via_corner: F stubs (110.4,105.65)-(110.4,106.0)-(111.0,106.0)
+    # still overlap VBAT y=105.6 and run through C2 ILIM. Collapse onto the
+    # existing C3 stub (111.0,106.0)-(111.0,106.12). C3 stays an island until
+    # a later orthogonal escape. No new copper.
+    text, n1 = set_seg_ends(
+        text, 110.4, 105.65, 110.4, 106.0, 111.0, 106.0, 111.0, 106.12, layer="F.Cu"
+    )
+    text, n2 = set_seg_ends(
+        text, 110.4, 106.0, 111.0, 106.0, 111.0, 106.0, 111.0, 106.12, layer="F.Cu"
+    )
+    print(f"ts_f_retract n1={n1} n2={n2}")
+    if n1 != 1 or n2 != 1:
+        raise SystemExit("ts_f_retract failed to match")
+
+elif edit_name == "ilim_via_slide":
+    # Via-only, on existing ILIM B.Cu y=105.80. Scan after ts_via_corner:
+    # (110.75, 105.80) size 0.20 is overlap-clear of PMID/VBAT/TS; 0.22 also
+    # clear. Do not set_seg_ends (ts_f_retract flake: SCL↔SDA + TS↔ILIM).
+    # F stub still ends at 111.45,105.8 on PMID — later retract.
+    text, n_via = set_via_at(text, 111.45, 105.8, 110.75, 105.8)
+    text, n_sz = set_via_size_drill(text, 110.75, 105.8, 0.2, 0.15)
+    print(f"ilim_via_slide via={n_via} size={n_sz}")
+    if n_via != 1 or n_sz != 1:
+        raise SystemExit("ilim_via_slide failed to match")
+
+elif edit_name == "ilim_via_park":
+    # Sol temp park (109.65, 106.30) 0.30 is overlap-clear of pads, but the
+    # one-segment F diagonal C2→park clips C1 ISET. Do not run as-is.
+    text, n_via = set_via_at(text, 111.45, 105.8, 109.65, 106.3)
+    text, n_sz = set_via_size_drill(text, 109.65, 106.3, 0.3, 0.15)
+    text, n_f = set_seg_ends(
+        text, 110.6, 106.0, 111.45, 105.8, 110.6, 106.0, 109.65, 106.3, layer="F.Cu"
+    )
+    text, n_b = set_seg_ends(
+        text, 111.45, 105.8, 110.3, 105.8, 109.65, 106.3, 110.3, 105.8, layer="B.Cu"
+    )
+    print(f"ilim_via_park via={n_via} size={n_sz} F={n_f} B={n_b}")
+    if n_via != 1 or n_f != 1 or n_b != 1:
+        raise SystemExit("ilim_via_park failed to match")
+
 elif edit_name == "nudge_ts_via":
     # In-place: TS via off VBAT row, south of C3 after CD is off E-row.
     text, n_via = set_via_at(text, 110.4, 105.65, 111.18, 107.18)
