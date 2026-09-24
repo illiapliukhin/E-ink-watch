@@ -964,3 +964,12 @@ TS C3 to TS via (107.8,105.65). SCL E5 to R_SCL pad1 (108.8,110.31). Through via
 reports/PASS_AG_SOL_STEP2.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — Sol SCL/TS round, no KEEP
+Sol re-opened the repo after CD+ILIM. Three variants, all incomplete: SCL west B (BTN3 y=109.15 OVERLAP −0.140), SCL east via on R_SDA.2 3V3 (−0.100), TS B x=110.55 vs ILIM B (−0.125). Independent probe agreed. No copper added. shorting=0 unc=12.
+
+### Next
+SCL E5→R_SCL pad1 must stay F.Cu across BTN3 y=109.15, or via-pair entirely north of that B.Cu. TS C3 cannot B-drop onto ILIM y=105.80. East 0402 column stays.
+
+### Archives
+reports/PASS_AG_SOL_STEP3.md
+

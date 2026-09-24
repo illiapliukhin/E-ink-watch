@@ -33,7 +33,7 @@ Do not skip these on the next PCB pass.
 - After a correction round, Sol's 3V3 L from `R_SCL` pad2 `(108.80, 109.29)` → `(110.50, 109.29)` → `(110.50, 108.25)` → island `(110.16, 108.25)` DRC-gated as `sol_rscl_3v3`: `shorting=0`, unc 16→15. Add-segment insert still needs the full gate (item-order flake).
 - Stepwise with Sol: leftover 3V3 stub `(112.51, 107.80)–(114.60, 107.80)` still fed `R_LSCTRL` pad2 but was an island vs via `(112.16, 107.60)`. One F.Cu tie `(112.51, 107.80)–(112.16, 107.80)` w=0.20 DRC-gated as `sol_3v3_lsctrl_tie`: `shorting=0`, unc 15→14. CD south of E2 still hits the SDA diagonal `(109.44, 108.10)–(111.40, 106.80)` — do not force a CD via there.
 - CD via-in-pad on E2 `(110.60, 106.80)` is not a KEEP (DSBGA). B.Cu CD vertical `x=112.4` OVERLAP `−0.120` vs 3V3 via `0.6@(112.16, 107.60)`. KEEP `sol_cd_e2_via`: via `(110.6, 106.95)` `0.25/0.15`, F stub `(110.6,106.8)–(110.6,106.95)` w=0.15, B L `y=106.95` / `x=112.65` onto existing CD via `(113.3, 108.41)`. `shorting=0`, unc 14→13. Through vias on that B.Cu run short CD.
-- ILIM C2 must L-jog to via `x=110.75`, not drop on `x=110.6` at `y=105.80` (VBAT RISK `+0.020`). KEEP `sol_ilim_c2_dogbone` w=0.08: `(110.6,106.0)–(110.75,106.0)–(110.75,105.8)`. `shorting=0`, unc 13→12. Vertical w=0.15 would RISK VBAT/PMID.
+- BTN3 B.Cu at `y=109.15` `w=0.18` spans `x=103.60–115.70`. Any B.Cu north–south from the U2 E-row to `R_SCL` pad1 `(108.80, 110.31)` overlaps it. SCL/TS via south of C3 on D3 is NC overlap. SCL via `(111.80, 107.40)` `0.20` is RISK `+0.012` vs 3V3 via `0.6@(112.16, 107.60)`. Sol correctly refused a SCL/TS KEEP after `sol_cd_e2_via` / `sol_ilim_c2_dogbone`.
 
 ## Hard gates (do not relax)
 
