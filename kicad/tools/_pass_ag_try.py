@@ -343,6 +343,13 @@ elif edit_name == "sol_rscl_3v3":
     text = add_segment(text, 110.5, 108.25, 110.16, 108.25, 0.12, "F.Cu", rail_3v3_net)
     print("sol_rscl_3v3 added 3 F.Cu 3V3 segments")
 
+elif edit_name == "sol_3v3_lsctrl_tie":
+    # gpt-6-sol stepwise KEEP: leftover 3V3 stub that still feeds R_LSCTRL pad2
+    # (112.51,107.80)-(114.60,107.80) is an island vs via (112.16,107.60).
+    # One orthogonal F.Cu tie onto the existing 3V3 vertical x=112.16.
+    text = add_segment(text, 112.51, 107.8, 112.16, 107.8, 0.2, "F.Cu", rail_3v3_net)
+    print("sol_3v3_lsctrl_tie added F.Cu 3V3 (112.51,107.8)-(112.16,107.8)")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

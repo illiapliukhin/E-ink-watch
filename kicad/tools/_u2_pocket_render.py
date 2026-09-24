@@ -38,8 +38,8 @@ NET_COLORS = {
 
 LATENTS = [
     "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; R_SCL (108.8,109.8,90)",
-    "KEEP: R_SCL pad2 3V3 L to y=108.25 (sol_rscl_3v3). C3 TS, C2 ILIM, E2 CD, E5 SCL still islands",
-    "E1 is NC — do not haul CD west onto it. In1=GND plane, In2=3V3 plane",
+    "KEEP: R_SCL pad2 3V3 L; R_LSCTRL 3V3 tied at y=107.80 to via x=112.16",
+    "C3 TS, C2 ILIM, E2 CD, E5 SCL still islands. E1 is NC — never haul CD west",
     "SW2 (114.5,111) and TP6 B.Cu (108.5,111) bound the south-east / south-west",
 ]
 

@@ -31,6 +31,7 @@ Do not skip these on the next PCB pass.
 - `inspect_pcb_window` must list **NC** pads. Sol's first self-browse KEEP hauled CD west onto U2.E1 `(110.20, 106.80)` which has no net. CD is E2 only. Reconnect CD toward via `(113.30, 108.41)`, never onto E1.
 - ILIM F down to `y=105.80` has probe RISK edge `+0.000` vs VBAT F `y=105.60` w=0.28. Do not drop ILIM onto that street.
 - After a correction round, Sol's 3V3 L from `R_SCL` pad2 `(108.80, 109.29)` → `(110.50, 109.29)` → `(110.50, 108.25)` → island `(110.16, 108.25)` DRC-gated as `sol_rscl_3v3`: `shorting=0`, unc 16→15. Add-segment insert still needs the full gate (item-order flake).
+- Stepwise with Sol: leftover 3V3 stub `(112.51, 107.80)–(114.60, 107.80)` still fed `R_LSCTRL` pad2 but was an island vs via `(112.16, 107.60)`. One F.Cu tie `(112.51, 107.80)–(112.16, 107.80)` w=0.20 DRC-gated as `sol_3v3_lsctrl_tie`: `shorting=0`, unc 15→14. CD south of E2 still hits the SDA diagonal `(109.44, 108.10)–(111.40, 106.80)` — do not force a CD via there.
 
 ## Hard gates (do not relax)
 

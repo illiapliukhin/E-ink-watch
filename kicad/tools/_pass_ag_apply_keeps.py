@@ -71,9 +71,20 @@ if "(at 108.8 109.8 90)" in text and not has_rscl_3v3:
     applied.append("sol_rscl_3v3")
     has_rscl_3v3 = True
 
+has_lsctrl_tie = "(end 112.16 107.8)" in text or "(start 112.16 107.8)" in text
+if "(at 114.6 108.25 90)" in text and not has_lsctrl_tie:
+    rail_3v3_net = netnum(text, "3V3")
+    text = add_segment(text, 112.51, 107.8, 112.16, 107.8, 0.2, "F.Cu", rail_3v3_net)
+    applied.append("sol_3v3_lsctrl_tie")
+    has_lsctrl_tie = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and "(at 108.8 109.8 90)" in text:
-        extra = ", sol_rscl_3v3" if has_rscl_3v3 else ""
+        extra = ""
+        if has_rscl_3v3:
+            extra += ", sol_rscl_3v3"
+        if has_lsctrl_tie:
+            extra += ", sol_3v3_lsctrl_tie"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"
