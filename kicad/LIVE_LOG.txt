@@ -857,3 +857,7 @@ cursor.md (in-place vs delete flake)
 
 ### Verdict
 Hard gates held. Unconnected still 10. West ISET via cleared without promoting shorts. U2 east/south corridors still blocked by latent overlaps.
+
+## Preview snapshot (2026-09-24)
+- PNG top view (F.Cu) из актуального `e-ink-watch.kicad_pcb`: `tools/render_pcb_preview.py` → артефакт агента `pcb_current_top.png`
+- Состояние платы без изменений с Pass-AG: unc=10, shorting=0, Ø40 @ (100,100), 4L
