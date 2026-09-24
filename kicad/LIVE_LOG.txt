@@ -1117,3 +1117,25 @@ Orthogonal F/B reconnect of TS C3 and SCL E5→R_SCL pad1 (106.5,110.61). A5 GND
 reports/PASS_AG_SOL_STEP9.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — Sol STEP9 no SCL/TS/A5 KEEP
+Sol browsed after sol_rsda_north. SCL via 0.25@(111.80,107.20) is overlap=0 but 3V3 via +0.113 / CD B +0.065. F return through R_SCL.2 3V3 −0.130. A5 north OVERLAP SW/PMID. No Sol copper applied.
+
+### REJECT (not applied)
+- SCL via 0.25@(111.80,107.20) — 3V3 via 0.6@(112.16,107.60) +0.113; CD B y=106.95 +0.065 (Sol called this clear)
+- SCL B y=107.40 x=111.80–109.00 — same 3V3 via +0.052
+- SCL via 0.25@(106.25,107.80) — TS B +0.065; GND B +0.065
+- SCL F (106.25,107.80)–(106.25,110.61) — R_SCL.2 3V3 −0.130 (Sol)
+- A5 via 0.25@(111.80,104.40) / F (111.80,105.20)–(111.80,104.40) — SW via / PMID (Sol)
+- A5 B (111.80,104.40)–(109.55,104.40) — SW via / IPRETERM B (Sol)
+- SCL via 0.20@(106.90,110.85) south of pad1 — F-clear of BTN1 (+0.295) but B north hits BTN3; F east boxed by SW1
+
+### KEEP
+None this step. Independent KEEP remains sol_rsda_north (already on the board): shorting=0 unc=8.
+
+### Next
+Orthogonal F/B reconnect of TS C3 and SCL E5→R_SCL pad1 (106.5,110.61) still boxed (VBUS / R_SCL.2 3V3 / BTN1 via / BTN3 B). A5 GND still overlaps PMID/ILIM B to the east. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP9.md
+reports/sol_views/
+
