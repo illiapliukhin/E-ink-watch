@@ -145,6 +145,33 @@ if has_gnd_d5_tie and not has_3v3_west:
     applied.append("sol_3v3_west_via")
     has_3v3_west = True
 
+has_ntc_west = "(at 103.0 107.2)" in text
+if has_3v3_west and not has_ntc_west:
+    ts_net = netnum(text, "TS")
+    ground_net = netnum(text, "GND")
+    text = set_fp_at(text, "NTC_BAT", "103.0 107.2")
+    text, n_ts_diag = set_seg_ends(
+        text, 108.71, 107.0, 107.69, 108.15, 108.51, 107.0, 108.71, 107.0, layer="F.Cu"
+    )
+    text, n_ts_stub = set_seg_ends(
+        text, 107.69, 108.15, 107.69, 107.55, 108.51, 107.0, 108.51, 107.12, layer="F.Cu"
+    )
+    text, n_gnd = set_seg_ends(
+        text, 108.71, 108.15, 108.71, 108.6, 108.71, 108.6, 109.5, 108.6, layer="F.Cu"
+    )
+    if n_ts_diag != 1 or n_ts_stub != 1 or n_gnd != 1:
+        raise SystemExit(
+            f"sol_ntc_west follow TS_diag={n_ts_diag} TS_stub={n_ts_stub} GND={n_gnd}"
+        )
+    text = add_via(text, 102.49, 107.55, 0.25, 0.15, ts_net)
+    text = add_segment(text, 102.49, 107.2, 102.49, 107.55, 0.15, "F.Cu", ts_net)
+    text = add_segment(text, 102.49, 107.55, 108.51, 107.55, 0.12, "B.Cu", ts_net)
+    text = add_segment(text, 108.51, 107.55, 108.51, 107.0, 0.12, "B.Cu", ts_net)
+    text = add_segment(text, 103.51, 107.2, 103.48, 107.2, 0.2, "F.Cu", ground_net)
+    text = add_segment(text, 103.48, 107.2, 103.48, 108.8, 0.2, "F.Cu", ground_net)
+    applied.append("sol_ntc_west")
+    has_ntc_west = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -166,6 +193,8 @@ if not applied:
             extra += ", sol_gnd_d5_tie"
         if has_3v3_west:
             extra += ", sol_3v3_west_via"
+        if has_ntc_west:
+            extra += ", sol_ntc_west"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

@@ -1035,3 +1035,26 @@ A5 GND. West GND NTC vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C
 reports/PASS_AG_SOL_STEP6.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — Sol STEP7 no NTC/R_SDA KEEP; independent NTC west
+Sol browsed after sol_3v3_west_via. NTC south onto C_BAT GND −0.078; C_BAT south onto 3V3 L −0.270; R_SDA north SDA vertical vs 3V3 −0.200 / SCL −0.165. No Sol copper applied.
+
+### REJECT (not applied)
+- NTC south / C_BAT south — C_BAT GND / 3V3 L y=109.59 (Sol)
+- R_SDA north along x=111.4 — SDA vertical vs 3V3 and SCL (Sol)
+- NTC (110.5,107.0,0) on R_TS row — U2.E1 NC / IPRETERM / SDA / LSCTRL / CD
+- NTC rot90 between C_BAT and R_SDA — GND y=108.8 and SDA diagonal
+- NTC (104.50,107.20,0) — pad2 GND vs VBUS (circle probe −0.005 / VBUS y=107 −0.068)
+- R_SDA (111.40,108.76,90) — pad2 3V3 sits on SDA vertical x=111.4
+- C_LDO (113.5,104.90,90) north — J_STRAP_R.MP / VSYS B / ILIM B
+- R_SDA (111.35,110.30,0) — courtyard onto SW1/SW2
+
+### KEEP
+sol_ntc_west: NTC_BAT (108.2,108.15,0) → (103.0,107.2,0) aligned with C4; pad1 TS (102.49,107.20) pad2 GND (103.51,107.20). Via TS 0.25@(102.49,107.55); F stub; B L y=107.55 under VBUS onto existing TS via (108.51,107.00); GND F onto C4.2 (103.48,108.80). Old TS diagonal/stub and NTC GND vertical collapsed in-place. Courtyard NTC vs C_BAT −0.290 → +2.721; vs C4 +0.660. Probe overlap=0 (3V3 B +0.880, BTN3 +1.450, C4.1 3V3 +0.550). DRC shorting=0 unc=9.
+
+### Next
+C_BAT vs R_SCL courtyard −0.100. R_SDA vs SW2 −0.120. A5 GND. C_BAT GND vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. SDA to U1. PMIC_INT. West 3V3_DISP. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP7.md
+reports/sol_views/
+

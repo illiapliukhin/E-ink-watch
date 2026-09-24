@@ -426,6 +426,39 @@ elif edit_name == "sol_3v3_west_via":
     text = add_segment(text, 102.52, 108.55, 102.52, 109.4, 0.12, "B.Cu", rail_3v3_net)
     print("sol_3v3_west_via via (110.4,108.25) 0.25 + B L to west via (102.52,109.4)")
 
+elif edit_name == "sol_ntc_west":
+    # Spread the NTC/C_BAT 0402 pile (courtyard −0.290). East of C_BAT is
+    # SDA-diagonal / 3V3-rail blocked; rot90 between C_BAT and R_SDA hits
+    # GND y=108.8 and SDA. R_SDA rot90 on x=111.4 shorts pad2 3V3 vs the
+    # SDA vertical. KEEP: NTC_BAT (108.2,108.15,0) → (103.0,107.2,0) north
+    # of C4, west of VBUS. pad1 TS (102.49,107.20), pad2 GND (103.51,107.20).
+    # TS F→via 0.25@(102.49,107.55) not VIP; B.Cu y=107.55 under VBUS onto
+    # existing TS via (108.51,107.00). GND F onto C4.2. Collapse old TS/GND
+    # stubs in the same save (in-place, no delete). Probe overlap=0
+    # (3V3 B +0.880, BTN3 +1.450, C4.1 3V3 +0.550, VBUS pad2 +1.495).
+    text = set_fp_at(text, "NTC_BAT", "103.0 107.2")
+    text, n_ts_diag = set_seg_ends(
+        text, 108.71, 107.0, 107.69, 108.15, 108.51, 107.0, 108.71, 107.0, layer="F.Cu"
+    )
+    text, n_ts_stub = set_seg_ends(
+        text, 107.69, 108.15, 107.69, 107.55, 108.51, 107.0, 108.51, 107.12, layer="F.Cu"
+    )
+    text, n_gnd = set_seg_ends(
+        text, 108.71, 108.15, 108.71, 108.6, 108.71, 108.6, 109.5, 108.6, layer="F.Cu"
+    )
+    text = add_via(text, 102.49, 107.55, 0.25, 0.15, ts_net)
+    text = add_segment(text, 102.49, 107.2, 102.49, 107.55, 0.15, "F.Cu", ts_net)
+    text = add_segment(text, 102.49, 107.55, 108.51, 107.55, 0.12, "B.Cu", ts_net)
+    text = add_segment(text, 108.51, 107.55, 108.51, 107.0, 0.12, "B.Cu", ts_net)
+    text = add_segment(text, 103.51, 107.2, 103.48, 107.2, 0.2, "F.Cu", ground_net)
+    text = add_segment(text, 103.48, 107.2, 103.48, 108.8, 0.2, "F.Cu", ground_net)
+    print(
+        f"sol_ntc_west fp NTC (103.0,107.2) TS_diag={n_ts_diag} "
+        f"TS_stub={n_ts_stub} GND={n_gnd}"
+    )
+    if n_ts_diag != 1 or n_ts_stub != 1 or n_gnd != 1:
+        raise SystemExit("sol_ntc_west failed to match old TS/GND copper")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 
