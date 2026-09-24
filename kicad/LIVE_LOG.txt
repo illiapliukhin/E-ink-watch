@@ -973,3 +973,21 @@ SCL E5→R_SCL pad1 must stay F.Cu across BTN3 y=109.15, or via-pair entirely no
 ### Archives
 reports/PASS_AG_SOL_STEP3.md
 
+## Pass-AG follow-up (2026-09-24) — spread SCL/TS 0402 heap, sol_rscl_west
+Sol STEP4 browsed the repo and named R_SDA (111.35,110.30,0) as the first KEEP. Independent: F.Cu vs SW2.1 +0.220, but courtyards overlap SW1 −1.18 and SW2 −1.42 — piles onto the buttons, not a spread. East column (113.50,109.66) already overlapped GND/LSCTRL.
+
+### REJECT (not applied)
+- R_SDA (111.35, 110.30, 0) — courtyard onto SW1/SW2
+- R_SCL (106.5, 110.0, 90) — pad2 vs C_BAT.1 VBAT sepY +0.11 < 0.15
+- R_SCL (106.2, 110.0, 90) — VBUS F x=105.7 w=0.35 clip
+
+### KEEP
+sol_rscl_west: R_SCL (108.8,109.8,90) → (106.5,110.1,90); 3V3 L onto pad2 (106.5,109.59)→(110.5,109.59)→(110.5,108.25). Probe overlap=0 (C_BAT.1 +0.21, BTN1 via +0.38, VBUS +0.305). probe_via vs BTN3 B is F-only 0402. DRC shorting=0 unc=12. Spacing to R_SDA ~2.8→5.1 mm.
+
+### Next
+SCL E5→R_SCL pad1 (106.5,110.61) F.Cu (BTN3 B y=109.15 still blocks B N–S). TS C3. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock.
+
+### Archives
+reports/PASS_AG_SOL_STEP4.md
+reports/sol_views/
+

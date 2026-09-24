@@ -63,7 +63,11 @@ if n_via == 1:
         raise SystemExit("sol_combo_west partial match")
     applied.append("sol_combo_west")
 
-has_rscl_3v3 = "(start 108.8 109.29)" in text or "(end 108.8 109.29)" in text
+has_rscl_3v3 = (
+    "(start 108.8 109.29)" in text
+    or "(end 108.8 109.29)" in text
+    or "(start 106.5 109.59)" in text
+)
 if "(at 108.8 109.8 90)" in text and not has_rscl_3v3:
     rail_3v3_net = netnum(text, "3V3")
     text = add_segment(text, 108.8, 109.29, 110.5, 109.29, 0.12, "F.Cu", rail_3v3_net)
@@ -98,8 +102,24 @@ if has_cd_e2 and not has_ilim_dog:
     applied.append("sol_ilim_c2_dogbone")
     has_ilim_dog = True
 
+has_rscl_west = "(at 106.5 110.1 90)" in text
+if has_ilim_dog and "(at 108.8 109.8 90)" in text and not has_rscl_west:
+    text = set_fp_at(text, "R_SCL", "106.5 110.1 90")
+    text, n_h = set_seg_ends(
+        text, 108.8, 109.29, 110.5, 109.29, 106.5, 109.59, 110.5, 109.59, layer="F.Cu"
+    )
+    text, n_v = set_seg_ends(
+        text, 110.5, 109.29, 110.5, 108.25, 110.5, 109.59, 110.5, 108.25, layer="F.Cu"
+    )
+    if n_h != 1 or n_v != 1:
+        raise SystemExit(f"sol_rscl_west 3V3 follow H={n_h} V={n_v}")
+    applied.append("sol_rscl_west")
+    has_rscl_west = True
+
 if not applied:
-    if "(at 110.75 105.8)" in text and "(at 108.8 109.8 90)" in text:
+    if "(at 110.75 105.8)" in text and (
+        "(at 108.8 109.8 90)" in text or has_rscl_west
+    ):
         extra = ""
         if has_rscl_3v3:
             extra += ", sol_rscl_3v3"
@@ -109,6 +129,8 @@ if not applied:
             extra += ", sol_cd_e2_via"
         if has_ilim_dog:
             extra += ", sol_ilim_c2_dogbone"
+        if has_rscl_west:
+            extra += ", sol_rscl_west"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

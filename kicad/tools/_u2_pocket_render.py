@@ -12,8 +12,8 @@ BOARD = Path("e-ink-watch.kicad_pcb")
 OUT = Path("reports/sol_views")
 TMP = Path("/tmp/sol_imgs")
 
-# Pocket window (board mm)
-X0, Y0, X1, Y1 = 106.4, 103.2, 117.6, 112.4
+# Pocket window (board mm). West edge 105.6 so moved R_SCL (106.5,110.1) and VBUS x=105.7 stay in frame.
+X0, Y0, X1, Y1 = 105.6, 103.2, 117.6, 112.4
 PX_PER_MM = 90
 
 NET_COLORS = {
@@ -37,10 +37,10 @@ NET_COLORS = {
 }
 
 LATENTS = [
-    "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; R_SCL (108.8,109.8,90)",
-    "KEEP: R_SCL pad2 3V3 L; R_LSCTRL 3V3 tied at y=107.80 to via x=112.16",
-    "KEEP: CD E2 dogbone via (110.6,106.95) 0.25 + B L x=112.65 to CD via (113.3,108.41)",
-    "KEEP: ILIM C2 F L w=0.08 onto via (110.75,105.80). C3 TS and E5 SCL still islands",
+    "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20",
+    "KEEP: R_SCL spread (106.5,110.1,90) pad1 SCL (106.5,110.61) pad2 3V3 (106.5,109.59)",
+    "KEEP: CD E2 dogbone via (110.6,106.95) 0.25 + B L x=112.65; ILIM C2 F L w=0.08",
+    "Sol R_SDA (111.35,110.30) REJECT (SW1/SW2 courtyard). C3 TS and E5 SCL still islands",
 ]
 
 
@@ -282,7 +282,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after CD+ILIM KEEPs (shorting=0, unc=12)",
+        "U2 pocket F.Cu — after R_SCL west spread (shorting=0, unc=12)",
         LATENTS,
     )
     bcu = render_layer(

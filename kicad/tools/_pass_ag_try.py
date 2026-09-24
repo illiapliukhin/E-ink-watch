@@ -370,6 +370,26 @@ elif edit_name == "sol_ilim_c2_dogbone":
     text = add_segment(text, 110.75, 106.0, 110.75, 105.8, 0.08, "F.Cu", ilim_net)
     print("sol_ilim_c2_dogbone F L (110.6,106.0)->(110.75,106.0)->(110.75,105.8)")
 
+elif edit_name == "sol_rscl_west":
+    # Spread the untouched SCL/TS 0402 heap. Sol STEP4 wanted R_SDA at
+    # (111.35,110.30,0) — F.Cu vs SW2.1 is +0.220 but courtyards overlap
+    # SW1 (−1.18) and SW2 (−1.42); that piles onto the buttons, not a spread.
+    # KEEP: R_SCL (108.8,109.8,90) → (106.5,110.1,90). pad1 SCL +Y
+    # (106.5,110.61), pad2 3V3 (106.5,109.59). Retarget the existing 3V3 L
+    # onto pad2 in the same save. y=110.1 keeps pad2 sepY +0.21 vs C_BAT.1
+    # VBAT; x=106.5 keeps VBUS F x=105.7 w=0.35 at +0.305. probe_via RISK
+    # vs BTN3 B y=109.15 is F-only 0402 (ignore).
+    text = set_fp_at(text, "R_SCL", "106.5 110.1 90")
+    text, n_h = set_seg_ends(
+        text, 108.8, 109.29, 110.5, 109.29, 106.5, 109.59, 110.5, 109.59, layer="F.Cu"
+    )
+    text, n_v = set_seg_ends(
+        text, 110.5, 109.29, 110.5, 108.25, 110.5, 109.59, 110.5, 108.25, layer="F.Cu"
+    )
+    print(f"sol_rscl_west fp R_SCL (106.5,110.1,90) 3V3 H={n_h} V={n_v}")
+    if n_h != 1 or n_v != 1:
+        raise SystemExit("sol_rscl_west failed to match 3V3 follow")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 
