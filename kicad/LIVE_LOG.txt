@@ -857,3 +857,181 @@ cursor.md (in-place vs delete flake)
 
 ### Verdict
 Hard gates held. Unconnected still 10. West ISET via cleared without promoting shorts. U2 east/south corridors still blocked by latent overlaps.
+
+## Pass-AG follow-up (2026-09-24) — gpt-6-sol + R_SCL rotate REVERT
+- Experiential `gpt-6-sol` via api.experientiallabs.ai works (test sol-ok; layout advice used).
+- Sol KEEP: R_SCL @(112.70, 108.80) 90°, pad1 assumed (x, y-0.51). KiCad 0402 rot 90 maps pad1 to **+Y**. Stubs drawn to +Y shorted 3V3↔SCL.
+- rotate_rscl_90 also crossed GND @y=107.24 and CD @x=112.8; PMID-insert promoted ILIM↔PMID and TS↔VBAT.
+- cd_stub_south (in-place CD E-row → E2 stub) promoted ILIM↔PMID + CD↔SDA. Reverted.
+- Board remains Pass-AG KEEP only (ISET via west). shorting=0 unc=10.
+
+## Pass-AG follow-up (2026-09-24) — gpt-6-sol U2 variants + ts_via_corner KEEP
+Key in session env only (not in repo). Sol proposed 3 floorplans + first KEEP TS via → (108.00, 105.65) 0.35/0.15.
+
+### Geometry review (do not apply Sol TS park)
+- (108.00, 105.65) 0.35 overlaps VBAT F x=108.12 w=0.35, VBAT y=105.60 w=0.28, ISET B x=108.20 w=0.15
+- ILIM park (109.65, 106.30) 0.30 is pad/track-clear, but one-segment F C2→park clips C1 ISET
+- Sol CD/SDA on In1/In2: In1=GND plane, In2=3V3 plane — skip those hauls
+- 0402 rot 90 pad1 = +Y: Sol variants A–C now use this correctly
+- SW2 @(114.5, 111) sits next to Sol R_SCL east cluster
+
+### KEEP
+- ts_via_corner (in-place): TS via (110.4, 105.65) 0.35/0.15 → (107.8, 105.65) 0.25/0.15, already the west elbow of TS B.Cu. shorting=0 unc=10→11. C3 F island until later reconnect. F stubs at x=110.4 still overlap VBAT/C2 (latent).
+
+### REVERT
+- ts_f_retract (collapse TS F onto C3 stub): SCL↔SDA, TS↔ILIM ×2 (C3 stub vs ILIM F diagonal)
+- ilim_via_slide via-only (111.45, 105.8) 0.5 → (110.75, 105.8) 0.20 (geometry-clear of PMID): CD↔3V3 (R_SCL pad2), CD↔SCL (E-row through E5). No file-length change.
+
+### Latent still in copper
+- TS F x=110.4 y=105.65–106.0 on VBAT; TS F y=106.0 through C2; ILIM via still on PMID B4/C4; CD F y=106.8 through E3/E4/E5; R_SCL pad1 on SDA x=111.4
+
+### Next
+One save: ILIM via off PMID + CD off E-row + R_SCL pad1 off SDA (no new copper). Then orthogonal TS/CD/SDA/SCL escapes. Do not use In1/In2 for those nets. Do not apply VBUS on dock.
+
+### Archives
+kicad/reports/PASS_AG_SOL.md
+reports/_drc_passag_ts_via_corner.txt, _drc_passag_ts_f_retract.txt, _drc_passag_ilim_via_slide.txt
+
+## Pass-AG follow-up (2026-09-24) — Sol vision loop + sol_combo_west KEEP
+Sent Sol four pictures (annotated F.Cu, annotated B.Cu, 3D U2, 3D board) plus numbered corrections of the previous mistakes. It discarded In1/In2 hauls, the 108.00 TS park, and east cluster next to SW2.
+
+### Sol's three new variants
+- West R_SCL (108.80, 109.80, 90) — chosen
+- NE R_SCL (114.20, 104.70, 90) — Sol marked not-KEEP (top edge of image; J_STRAP_R MP)
+- South + later R_CD move — staged, not this save
+
+### Applied (geometry-corrected)
+sol_combo_west, one in-place save, DRC shorting=0 unc=16:
+- ILIM via (111.45,105.80) 0.5 → (110.75,105.80) 0.20/0.15 (Sol 0.25@110.80 clips PMID F edge −0.042)
+- ILIM F (110.6,106.0)-(111.45,105.8) → C2 stub
+- CD E-row (110.6,106.8)-(112.8,106.8) → E2 stub; CD vertical x=112.8 retracted (crosses 3V3 y=107.8)
+- TS F x=110.4 cluster → C3 stub
+- R_SCL (112.0,107.8,0) → (108.8,109.8,90) pad1 +Y (108.8,110.31). TP6 is B.Cu, not a F short.
+
+### Next
+Orthogonal reconnect of C2/C3/E2/E5 and R_SCL pads. Show Sol the after-KEEP pocket map.
+
+### Archives
+reports/sol_views/, tools/_u2_pocket_render.py, tools/_sol_vision_ask.py
+reports/PASS_AG_SOL_VISION.md, reports/_drc_passag_sol_combo_west.txt
+
+## Pass-AG follow-up (2026-09-24) — Sol browses the repo
+Gave gpt-6-sol read-only tools (`_sol_repo_explore.py`): list_dir, read_file, grep, glob, read_image, inspect_pcb_window, probe_clearance. Key not in repo. Sol itself opened cursor.md, LIVE_LOG, PASS_AG*, pocket maps, 3D, and U2 copper.
+
+### REJECT (not applied)
+- CD F (110.20,106.80)–(110.63,106.80): U2.E1 is NC, CD is E2 only. Probe missed NC pads until parse was fixed.
+- ILIM F down to y=105.80: RISK edge +0.000 vs VBAT F y=105.60 w=0.28.
+
+### KEEP
+sol_rscl_3v3 after a correction round: 3V3 F L from R_SCL pad2 (108.80,109.29) → (110.50,109.29) → (110.50,108.25) → island (110.16,108.25). Independent probe overlap=0 (tightest +0.110 vs R_SDA pad1). DRC shorting=0 unc 16→15. Power/pocket gates held.
+
+### Next
+CD E2 toward via (113.30,108.41), not onto E1. SCL E5→R_SCL pad1. TS C3, ILIM C2. No In1/In2. No VBUS on dock.
+
+### Archives
+tools/_sol_repo_explore.py, _sol_board_query.py
+reports/PASS_AG_SOL_EXPLORE.md, PASS_AG_SOL_EXPLORE_FOLLOWUP.md
+
+## Pass-AG follow-up (2026-09-24) — stepwise Sol KEEP sol_3v3_lsctrl_tie
+Sol re-opened the repo after sol_rscl_3v3. Three variants: 3V3 stub tie (chosen), CD via B.Cu (no safe via yet — SDA diagonal), TS from C3 (not KEEP). East 0402 column left aligned.
+
+### KEEP
+sol_3v3_lsctrl_tie: add_segment 3V3 F (112.51,107.80)-(112.16,107.80) w=0.20 onto the existing vertical/via. Independent probe overlap=0. DRC shorting=0 unc 15→14. Closes leftover R_LSCTRL 3V3 island (visual gap on the east cluster).
+
+### Next
+CD E2 around the SDA diagonal, not onto E1. SCL E5→R_SCL pad1. TS C3, ILIM C2. Keep east 0402 column (R_CD/C_LDO x=113.5, R_LSCTRL x=114.6, R_ILIM x=115.6).
+
+### Archives
+reports/PASS_AG_SOL_STEP.md
+
+## Pass-AG follow-up (2026-09-24) — sol_cd_e2_via + sol_ilim_c2_dogbone
+Sol quota 429 at 01:57 UTC on the CD round (via-in-pad on E2; B.Cu x=112.4). Independent probe after 02:00 reset. East 0402 column not moved.
+
+### REJECT (not applied)
+- CD via-in-pad on E2 (110.60,106.80) size 0.20 — DSBGA VIP; IPRETERM B RISK +0.049
+- CD B.Cu vertical x=112.4 — OVERLAP −0.120 vs 3V3 via 0.6@(112.16,107.60)
+- ILIM F drop on x=110.6 at y=105.80 — VBAT RISK +0.020
+
+### KEEP
+sol_cd_e2_via: via CD (110.6,106.95) 0.25/0.15; F (110.6,106.8)-(110.6,106.95) w=0.15; B L (110.6,106.95)-(112.65,106.95)-(112.65,108.41)-(113.3,108.41) w=0.12. Probe overlap=0 (SDA +0.102, 3V3_DISP B +0.115, 3V3 via +0.130). DRC shorting=0 unc 14→13.
+
+sol_ilim_c2_dogbone: F L w=0.08 (110.6,106.0)-(110.75,106.0)-(110.75,105.8) onto ILIM via. Probe overlap=0 (VBAT +0.070, PMID +0.080). DRC shorting=0 unc 13→12.
+
+### Next
+TS C3 to TS via (107.8,105.65). SCL E5 to R_SCL pad1 (108.8,110.31). Through vias on new CD B y=106.95 x=110.60–112.65 short CD. No In1/In2. No VBUS on dock.
+
+### Archives
+reports/PASS_AG_SOL_STEP2.md
+reports/sol_views/
+
+## Pass-AG follow-up (2026-09-24) — Sol SCL/TS round, no KEEP
+Sol re-opened the repo after CD+ILIM. Three variants, all incomplete: SCL west B (BTN3 y=109.15 OVERLAP −0.140), SCL east via on R_SDA.2 3V3 (−0.100), TS B x=110.55 vs ILIM B (−0.125). Independent probe agreed. No copper added. shorting=0 unc=12.
+
+### Next
+SCL E5→R_SCL pad1 must stay F.Cu across BTN3 y=109.15, or via-pair entirely north of that B.Cu. TS C3 cannot B-drop onto ILIM y=105.80. East 0402 column stays.
+
+### Archives
+reports/PASS_AG_SOL_STEP3.md
+
+## Pass-AG follow-up (2026-09-24) — spread SCL/TS 0402 heap, sol_rscl_west
+Sol STEP4 browsed the repo and named R_SDA (111.35,110.30,0) as the first KEEP. Independent: F.Cu vs SW2.1 +0.220, but courtyards overlap SW1 −1.18 and SW2 −1.42 — piles onto the buttons, not a spread. East column (113.50,109.66) already overlapped GND/LSCTRL.
+
+### REJECT (not applied)
+- R_SDA (111.35, 110.30, 0) — courtyard onto SW1/SW2
+- R_SCL (106.5, 110.0, 90) — pad2 vs C_BAT.1 VBAT sepY +0.11 < 0.15
+- R_SCL (106.2, 110.0, 90) — VBUS F x=105.7 w=0.35 clip
+
+### KEEP
+sol_rscl_west: R_SCL (108.8,109.8,90) → (106.5,110.1,90); 3V3 L onto pad2 (106.5,109.59)→(110.5,109.59)→(110.5,108.25). Probe overlap=0 (C_BAT.1 +0.21, BTN1 via +0.38, VBUS +0.305). probe_via vs BTN3 B is F-only 0402. DRC shorting=0 unc=12. Spacing to R_SDA ~2.8→5.1 mm.
+
+### Next
+SCL E5→R_SCL pad1 (106.5,110.61) F.Cu (BTN3 B y=109.15 still blocks B N–S). TS C3. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock.
+
+### Archives
+reports/PASS_AG_SOL_STEP4.md
+reports/sol_views/
+
+## Pass-AG follow-up (2026-09-24) — Sol STEP5 no SCL/TS KEEP; independent GND D5
+Sol re-opened the repo after sol_rscl_west. SCL pad1 (106.5,110.61) boxed: VBUS x=105.7 west, BTN1 via 0.6@(107.50,110.50) east (alley 0.38 < 0.42), 3V3 pad2 north. TS B from C3 hits CD −0.110 / ILIM −0.125. No Sol copper applied.
+
+### REJECT (not applied)
+- SCL F east stub (106.5,110.61)-(107.10,110.61) — BTN1 via +0.055 < 0.15
+- SCL via (111.80,107.40) 0.20 — 3V3 via RISK +0.012
+- TS B x=111.00 south — CD OVERLAP −0.110; to y=105.65 — ILIM −0.125
+- GND via 0.35@(112.22,106.40) — 3V3_DISP F +0.075 < 0.15
+- GND F (112.4,106.55)-(112.4,107.24) — 3V3 via +0.073 < 0.15
+- 3V3 stitch via (107.0,109.59) 0.25 — F-clear and inside In2 r=12 but will not close west 3V3 without refill / F.Cu tie to (102.52,109.40)
+
+### KEEP
+sol_gnd_d5_via: via GND (112.4,106.55) 0.25/0.15; F L (111.8,106.4)-(112.4,106.4)-(112.4,106.55) w=0.12. Not VIP. Via does not stitch stale In1 fill. DRC shorting=0 unc 12→11.
+
+sol_gnd_d5_tie: F L (112.4,106.55)-(112.8,106.55)-(112.8,107.24) w=0.12 onto existing R_CD GND. Probe overlap=0 (3V3_DISP via +0.300, 3V3 via +0.374). DRC shorting=0 unc 11→10. D5+R_CD still islanded vs west GND (108.71,108.60) NTC_BAT/C_BAT.
+
+### Next
+A5 GND (east overlaps PMID/ILIM B). West GND NTC vs east R_CD. West 3V3. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP5.md
+reports/sol_views/
+
+## Pass-AG follow-up (2026-09-24) — Sol STEP6 no SCL/TS/A5 KEEP; independent 3V3 west
+Sol browsed after D5 KEEP. F.Cu (102.52,109.40)-(106.5,109.40) hits VBUS; A5 east hits C_VINLS PMID −0.150; TS B y=105.65 hits ILIM −0.125. No Sol copper applied.
+
+### REJECT (not applied)
+- 3V3 F (102.52,109.40)-(106.5,109.40) — VBUS
+- 3V3 via (107.0,109.59) B-drop across BTN3 y=109.15
+- 3V3 via (110.8,108.25) — LSCTRL B OVERLAP −0.200
+- 3V3 via (111.2,108.25) — SDA x=111.4 RISK +0.000
+- 3V3 B south wrap y=111.0 then x=102.52 north — BTN3 U south jog −0.150; x=107 vertical +0.140 vs BTN1 via
+- GND A5 F (111.8,105.2)-(112.5,105.2) — C_VINLS PMID −0.150; via 0.25@(112.22,105.20) ILIM B / PMID
+
+### KEEP
+sol_3v3_west_via: via 3V3 (110.4,108.25) 0.25/0.15 on existing F rail (north of BTN3); B L (110.4,108.25)-(110.4,108.55)-(102.52,108.55)-(102.52,109.40) w=0.12 onto west via through the BTN3 U north opening. Probe overlap=0 (LSCTRL B +0.200, BTN3 +0.450, GND via +0.345). DRC shorting=0 unc 10→9.
+
+### Next
+A5 GND. West GND NTC vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. SDA to U1. PMIC_INT. West 3V3_DISP. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP6.md
+reports/sol_views/
+

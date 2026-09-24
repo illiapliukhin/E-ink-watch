@@ -8,5 +8,7 @@ __pycache__/
 *.pyc
 .DS_Store
 reports/_drc_*
+kicad/reports/_drc_*
 reports/_try_*
+kicad/reports/_try_*
 tools/__pycache__/
