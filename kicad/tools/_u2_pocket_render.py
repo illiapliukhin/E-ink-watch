@@ -281,7 +281,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after sol_combo_west KEEP (shorting=0)",
+        "U2 pocket F.Cu — after sol_rscl_3v3 KEEP (shorting=0, unc=15)",
         LATENTS,
     )
     bcu = render_layer(

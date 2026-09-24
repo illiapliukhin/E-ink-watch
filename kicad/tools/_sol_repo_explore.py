@@ -574,6 +574,8 @@ def main() -> None:
     if extra.strip():
         messages.append({"role": "user", "content": extra.strip()})
         report_path = ROOT / "kicad/reports/PASS_AG_SOL_EXPLORE_FOLLOWUP.md"
+        if len(sys.argv) > 2:
+            report_path = ROOT / sys.argv[2]
         print("FOLLOWUP attached", len(extra), "chars", flush=True)
     final_text = ""
     usage = None
