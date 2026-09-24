@@ -499,6 +499,53 @@ elif edit_name == "sol_gnd_cbat_west":
     text = add_segment(text, 107.98, 108.5, 107.98, 108.05, 0.2, "F.Cu", ground_net)
     print("sol_gnd_cbat_west vias (103.48,108.05)+(107.98,108.05) 0.25 + B y=108.05")
 
+elif edit_name == "sol_rsda_north":
+    # Spread R_SDA off SW2 courtyard (−0.120). West-of-VBUS SDA B hop hits
+    # TS via drops at x=108.51 and x=107.80. R_SDA west/rot90 still boxed by
+    # 3V3 x=110.5 and SDA x=111.4. KEEP: retract 3V3 L vertical 110.5→110.4
+    # (onto existing 3V3 via, GND blob +0.215) and slide R_SDA north
+    # (111.5,109.0,0)→(111.5,108.85,0). Courtyard vs SW2 −0.120 → +0.030.
+    # Probe overlap=0 (pad1 vs 3V3 x=110.4 +0.210, GND blob +0.165 on the
+    # unused 110.35 alt; 3V3 follows +0.400 vs CD). Do not re-probe the
+    # existing SDA x=111.4 crossing of 3V3 y=108.25 / SCL diagonal.
+    text = set_fp_at(text, "R_SDA", "111.5 108.85")
+    text, n_3v3_h = set_seg_ends(
+        text, 106.5, 109.59, 110.5, 109.59, 106.5, 109.59, 110.4, 109.59, layer="F.Cu"
+    )
+    text, n_3v3_v = set_seg_ends(
+        text, 110.5, 109.59, 110.5, 108.25, 110.4, 109.59, 110.4, 108.25, layer="F.Cu"
+    )
+    text, n_3v3_rail = set_seg_ends(
+        text, 110.5, 108.25, 110.16, 108.25, 110.4, 108.25, 110.16, 108.25, layer="F.Cu"
+    )
+    text, n_sda_h = set_seg_ends(
+        text, 110.99, 109.0, 111.4, 109.0, 110.99, 108.85, 111.4, 108.85, layer="F.Cu"
+    )
+    text, n_sda_v = set_seg_ends(
+        text, 111.4, 109.0, 111.4, 106.8, 111.4, 108.85, 111.4, 106.8, layer="F.Cu"
+    )
+    text, n_pad2_h = set_seg_ends(
+        text, 112.01, 109.0, 112.5, 109.0, 112.01, 108.85, 112.5, 108.85, layer="F.Cu"
+    )
+    text, n_pad2_v = set_seg_ends(
+        text, 112.5, 109.0, 112.5, 108.25, 112.5, 108.85, 112.5, 108.25, layer="F.Cu"
+    )
+    print(
+        f"sol_rsda_north fp R_SDA (111.5,108.85) 3V3_H={n_3v3_h} 3V3_V={n_3v3_v} "
+        f"3V3_RAIL={n_3v3_rail} SDA_H={n_sda_h} SDA_V={n_sda_v} "
+        f"PAD2_H={n_pad2_h} PAD2_V={n_pad2_v}"
+    )
+    if (
+        n_3v3_h != 1
+        or n_3v3_v != 1
+        or n_3v3_rail != 1
+        or n_sda_h != 1
+        or n_sda_v != 1
+        or n_pad2_h != 1
+        or n_pad2_v != 1
+    ):
+        raise SystemExit("sol_rsda_north failed to match 3V3/SDA copper")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

@@ -1098,3 +1098,22 @@ R_SDA vs SW2 courtyard −0.120 (boxed by 3V3 x=110.5 and SDA x=111.4). Orthogon
 reports/PASS_AG_SOL_STEP9.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — independent R_SDA north off SW2
+After sol_gnd_cbat_west, leftover courtyard was R_SDA vs SW2 −0.120. West-of-VBUS SDA B hop OVERLAP TS via-drops x=108.51 and x=107.80. 3V3 retract to x=110.00 OVERLAP GND blob −0.185. Retract to x=110.4 lands on the existing 3V3 via and frees 0.15 mm so R_SDA can slide north without hitting pad1 vs 3V3.
+
+### REJECT (not applied)
+- R_SDA west of VBUS (104.50,110.60,0) — courtyards clear of SW2 (+6.67) and 3V3 follow overlap=0, but SDA B hop y=107.25 OVERLAP TS drop x=108.51 (−0.120) / TS via (−0.010); y=106.40 OVERLAP TS drop x=107.80 (−0.120) and IPRETERM via
+- 3V3 retract x=110.00 — GND blob w=0.45@(109.90,108.60) −0.185
+- R_SDA (112.10,108.88,0) east — pad2 vs CD y=108.41 +0.097 < 0.15; courtyard vs R_CD touch
+- R_SDA (111.50,108.85,0) north without 3V3 retract — pad1 vs 3V3 x=110.5 circle −0.160 (STEP8)
+
+### KEEP
+sol_rsda_north: 3V3 L vertical x=110.5→110.4 onto via (110.4,108.25); R_SDA (111.5,109.0,0)→(111.5,108.85,0); SDA/3V3 pad stubs retargeted in-place. Courtyard vs SW2 −0.120 → +0.030 (DRC no longer lists R_SDA/SW2). Probe overlap=0 (3V3 x=110.4 vs GND blob +0.215, pad1 vs old 3V3 x=110.5 +0.160). DRC shorting=0 unc=8.
+
+### Next
+Orthogonal F/B reconnect of TS C3 and SCL E5→R_SCL pad1 (106.5,110.61). A5 GND still overlaps PMID/ILIM B to the east. R_SCL vs SW1 courtyard remains VBUS-tight. Do not park on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP9.md
+reports/sol_views/
+

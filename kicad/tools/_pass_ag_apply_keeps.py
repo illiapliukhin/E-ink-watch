@@ -201,6 +201,47 @@ if has_cbat_north and not has_gnd_cbat_west:
     applied.append("sol_gnd_cbat_west")
     has_gnd_cbat_west = True
 
+has_rsda_north = "(at 111.5 108.85)" in text
+if has_gnd_cbat_west and not has_rsda_north:
+    text = set_fp_at(text, "R_SDA", "111.5 108.85")
+    text, n_3v3_h = set_seg_ends(
+        text, 106.5, 109.59, 110.5, 109.59, 106.5, 109.59, 110.4, 109.59, layer="F.Cu"
+    )
+    text, n_3v3_v = set_seg_ends(
+        text, 110.5, 109.59, 110.5, 108.25, 110.4, 109.59, 110.4, 108.25, layer="F.Cu"
+    )
+    text, n_3v3_rail = set_seg_ends(
+        text, 110.5, 108.25, 110.16, 108.25, 110.4, 108.25, 110.16, 108.25, layer="F.Cu"
+    )
+    text, n_sda_h = set_seg_ends(
+        text, 110.99, 109.0, 111.4, 109.0, 110.99, 108.85, 111.4, 108.85, layer="F.Cu"
+    )
+    text, n_sda_v = set_seg_ends(
+        text, 111.4, 109.0, 111.4, 106.8, 111.4, 108.85, 111.4, 106.8, layer="F.Cu"
+    )
+    text, n_pad2_h = set_seg_ends(
+        text, 112.01, 109.0, 112.5, 109.0, 112.01, 108.85, 112.5, 108.85, layer="F.Cu"
+    )
+    text, n_pad2_v = set_seg_ends(
+        text, 112.5, 109.0, 112.5, 108.25, 112.5, 108.85, 112.5, 108.25, layer="F.Cu"
+    )
+    if (
+        n_3v3_h != 1
+        or n_3v3_v != 1
+        or n_3v3_rail != 1
+        or n_sda_h != 1
+        or n_sda_v != 1
+        or n_pad2_h != 1
+        or n_pad2_v != 1
+    ):
+        raise SystemExit(
+            "sol_rsda_north follow "
+            f"3V3_H={n_3v3_h} 3V3_V={n_3v3_v} 3V3_RAIL={n_3v3_rail} "
+            f"SDA_H={n_sda_h} SDA_V={n_sda_v} PAD2_H={n_pad2_h} PAD2_V={n_pad2_v}"
+        )
+    applied.append("sol_rsda_north")
+    has_rsda_north = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -228,6 +269,8 @@ if not applied:
             extra += ", sol_cbat_north"
         if has_gnd_cbat_west:
             extra += ", sol_gnd_cbat_west"
+        if has_rsda_north:
+            extra += ", sol_rsda_north"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

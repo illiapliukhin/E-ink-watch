@@ -42,6 +42,7 @@ LATENTS = [
     "KEEP: 3V3 west via (110.4,108.25) 0.25 + B L y=108.55 onto (102.52,109.40)",
     "KEEP: NTC_BAT (103.0,107.2,0) on C4 column; C_BAT (107.5,108.5,0) off R_SCL courtyard",
     "KEEP: GND C_BAT west vias (103.48,108.05)+(107.98,108.05) + B y=108.05 under VBUS",
+    "KEEP: R_SDA (111.5,108.85,0) off SW2; 3V3 L vertical x=110.4 onto via",
 ]
 
 
@@ -252,6 +253,7 @@ def render_layer(text, layer, title, callouts):
         ((102.40, 106.90, 103.70, 107.75), "NTC west KEEP"),
         ((106.55, 108.00, 108.45, 109.00), "C_BAT north KEEP"),
         ((103.30, 107.90, 108.15, 108.20), "GND C_BAT west KEEP"),
+        ((110.55, 108.35, 112.45, 109.35), "R_SDA north KEEP"),
     ]
     if layer == "F.Cu":
         for (bx0, by0, bx1, by1), _label in boxes:
@@ -288,7 +290,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after C_BAT GND west stitch (shorting=0, unc=8)",
+        "U2 pocket F.Cu — after R_SDA north off SW2 (shorting=0, unc=8)",
         LATENTS,
     )
     bcu = render_layer(
@@ -300,6 +302,7 @@ def main():
             "KEEP 3V3 B.Cu L: (110.4,108.25)->(110.4,108.55)->(102.52,108.55)->(102.52,109.40)",
             "KEEP NTC TS B.Cu: (102.49,107.55)->(108.51,107.55)->(108.51,107.00) under VBUS",
             "BTN3 B y=109.15; GND B 108.05 sits between TS B 107.55 and 3V3 B 108.55",
+            "R_SDA now (111.5,108.85); 3V3 L vertical x=110.4 on F (ghost)",
         ],
     )
     fcu_path = OUT / "u2_pocket_fcu_annotated.png"

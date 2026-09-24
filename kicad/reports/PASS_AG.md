@@ -7,7 +7,7 @@
 
 ## Verdict
 
-**Partial.** Hard gates held. Combined Sol vision KEEP cleared the four U2 latents. Sol then browsed the repo: `sol_rscl_3v3` then `sol_3v3_lsctrl_tie` reconnected the west `R_SCL` pad2 and the leftover `R_LSCTRL` 3V3 stub. Independent CD F→B KEEP (`sol_cd_e2_via`) and ILIM C2 dogbone (`sol_ilim_c2_dogbone`) closed E2 and C2 (`unc` 16→12). South 0402 heap spread with `sol_rscl_west` (`R_SCL` to `(106.5, 110.1, 90)`). Independent `sol_gnd_d5_via` + F.Cu tie `sol_gnd_d5_tie` joined D5 onto east `R_CD` GND (`unc` 12→10). Independent `sol_3v3_west_via` joined east 3V3 to west via `(102.52, 109.40)` on B.Cu north of BTN3 (`unc` 10→9). Independent `sol_ntc_west` moved `NTC_BAT` onto the `C4` column west of VBUS (courtyard vs `C_BAT` `−0.290` → `+2.721`; `unc` stayed 9). Independent `sol_cbat_north` slid `C_BAT` to `(107.5, 108.5, 0)` (courtyard vs `R_SCL` `−0.100` → `+0.200`; `unc` stayed 9). Independent `sol_gnd_cbat_west` joined `C_BAT` GND to the `C4` column under VBUS (`unc` 9→8). C3 TS and E5 SCL still islands. Not production-ready.
+**Partial.** Hard gates held. Combined Sol vision KEEP cleared the four U2 latents. Sol then browsed the repo: `sol_rscl_3v3` then `sol_3v3_lsctrl_tie` reconnected the west `R_SCL` pad2 and the leftover `R_LSCTRL` 3V3 stub. Independent CD F→B KEEP (`sol_cd_e2_via`) and ILIM C2 dogbone (`sol_ilim_c2_dogbone`) closed E2 and C2 (`unc` 16→12). South 0402 heap spread with `sol_rscl_west` (`R_SCL` to `(106.5, 110.1, 90)`). Independent `sol_gnd_d5_via` + F.Cu tie `sol_gnd_d5_tie` joined D5 onto east `R_CD` GND (`unc` 12→10). Independent `sol_3v3_west_via` joined east 3V3 to west via `(102.52, 109.40)` on B.Cu north of BTN3 (`unc` 10→9). Independent `sol_ntc_west` moved `NTC_BAT` onto the `C4` column west of VBUS (courtyard vs `C_BAT` `−0.290` → `+2.721`; `unc` stayed 9). Independent `sol_cbat_north` slid `C_BAT` to `(107.5, 108.5, 0)` (courtyard vs `R_SCL` `−0.100` → `+0.200`; `unc` stayed 9). Independent `sol_gnd_cbat_west` joined `C_BAT` GND to the `C4` column under VBUS (`unc` 9→8). Independent `sol_rsda_north` slid `R_SDA` to `(111.5, 108.85, 0)` and retracted 3V3 L to `x=110.4` (courtyard vs `SW2` `−0.120` → `+0.030`; `unc` stayed 8). C3 TS and E5 SCL still islands. Not production-ready.
 
 ## KEEP (DRC-gated)
 
@@ -27,6 +27,7 @@
 | `sol_ntc_west` move + F/B | Spread NTC/C_BAT pile: `NTC_BAT (108.2, 108.15, 0)` → `(103.0, 107.2, 0)` north of `C4`. TS via `0.25@(102.49, 107.55)` + B.Cu `y=107.55` under VBUS onto TS via `(108.51, 107.00)`; GND F onto `C4.2`. Sol STEP7 refused east/south NTC and north `R_SDA`. Probe overlap=0 (3V3 B `+0.880`, BTN3 `+1.450`, C4.1 3V3 `+0.550`). `shorting=0`, `unc=9`. |
 | `sol_cbat_north` move + F | Spread C_BAT off R_SCL: `C_BAT (107.5, 108.8, 0)` → `(107.5, 108.5, 0)`. VBAT vertical and GND L retargeted in-place. `R_SDA` north/west overlap 3V3 `x=110.5` / SDA `x=111.4`. Probe overlap=0 (R_SCL.2 `+0.486`, 3V3 L `+0.720`, SDA diagonal `+0.210`). Courtyard vs `R_SCL` `−0.100` → `+0.200`. `shorting=0`, `unc=9`. |
 | `sol_gnd_cbat_west` add F/B | Join `C_BAT` west GND to `C4`/`NTC` without F.Cu across VBUS: via `0.25@(103.48, 108.05)` on the C4 GND vertical + via `0.25@(107.98, 108.05)` + B.Cu `y=108.05` under VBUS between TS B `y=107.55` and 3V3 B `y=108.55`. F stub from `C_BAT.2`. Probe overlap=0 (TS B `+0.315`, 3V3 B `+0.315`). `shorting=0`, `unc=9→8`. |
+| `sol_rsda_north` move + F | Spread `R_SDA` off `SW2`: retract 3V3 L vertical `x=110.5`→`x=110.4` onto via `(110.4, 108.25)` (GND blob `+0.215`; `x=110.00` OVERLAP blob `−0.185`). `R_SDA (111.5, 109.0, 0)` → `(111.5, 108.85, 0)`. Courtyard vs `SW2` `−0.120` → `+0.030`. West-of-VBUS SDA B hop hits TS drops `x=108.51` / `x=107.80`. Probe overlap=0. `shorting=0`, `unc=8`. |
 
 Replay: `python3 tools/_pass_ag_apply_keeps.py` on the Pass-AF board.
 
@@ -48,11 +49,11 @@ The four U2 latents from Pass-AG are **geometrically cleared** by `sol_combo_wes
 
 ## Remaining unc=8
 
-GND A5 vs D5 (D5 via does not stitch In1), west 3V3_DISP ×2, SDA to U1, SCL E5 vs `R_SCL` pad1 `(106.5, 110.61)`, SCL to U1, PMIC_INT, TS C3 vs TS B via `(107.8, 105.65)`. Pocket CD (E2), ILIM (C2), D5→east `R_CD`, east 3V3→west via, NTC TS/GND, and `C_BAT` west GND→`C4` column are closed. `C_BAT` is at `(107.5, 108.5)` (courtyard vs `R_SCL` `+0.200`). `R_SDA` still sits in the F street at `(111.50, 109.00)` (courtyard vs `SW2` `−0.120`).
+GND A5 vs D5 (D5 via does not stitch In1), west 3V3_DISP ×2, SDA to U1, SCL E5 vs `R_SCL` pad1 `(106.5, 110.61)`, SCL to U1, PMIC_INT, TS C3 vs TS B via `(107.8, 105.65)`. Pocket CD (E2), ILIM (C2), D5→east `R_CD`, east 3V3→west via, NTC TS/GND, `C_BAT` west GND→`C4` column, and `R_SDA` vs `SW2` courtyard are closed. `C_BAT` is at `(107.5, 108.5)` (courtyard vs `R_SCL` `+0.200`). `R_SDA` is at `(111.50, 108.85)` (courtyard vs `SW2` `+0.030`).
 
 ## Next
 
-Spread `R_SDA` off `SW2` without parking on SW1/SW2 (`R_SDA` north/west is boxed by 3V3 `x=110.5` and SDA `x=111.4`; 3V3 retract to `x=110.00` hits GND blob `w=0.45@(109.90, 108.60)`). Orthogonal F/B reconnect of TS C3 and SCL E5→`R_SCL` pad1 `(106.5, 110.61)`. A5 GND still overlaps PMID/ILIM B to the east. New GND via does not stitch In1 until refill — D5 stays an island vs A5. No In1/In2 signal hauls. No new overlap. East 0402 column stays (`R_CD`/`C_LDO` x=113.5, `R_LSCTRL` x=114.6, `R_ILIM` x=115.6).
+Orthogonal F/B reconnect of TS C3 and SCL E5→`R_SCL` pad1 `(106.5, 110.61)`. A5 GND still overlaps PMID/ILIM B to the east. New GND via does not stitch In1 until refill — D5 stays an island vs A5. `R_SCL` vs `SW1` courtyard remains VBUS-tight. No In1/In2 signal hauls. No new overlap. East 0402 column stays (`R_CD`/`C_LDO` x=113.5, `R_LSCTRL` x=114.6, `R_ILIM` x=115.6).
 
 gpt-6-sol now browses with `tools/_sol_repo_explore.py`. NC pads must show in `inspect_pcb_window` / `probe_clearance` or it will haul CD onto E1.
 
