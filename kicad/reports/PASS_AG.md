@@ -7,7 +7,7 @@
 
 ## Verdict
 
-**Partial.** Hard gates held. Combined Sol vision KEEP cleared the four U2 latents. Sol then browsed the repo: `sol_rscl_3v3` then `sol_3v3_lsctrl_tie` reconnected the west `R_SCL` pad2 and the leftover `R_LSCTRL` 3V3 stub. Independent CD F→B KEEP (`sol_cd_e2_via`) and ILIM C2 dogbone (`sol_ilim_c2_dogbone`) closed E2 and C2 (`unc` 16→12). South 0402 heap spread with `sol_rscl_west` (`R_SCL` to `(106.5, 110.1, 90)`). Independent `sol_gnd_d5_via` + F.Cu tie `sol_gnd_d5_tie` joined D5 onto east `R_CD` GND (`unc` 12→10). Independent `sol_3v3_west_via` joined east 3V3 to west via `(102.52, 109.40)` on B.Cu north of BTN3 (`unc` 10→9). Independent `sol_ntc_west` moved `NTC_BAT` onto the `C4` column west of VBUS (courtyard vs `C_BAT` `−0.290` → `+2.721`; `unc` stayed 9). Independent `sol_cbat_north` slid `C_BAT` to `(107.5, 108.5, 0)` (courtyard vs `R_SCL` `−0.100` → `+0.200`; `unc` stayed 9). Independent `sol_gnd_cbat_west` joined `C_BAT` GND to the `C4` column under VBUS (`unc` 9→8). Independent `sol_rsda_north` slid `R_SDA` to `(111.5, 108.85, 0)` and retracted 3V3 L to `x=110.4` (courtyard vs `SW2` `−0.120` → `+0.030`; `unc` stayed 8). C3 TS and E5 SCL still islands. Not production-ready.
+**Partial.** Hard gates held. Combined Sol vision KEEP cleared the four U2 latents. Sol then browsed the repo: `sol_rscl_3v3` then `sol_3v3_lsctrl_tie` reconnected the west `R_SCL` pad2 and the leftover `R_LSCTRL` 3V3 stub. Independent CD F→B KEEP (`sol_cd_e2_via`) and ILIM C2 dogbone (`sol_ilim_c2_dogbone`) closed E2 and C2 (`unc` 16→12). South 0402 heap spread with `sol_rscl_west` (`R_SCL` to `(106.5, 110.1, 90)`). Independent `sol_gnd_d5_via` + F.Cu tie `sol_gnd_d5_tie` joined D5 onto east `R_CD` GND (`unc` 12→10). Independent `sol_3v3_west_via` joined east 3V3 to west via `(102.52, 109.40)` on B.Cu north of BTN3 (`unc` 10→9). Independent `sol_ntc_west` moved `NTC_BAT` onto the `C4` column west of VBUS (courtyard vs `C_BAT` `−0.290` → `+2.721`; `unc` stayed 9). Independent `sol_cbat_north` slid `C_BAT` to `(107.5, 108.5, 0)` (courtyard vs `R_SCL` `−0.100` → `+0.200`; `unc` stayed 9). Independent `sol_gnd_cbat_west` joined `C_BAT` GND to the `C4` column under VBUS (`unc` 9→8). Independent `sol_rsda_north` slid `R_SDA` to `(111.5, 108.85, 0)` and retracted 3V3 L to `x=110.4` (courtyard vs `SW2` `−0.120` → `+0.030`; `unc` stayed 8). Sol STEP10 (and STEP9) correctly produced no SCL/TS/A5 KEEP; C3 TS and E5 SCL still islands. Not production-ready.
 
 ## KEEP (DRC-gated)
 
@@ -53,14 +53,14 @@ GND A5 vs D5 (D5 via does not stitch In1), west 3V3_DISP ×2, SDA to U1, SCL E5 
 
 ## Next
 
-Orthogonal F/B reconnect of TS C3 and SCL E5→`R_SCL` pad1 `(106.5, 110.61)`. A5 GND still overlaps PMID/ILIM B to the east. New GND via does not stitch In1 until refill — D5 stays an island vs A5. `R_SCL` vs `SW1` courtyard remains VBUS-tight. No In1/In2 signal hauls. No new overlap. East 0402 column stays (`R_CD`/`C_LDO` x=113.5, `R_LSCTRL` x=114.6, `R_ILIM` x=115.6).
+Orthogonal F/B reconnect of TS C3 and SCL E5→`R_SCL` pad1 `(106.5, 110.61)`. A5 GND still overlaps PMID/ILIM B to the east. New GND via does not stitch In1 until refill — D5 stays an island vs A5. `R_SCL` vs `SW1` courtyard remains VBUS-tight. SCL south of E5 is boxed by 3V3 via `0.6@(112.16, 107.60)` and CD B `y=106.95`. Pad1 east is boxed by BTN1 via `0.6@(107.50, 110.50)`. No In1/In2 signal hauls. No new overlap. East 0402 column stays (`R_CD`/`C_LDO` x=113.5, `R_LSCTRL` x=114.6, `R_ILIM` x=115.6).
 
-gpt-6-sol now browses with `tools/_sol_repo_explore.py`. NC pads must show in `inspect_pcb_window` / `probe_clearance` or it will haul CD onto E1.
+gpt-6-sol now browses with `tools/_sol_repo_explore.py`. Pass `kicad/reports/...` as the report path (a bare `reports/` is remapped). NC pads must show in `inspect_pcb_window` / `probe_clearance` or it will haul CD onto E1.
 
 ## Archives
 
 - `tools/_pass_ag_sexpr_lib.py`, `_pass_ag_gate.py`, `_pass_ag_try.py`, `_pass_ag_apply_keeps.py`, `_pass_ag_run.sh`
 - `tools/_u2_pocket_render.py`, `_sol_vision_ask.py`, `_sol_repo_explore.py`, `_sol_board_query.py`
 - `reports/sol_views/`
-- `reports/PASS_AG_SOL.md`, `reports/PASS_AG_SOL_VISION.md`, `reports/PASS_AG_SOL_EXPLORE.md`, `reports/PASS_AG_SOL_EXPLORE_FOLLOWUP.md`, `reports/PASS_AG_SOL_STEP.md`, `reports/PASS_AG_SOL_STEP2.md`, `reports/PASS_AG_SOL_STEP3.md`, `reports/PASS_AG_SOL_STEP4.md`, `reports/PASS_AG_SOL_STEP5.md`, `reports/PASS_AG_SOL_STEP6.md`, `reports/PASS_AG_SOL_STEP7.md`, `reports/PASS_AG_SOL_STEP8.md`, `reports/PASS_AG_SOL_STEP9.md`
+- `reports/PASS_AG_SOL.md`, `reports/PASS_AG_SOL_VISION.md`, `reports/PASS_AG_SOL_EXPLORE.md`, `reports/PASS_AG_SOL_EXPLORE_FOLLOWUP.md`, `reports/PASS_AG_SOL_STEP.md`, `reports/PASS_AG_SOL_STEP2.md`, `reports/PASS_AG_SOL_STEP3.md`, `reports/PASS_AG_SOL_STEP4.md`, `reports/PASS_AG_SOL_STEP5.md`, `reports/PASS_AG_SOL_STEP6.md`, `reports/PASS_AG_SOL_STEP7.md`, `reports/PASS_AG_SOL_STEP8.md`, `reports/PASS_AG_SOL_STEP9.md`, `reports/PASS_AG_SOL_STEP10.md`
 - `LIVE_LOG.txt`

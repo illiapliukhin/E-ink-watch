@@ -531,6 +531,10 @@ def write_report(
         + (final_text or "_(empty)_")
         + "\n"
     )
+    print("FINAL_TEXT_BEGIN")
+    print(final_text or "_(empty)_")
+    print("FINAL_TEXT_END")
+    report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(body)
     TRACE.write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in trace) + "\n")
 
@@ -575,7 +579,10 @@ def main() -> None:
         messages.append({"role": "user", "content": extra.strip()})
         report_path = ROOT / "kicad/reports/PASS_AG_SOL_EXPLORE_FOLLOWUP.md"
         if len(sys.argv) > 2:
-            report_path = ROOT / sys.argv[2]
+            rel = sys.argv[2]
+            if rel.startswith("reports/"):
+                rel = "kicad/" + rel
+            report_path = ROOT / rel
         print("FOLLOWUP attached", len(extra), "chars", flush=True)
     final_text = ""
     usage = None

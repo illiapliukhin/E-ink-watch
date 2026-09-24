@@ -43,6 +43,7 @@ LATENTS = [
     "KEEP: NTC_BAT (103.0,107.2,0) on C4 column; C_BAT (107.5,108.5,0) off R_SCL courtyard",
     "KEEP: GND C_BAT west vias (103.48,108.05)+(107.98,108.05) + B y=108.05 under VBUS",
     "KEEP: R_SDA (111.5,108.85,0) off SW2; 3V3 L vertical x=110.4 onto via",
+    "STEP10 reject: SCL/TS/A5 still boxed (3V3 via 0.6, BTN1 via, C3 0.4mm street)",
 ]
 
 
@@ -290,7 +291,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after R_SDA north off SW2 (shorting=0, unc=8)",
+        "U2 pocket F.Cu — after STEP10 SCL/TS/A5 reject (shorting=0, unc=8)",
         LATENTS,
     )
     bcu = render_layer(
@@ -303,6 +304,7 @@ def main():
             "KEEP NTC TS B.Cu: (102.49,107.55)->(108.51,107.55)->(108.51,107.00) under VBUS",
             "BTN3 B y=109.15; GND B 108.05 sits between TS B 107.55 and 3V3 B 108.55",
             "R_SDA now (111.5,108.85); 3V3 L vertical x=110.4 on F (ghost)",
+            "STEP10: SCL via on diagonal end +0.085 vs SDA; A5 east still ILIM B/PMID; C3 TS street <0.15",
         ],
     )
     fcu_path = OUT / "u2_pocket_fcu_annotated.png"
