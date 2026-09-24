@@ -891,3 +891,27 @@ One save: ILIM via off PMID + CD off E-row + R_SCL pad1 off SDA (no new copper).
 ### Archives
 kicad/reports/PASS_AG_SOL.md
 reports/_drc_passag_ts_via_corner.txt, _drc_passag_ts_f_retract.txt, _drc_passag_ilim_via_slide.txt
+
+## Pass-AG follow-up (2026-09-24) — Sol vision loop + sol_combo_west KEEP
+Sent Sol four pictures (annotated F.Cu, annotated B.Cu, 3D U2, 3D board) plus numbered corrections of the previous mistakes. It discarded In1/In2 hauls, the 108.00 TS park, and east cluster next to SW2.
+
+### Sol's three new variants
+- West R_SCL (108.80, 109.80, 90) — chosen
+- NE R_SCL (114.20, 104.70, 90) — Sol marked not-KEEP (top edge of image; J_STRAP_R MP)
+- South + later R_CD move — staged, not this save
+
+### Applied (geometry-corrected)
+sol_combo_west, one in-place save, DRC shorting=0 unc=16:
+- ILIM via (111.45,105.80) 0.5 → (110.75,105.80) 0.20/0.15 (Sol 0.25@110.80 clips PMID F edge −0.042)
+- ILIM F (110.6,106.0)-(111.45,105.8) → C2 stub
+- CD E-row (110.6,106.8)-(112.8,106.8) → E2 stub; CD vertical x=112.8 retracted (crosses 3V3 y=107.8)
+- TS F x=110.4 cluster → C3 stub
+- R_SCL (112.0,107.8,0) → (108.8,109.8,90) pad1 +Y (108.8,110.31). TP6 is B.Cu, not a F short.
+
+### Next
+Orthogonal reconnect of C2/C3/E2/E5 and R_SCL pads. Show Sol the after-KEEP pocket map.
+
+### Archives
+reports/sol_views/, tools/_u2_pocket_render.py, tools/_sol_vision_ask.py
+reports/PASS_AG_SOL_VISION.md, reports/_drc_passag_sol_combo_west.txt
+

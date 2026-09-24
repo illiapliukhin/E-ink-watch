@@ -17,7 +17,7 @@ Do not skip these on the next PCB pass.
 - **Deleting** copper reorders remaining items and can promote latent overlaps to `shorting_items` (Pass-AG: TS↔VBAT, ILIM↔PMID, CD↔SCL, SCL↔SDA). **In-place** `(at …)` / endpoint edits keep file order. Use `set_via_at` / `set_seg_ends`, not delete-then-add, when opening U2 streets.
 - ISET via 0.5 mm @(109.5, 106.0) blocked the west C-row pocket. KEEP: slide to @(108.55, 106.0) and shrink to 0.35/0.15. Do not sit a 0.5 mm via next to VBAT F @x=108.12.
 - Do not slide `R_SCL` +0.5 X. Pad 2 (`3V3`) hits `R_CD`/`C_LDO` GND; the E5 SCL stub then clips the 3V3 via @(112.16, 107.6). Need a rotation or a larger move of `R_CD`/`C_LDO` first.
-- Latent U2 shorts still in copper (DRC-quiet until item order changes): TS F stubs `x=110.4` on VBAT/C2 (via KEEP at `(107.8, 105.65)`); ILIM via @(111.45, 105.8) on PMID B4/C4; CD F @y=106.8 through E3/E4/E5; `R_SCL` pad 1 on SDA x=111.4.
+- Latent U2 shorts **cleared** by `sol_combo_west` (one in-place save): ILIM via `(110.75, 105.80)` 0.20; CD E-row + vertical `x=112.8`; TS F onto C3; `R_SCL` `(108.8, 109.8, 90)`. DRC `shorting=0` unc=16. Reconnect next.
 - KiCad footprint `90` on 0402 maps pad 1 to **+Y** (clockwise), not −Y. `R_SCL` @(112.7, 109.25) 90 put SCL pad 1 at (112.7, 109.76). A 3V3 stub drawn to +Y shorts SCL.
 - `set_seg_ends` on CD still promoted ILIM↔PMID. Only the ISET in-place KEEP (edit *before* the ILIM via in the file, no new overlap) stayed quiet. Fix ILIM↔PMID and TS↔VBAT geometrically before any other copper change.
 - Do not store Experiential/`EXPLABS_API_KEY` in the repo or logs. Keys pasted in chat should be rotated.
@@ -25,6 +25,8 @@ Do not skip these on the next PCB pass.
 - In1 is GND plane and In2 is 3V3 plane. Do not haul CD/SDA on those layers (Sol variant A).
 - `set_seg_ends` on TS F (`ts_f_retract`) promoted SCL↔SDA and TS↔ILIM (C3 stub vs ILIM F diagonal through C3). Retract ILIM F off C3/PMID in the same save as any TS F change.
 - ILIM via-only slide to `(110.75, 105.80)` `0.20` was overlap-clear of PMID/VBAT but DRC still reported CD↔3V3 and CD↔SCL. File length did not change. Moving the ILIM via promotes the CD E-row latents; clear CD (and R_SCL pad-on-SDA) in the **same** save as the ILIM via.
+- Send Sol annotated F.Cu/B.Cu maps plus KiCad 3D of U2. If it is wrong, reply with the overlap numbers and new pictures; do not apply blindly. Vision KEEP `R_SCL (108.8, 109.8, 90)` was F.Cu-clear (TP6 pad is **B.Cu** only). Its ILIM via `0.25@(110.80,105.80)` still clipped PMID F (edge −0.042) — use `0.20@(110.75,105.80)`. CD vertical `x=112.8` crosses 3V3 F `y=107.8`; retract it with the E-row.
+- Combined KEEP `sol_combo_west`: ILIM via + ILIM F stub + CD E-row + CD vertical + TS F onto C3 + `R_SCL` rotate-move, one save. `shorting=0`, unc 11→16.
 
 ## Hard gates (do not relax)
 

@@ -112,6 +112,36 @@ elif edit_name == "nudge_cd_south":
     if n1 != 1 or n2 != 1:
         raise SystemExit("nudge_cd_south failed to match")
 
+elif edit_name == "sol_combo_west":
+    # gpt-6-sol vision KEEP, geometrically corrected:
+    # - ILIM via 0.25@(110.80,105.80) still clips PMID F; use 0.20@(110.75,105.80).
+    # - R_SCL (108.8,109.8,90) is F.Cu-clear (TP6 pad is B.Cu only).
+    # - Also retract CD vertical x=112.8 which crosses 3V3 F y=107.8.
+    text, n_via = set_via_at(text, 111.45, 105.8, 110.75, 105.8)
+    text, n_sz = set_via_size_drill(text, 110.75, 105.8, 0.2, 0.15)
+    text, n_ilim_f = set_seg_ends(
+        text, 110.6, 106.0, 111.45, 105.8, 110.6, 106.0, 110.6, 106.02, layer="F.Cu"
+    )
+    text, n_cd = set_seg_ends(
+        text, 112.8, 106.8, 110.6, 106.8, 110.6, 106.8, 110.63, 106.8, layer="F.Cu"
+    )
+    text, n_cd_v = set_seg_ends(
+        text, 112.8, 108.26, 112.8, 106.8, 112.8, 108.26, 112.8, 108.41, layer="F.Cu"
+    )
+    text, n_ts_h = set_seg_ends(
+        text, 110.4, 106.0, 111.0, 106.0, 111.0, 106.0, 111.0, 106.12, layer="F.Cu"
+    )
+    text, n_ts_v = set_seg_ends(
+        text, 110.4, 105.65, 110.4, 106.0, 111.0, 106.0, 111.0, 106.12, layer="F.Cu"
+    )
+    text = set_fp_at(text, "R_SCL", "108.8 109.8 90")
+    print(
+        f"sol_combo_west via={n_via} sz={n_sz} ilimF={n_ilim_f} "
+        f"cd={n_cd} cdV={n_cd_v} ts={n_ts_h,n_ts_v}"
+    )
+    if n_via != 1 or n_ilim_f != 1 or n_cd != 1 or n_cd_v != 1 or n_ts_h != 1 or n_ts_v != 1:
+        raise SystemExit("sol_combo_west failed to match")
+
 elif edit_name == "ts_via_corner":
     # gpt-6-sol first KEEP was (108.00, 105.65) 0.35 — that overlaps VBAT F @x=108.12
     # w=0.35 and ISET B @x=108.20. Park on the existing TS B.Cu elbow instead.
