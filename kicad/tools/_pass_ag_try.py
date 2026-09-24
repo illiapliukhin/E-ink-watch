@@ -390,6 +390,29 @@ elif edit_name == "sol_rscl_west":
     if n_h != 1 or n_v != 1:
         raise SystemExit("sol_rscl_west failed to match 3V3 follow")
 
+elif edit_name == "sol_gnd_d5_via":
+    # Sol STEP5 refused SCL/TS (pad1 boxed by VBUS/BTN1/3V3; TS B hits CD/ILIM).
+    # Independent: stitch U2.D5 GND. Not VIP. A5 east still overlaps
+    # PMID/ILIM B — leave A5. Via 0.35@(112.22,106.40) was only +0.075 vs
+    # 3V3_DISP F y=106.0 (below 0.15). KEEP 0.25@(112.4,106.55). New via
+    # does not stitch stale In1 fill; F.Cu L onto existing GND
+    # (112.8,107.24) joins the east cluster without a zone refill.
+    # Do not drop (112.4,106.55)-(112.4,107.24): +0.073 vs 3V3 via 0.6.
+    text = add_via(text, 112.4, 106.55, 0.25, 0.15, ground_net)
+    text = add_segment(text, 111.8, 106.4, 112.4, 106.4, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.4, 106.4, 112.4, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.4, 106.55, 112.8, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.8, 106.55, 112.8, 107.24, 0.12, "F.Cu", ground_net)
+    print("sol_gnd_d5_via via (112.4,106.55) 0.25 + F L D5→(112.8,107.24)")
+
+elif edit_name == "sol_gnd_d5_tie":
+    # Board already has the D5 via + dogbone. Zone fill is stale, so the
+    # via is still an island vs east GND (112.8,107.24). Orthogonal F.Cu
+    # east-then-south L, overlap=0 (3V3_DISP via +0.300, 3V3 via +0.374).
+    text = add_segment(text, 112.4, 106.55, 112.8, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.8, 106.55, 112.8, 107.24, 0.12, "F.Cu", ground_net)
+    print("sol_gnd_d5_tie F L (112.4,106.55)->(112.8,106.55)->(112.8,107.24)")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

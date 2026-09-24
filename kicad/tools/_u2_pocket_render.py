@@ -39,8 +39,8 @@ NET_COLORS = {
 LATENTS = [
     "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20",
     "KEEP: R_SCL spread (106.5,110.1,90) pad1 SCL (106.5,110.61) pad2 3V3 (106.5,109.59)",
-    "KEEP: CD E2 dogbone via (110.6,106.95) 0.25 + B L x=112.65; ILIM C2 F L w=0.08",
-    "Sol R_SDA (111.35,110.30) REJECT (SW1/SW2 courtyard). C3 TS and E5 SCL still islands",
+    "KEEP: CD E2 via (110.6,106.95); ILIM C2 F L w=0.08; GND D5 via (112.4,106.55)+F L to (112.8,107.24)",
+    "Sol STEP5 SCL/TS no KEEP. Remaining: A5 GND, west GND, west 3V3, SDA, SCL, TS, PMIC_INT",
 ]
 
 
@@ -243,9 +243,10 @@ def render_layer(text, layer, title, callouts):
     # latent / KEEP boxes
     boxes = [
         ((110.55, 105.62, 110.95, 105.98), "ILIM via KEEP"),
-        ((108.45, 108.95, 109.15, 110.65), "R_SCL KEEP"),
+        ((106.15, 109.35, 106.85, 110.85), "R_SCL KEEP"),
         ((107.5, 105.4, 108.1, 105.9), "TS via KEEP"),
         ((110.45, 106.80, 110.75, 107.10), "CD via KEEP"),
+        ((112.20, 106.35, 112.95, 107.35), "GND D5 KEEP"),
     ]
     if layer == "F.Cu":
         for (bx0, by0, bx1, by1), _label in boxes:
@@ -282,7 +283,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after R_SCL west spread (shorting=0, unc=12)",
+        "U2 pocket F.Cu — after GND D5 tie (shorting=0, unc=10)",
         LATENTS,
     )
     bcu = render_layer(

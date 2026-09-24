@@ -991,3 +991,26 @@ SCL E5→R_SCL pad1 (106.5,110.61) F.Cu (BTN3 B y=109.15 still blocks B N–S). 
 reports/PASS_AG_SOL_STEP4.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — Sol STEP5 no SCL/TS KEEP; independent GND D5
+Sol re-opened the repo after sol_rscl_west. SCL pad1 (106.5,110.61) boxed: VBUS x=105.7 west, BTN1 via 0.6@(107.50,110.50) east (alley 0.38 < 0.42), 3V3 pad2 north. TS B from C3 hits CD −0.110 / ILIM −0.125. No Sol copper applied.
+
+### REJECT (not applied)
+- SCL F east stub (106.5,110.61)-(107.10,110.61) — BTN1 via +0.055 < 0.15
+- SCL via (111.80,107.40) 0.20 — 3V3 via RISK +0.012
+- TS B x=111.00 south — CD OVERLAP −0.110; to y=105.65 — ILIM −0.125
+- GND via 0.35@(112.22,106.40) — 3V3_DISP F +0.075 < 0.15
+- GND F (112.4,106.55)-(112.4,107.24) — 3V3 via +0.073 < 0.15
+- 3V3 stitch via (107.0,109.59) 0.25 — F-clear and inside In2 r=12 but will not close west 3V3 without refill / F.Cu tie to (102.52,109.40)
+
+### KEEP
+sol_gnd_d5_via: via GND (112.4,106.55) 0.25/0.15; F L (111.8,106.4)-(112.4,106.4)-(112.4,106.55) w=0.12. Not VIP. Via does not stitch stale In1 fill. DRC shorting=0 unc 12→11.
+
+sol_gnd_d5_tie: F L (112.4,106.55)-(112.8,106.55)-(112.8,107.24) w=0.12 onto existing R_CD GND. Probe overlap=0 (3V3_DISP via +0.300, 3V3 via +0.374). DRC shorting=0 unc 11→10. D5+R_CD still islanded vs west GND (108.71,108.60) NTC_BAT/C_BAT.
+
+### Next
+A5 GND (east overlaps PMID/ILIM B). West GND NTC vs east R_CD. West 3V3. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP5.md
+reports/sol_views/
+

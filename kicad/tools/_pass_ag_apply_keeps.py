@@ -116,6 +116,25 @@ if has_ilim_dog and "(at 108.8 109.8 90)" in text and not has_rscl_west:
     applied.append("sol_rscl_west")
     has_rscl_west = True
 
+has_gnd_d5 = "(at 112.4 106.55)" in text
+has_gnd_d5_tie = "(start 112.8 106.55)" in text or "(end 112.8 106.55)" in text
+if has_rscl_west and not has_gnd_d5:
+    ground_net = netnum(text, "GND")
+    text = add_via(text, 112.4, 106.55, 0.25, 0.15, ground_net)
+    text = add_segment(text, 111.8, 106.4, 112.4, 106.4, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.4, 106.4, 112.4, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.4, 106.55, 112.8, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.8, 106.55, 112.8, 107.24, 0.12, "F.Cu", ground_net)
+    applied.append("sol_gnd_d5_via")
+    has_gnd_d5 = True
+    has_gnd_d5_tie = True
+elif has_gnd_d5 and not has_gnd_d5_tie:
+    ground_net = netnum(text, "GND")
+    text = add_segment(text, 112.4, 106.55, 112.8, 106.55, 0.12, "F.Cu", ground_net)
+    text = add_segment(text, 112.8, 106.55, 112.8, 107.24, 0.12, "F.Cu", ground_net)
+    applied.append("sol_gnd_d5_tie")
+    has_gnd_d5_tie = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -131,6 +150,10 @@ if not applied:
             extra += ", sol_ilim_c2_dogbone"
         if has_rscl_west:
             extra += ", sol_rscl_west"
+        if has_gnd_d5:
+            extra += ", sol_gnd_d5_via"
+        if has_gnd_d5_tie:
+            extra += ", sol_gnd_d5_tie"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"
