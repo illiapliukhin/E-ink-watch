@@ -857,3 +857,12 @@ cursor.md (in-place vs delete flake)
 
 ### Verdict
 Hard gates held. Unconnected still 10. West ISET via cleared without promoting shorts. U2 east/south corridors still blocked by latent overlaps.
+
+## Pass-AG follow-up (2026-09-24) — gpt-6-sol + R_SCL rotate REVERT
+- Experiential `gpt-6-sol` via api.experientiallabs.ai works (test sol-ok; layout advice used).
+- Sol KEEP: R_SCL @(112.70, 108.80) 90°, pad1 assumed (x, y-0.51). KiCad 0402 rot 90 maps pad1 to **+Y**. Stubs drawn to +Y shorted 3V3↔SCL.
+- rotate_rscl_90 also crossed GND @y=107.24 and CD @x=112.8; PMID-insert promoted ILIM↔PMID and TS↔VBAT.
+- cd_stub_south (in-place CD E-row → E2 stub) promoted ILIM↔PMID + CD↔SDA. Reverted.
+- Board remains Pass-AG KEEP only (ISET via west). shorting=0 unc=10.
+
+Next: fix ILIM via@(111.45,105.8) and TS via@(110.4,105.65) in-place **before** any other copper; then rotate R_SCL with pad1 at +Y.

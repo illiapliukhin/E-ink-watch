@@ -42,7 +42,9 @@ Same islands as Pass-AF: GND U2 A5↔D5, mid 3V3, west 3V3_DISP ×2, SDA, SCL, P
 
 ## Next
 
-Move/rotate `R_SCL` with `R_CD`/`C_LDO` (not a solo +X slide). Nudge TS and ILIM vias in place. Take CD off the E-row. Prefer orthogonal escapes.
+Fix ILIM via `(111.45, 105.8)` and TS via `(110.4, 105.65)` **in-place first**. Then rotate `R_SCL` with pad 1 at **+Y** (KiCad 0402 `90` is clockwise). Do not add copper until those two overlaps are gone.
+
+gpt-6-sol (2026-09-24) proposed `R_SCL` @(112.70, 108.80) 90° assuming pad 1 at y−0.51; DRC showed pad 1 at y+0.51 on the 3V3 stub. Reverted.
 
 ## Archives
 

@@ -59,6 +59,32 @@ elif edit_name == "ilim_via_west":
     if n_via != 1 or n_f != 1 or n_b != 1:
         raise SystemExit("ilim_via_west failed to match")
 
+elif edit_name == "cd_stub_south":
+    # In-place only: turn the E-row CD haul into a short south stub on E2.
+    # Clears E3/E4/E5 without inserting copper (avoids sexpr-order flake).
+    text, n1 = set_seg_ends(
+        text, 112.8, 106.8, 110.6, 106.8, 110.6, 106.8, 110.6, 107.15, layer="F.Cu"
+    )
+    print(f"cd_stub_south n1={n1}")
+    if n1 != 1:
+        raise SystemExit("cd_stub_south failed to match")
+
+elif edit_name == "rotate_rscl_90":
+    # KiCad 0402 rot 90 maps pad 1 to +Y (clockwise), pad 2 to -Y.
+    # gpt-6-sol proposed (112.70, 108.80) 90 with pad1 at y-0.51 — that is pad 2.
+    # Origin south of 3V3 y=108.25 so the E5 stub does not cross that rail.
+    text = set_fp_at(text, "R_SCL", "112.7 109.25 90")
+    text, n_scl = set_seg_ends(
+        text, 111.8, 106.8, 111.14, 107.6, 111.8, 106.8, 111.8, 107.15, layer="F.Cu"
+    )
+    text = add_segment(text, 111.8, 107.15, 112.7, 107.15, 0.12, "F.Cu", scl_net)
+    text = add_segment(text, 112.7, 107.15, 112.7, 108.74, 0.12, "F.Cu", scl_net)
+    text = add_segment(text, 112.7, 109.76, 112.5, 109.76, 0.15, "F.Cu", rail_3v3_net)
+    text = add_segment(text, 112.5, 109.76, 112.5, 109.0, 0.15, "F.Cu", rail_3v3_net)
+    print(f"rotate_rscl_90 scl={n_scl}")
+    if n_scl != 1:
+        raise SystemExit("rotate_rscl_90 SCL stub not matched")
+
 elif edit_name == "move_rscl_east":
     # R_SCL pad 1 sits on SDA vertical x=111.4. Slide +0.50 X.
     text = set_fp_at(text, "R_SCL", "112.5 107.7")

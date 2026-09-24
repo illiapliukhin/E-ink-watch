@@ -18,6 +18,9 @@ Do not skip these on the next PCB pass.
 - ISET via 0.5 mm @(109.5, 106.0) blocked the west C-row pocket. KEEP: slide to @(108.55, 106.0) and shrink to 0.35/0.15. Do not sit a 0.5 mm via next to VBAT F @x=108.12.
 - Do not slide `R_SCL` +0.5 X. Pad 2 (`3V3`) hits `R_CD`/`C_LDO` GND; the E5 SCL stub then clips the 3V3 via @(112.16, 107.6). Need a rotation or a larger move of `R_CD`/`C_LDO` first.
 - Latent U2 shorts still in copper (DRC-quiet until item order changes): TS via @(110.4, 105.65) on VBAT B1–B2; ILIM via @(111.45, 105.8) on PMID B4/C4; CD F @y=106.8 through E3/E4/E5; `R_SCL` pad 1 on SDA x=111.4.
+- KiCad footprint `90` on 0402 maps pad 1 to **+Y** (clockwise), not −Y. `R_SCL` @(112.7, 109.25) 90 put SCL pad 1 at (112.7, 109.76). A 3V3 stub drawn to +Y shorts SCL.
+- `set_seg_ends` on CD still promoted ILIM↔PMID. Only the ISET in-place KEEP (edit *before* the ILIM via in the file, no new overlap) stayed quiet. Fix ILIM↔PMID and TS↔VBAT geometrically before any other copper change.
+- Do not store Experiential/`EXPLABS_API_KEY` in the repo or logs. Keys pasted in chat should be rotated.
 
 ## Hard gates (do not relax)
 
