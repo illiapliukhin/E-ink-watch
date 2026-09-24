@@ -485,6 +485,20 @@ elif edit_name == "sol_cbat_north":
     if n_vbat != 1 or n_gnd_h != 1 or n_gnd_v != 1:
         raise SystemExit("sol_cbat_north failed to match VBAT/GND copper")
 
+elif edit_name == "sol_gnd_cbat_west":
+    # Join C_BAT west GND to the C4/NTC column without crossing VBUS on F.
+    # R_SDA off SW2 is still boxed by 3V3 x=110.5 and SDA x=111.4 (STEP8).
+    # KEEP: via 0.25 on existing C4 GND vertical (103.48,108.05) + via on
+    # C_BAT.2 column (107.98,108.05) + B.Cu y=108.05 under VBUS between
+    # TS B y=107.55 and 3V3 B y=108.55. F stub C_BAT.2 down to the east via.
+    # Not VIP. Probe overlap=0 (TS B +0.315, 3V3 B +0.315, BTN3 +0.892,
+    # C_BAT.1 VBAT +0.569). y=107.90 is only +0.165 vs TS B.
+    text = add_via(text, 103.48, 108.05, 0.25, 0.15, ground_net)
+    text = add_via(text, 107.98, 108.05, 0.25, 0.15, ground_net)
+    text = add_segment(text, 103.48, 108.05, 107.98, 108.05, 0.12, "B.Cu", ground_net)
+    text = add_segment(text, 107.98, 108.5, 107.98, 108.05, 0.2, "F.Cu", ground_net)
+    print("sol_gnd_cbat_west vias (103.48,108.05)+(107.98,108.05) 0.25 + B y=108.05")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

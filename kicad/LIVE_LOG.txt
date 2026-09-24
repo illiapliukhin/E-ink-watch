@@ -1077,3 +1077,24 @@ R_SDA vs SW2 courtyard −0.120 (boxed by 3V3 x=110.5 and SDA x=111.4). Sol STEP
 reports/PASS_AG_SOL_STEP8.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — independent C_BAT GND west under VBUS
+After sol_cbat_north, C_BAT pad2 GND was still an island vs C4/NTC. R_SDA north/rot90/rot180 still OVERLAP. 3V3 retract to x=110.00 OVERLAP GND blob w=0.45@(109.90,108.60) (−0.185). SDA B hop from R_SDA pad1 OVERLAP LSCTRL B x=110.80. Sol STEP8 hit MAX_ROUNDS=16 with no KEEP text; explorer now finalizes after the last tool round (MAX_ROUNDS=18).
+
+### REJECT (not applied)
+- R_SDA (111.50,108.85,0) north — pad1 SDA vs 3V3 x=110.5 −0.160 (STEP8)
+- R_SDA (111.17,109.00,0) west — pad1 SDA vs 3V3 x=110.5; pad2 vs SDA x=111.4
+- R_SDA rot90 / rot180 variants — SDA vertical / 3V3 / SW2 (Sol STEP8, re-probed)
+- 3V3 retract vertical x=110.00 — GND blob (109.90,108.60) w=0.45 −0.185
+- SDA B hop from pad1 (110.99,109.00) — LSCTRL B x=110.80
+- GND B hop y=107.90 under VBUS — only +0.165 vs TS B y=107.55
+
+### KEEP
+sol_gnd_cbat_west: via GND 0.25@(103.48,108.05) on C4.2 vertical + via 0.25@(107.98,108.05) on C_BAT.2 + B.Cu y=108.05 w=0.12 under VBUS between TS B y=107.55 and 3V3 B y=108.55 + F stub (107.98,108.5)-(107.98,108.05) w=0.20. Not VIP. Probe overlap=0 (TS B +0.315, 3V3 B +0.315, BTN3 +0.892, C_BAT.1 VBAT +0.569). DRC shorting=0 unc 9→8. C_BAT vs D5 unconnected cleared; A5 vs D5 remains (D5 via unstitched to In1).
+
+### Next
+R_SDA vs SW2 courtyard −0.120 (boxed by 3V3 x=110.5 and SDA x=111.4). Orthogonal F/B reconnect of TS C3 and SCL E5→R_SCL pad1 (106.5,110.61). A5 GND still overlaps PMID/ILIM B to the east. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP9.md
+reports/sol_views/
+

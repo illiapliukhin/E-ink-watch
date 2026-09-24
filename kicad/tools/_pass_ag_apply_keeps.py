@@ -191,6 +191,16 @@ if has_ntc_west and not has_cbat_north:
     applied.append("sol_cbat_north")
     has_cbat_north = True
 
+has_gnd_cbat_west = "(at 103.48 108.05)" in text
+if has_cbat_north and not has_gnd_cbat_west:
+    ground_net = netnum(text, "GND")
+    text = add_via(text, 103.48, 108.05, 0.25, 0.15, ground_net)
+    text = add_via(text, 107.98, 108.05, 0.25, 0.15, ground_net)
+    text = add_segment(text, 103.48, 108.05, 107.98, 108.05, 0.12, "B.Cu", ground_net)
+    text = add_segment(text, 107.98, 108.5, 107.98, 108.05, 0.2, "F.Cu", ground_net)
+    applied.append("sol_gnd_cbat_west")
+    has_gnd_cbat_west = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -216,6 +226,8 @@ if not applied:
             extra += ", sol_ntc_west"
         if has_cbat_north:
             extra += ", sol_cbat_north"
+        if has_gnd_cbat_west:
+            extra += ", sol_gnd_cbat_west"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

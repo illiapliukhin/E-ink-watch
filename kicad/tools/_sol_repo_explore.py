@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BOARD_REL = "kicad/e-ink-watch.kicad_pcb"
 REPORT = ROOT / "kicad/reports/PASS_AG_SOL_EXPLORE.md"
 TRACE = Path("/tmp/sol_explore_trace.jsonl")
-MAX_ROUNDS = 16
+MAX_ROUNDS = 18
 MAX_IMAGE_BYTES = 1_500_000
 MAX_IMAGES_TOTAL = 8
 READ_LINE_LIMIT = 220
@@ -624,9 +624,32 @@ def main() -> None:
                 messages.append(
                     {
                         "role": "user",
-                        "content": "No more tool rounds. Write the three variants and the combined KEEP now from what you already opened.",
+                        "content": (
+                            "No more tool rounds. Write the three variants and "
+                            "the combined KEEP now from what you already opened. "
+                            "If none is KEEP, say so in Russian."
+                        ),
                     }
                 )
+                print("FINALIZE after last tool round", flush=True)
+                body = chat(key, messages)
+                usage = body.get("usage")
+                choice = body["choices"][0]
+                message = choice["message"]
+                finish = choice.get("finish_reason")
+                print("finish", finish, "model", body.get("model"), "usage", usage, flush=True)
+                explorer.trace.append(
+                    {
+                        "round": "finalize",
+                        "finish": finish,
+                        "content_len": len(message.get("content") or ""),
+                        "tool_calls": [
+                            tool_name(call) for call in (message.get("tool_calls") or [])
+                        ],
+                    }
+                )
+                final_text = message.get("content") or "(max rounds, empty finalize)"
+                break
             continue
         final_text = message.get("content") or ""
         if round_index == 1 and not final_text.strip():
