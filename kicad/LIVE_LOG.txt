@@ -1014,3 +1014,24 @@ A5 GND (east overlaps PMID/ILIM B). West GND NTC vs east R_CD. West 3V3. SCL E5�
 reports/PASS_AG_SOL_STEP5.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — Sol STEP6 no SCL/TS/A5 KEEP; independent 3V3 west
+Sol browsed after D5 KEEP. F.Cu (102.52,109.40)-(106.5,109.40) hits VBUS; A5 east hits C_VINLS PMID −0.150; TS B y=105.65 hits ILIM −0.125. No Sol copper applied.
+
+### REJECT (not applied)
+- 3V3 F (102.52,109.40)-(106.5,109.40) — VBUS
+- 3V3 via (107.0,109.59) B-drop across BTN3 y=109.15
+- 3V3 via (110.8,108.25) — LSCTRL B OVERLAP −0.200
+- 3V3 via (111.2,108.25) — SDA x=111.4 RISK +0.000
+- 3V3 B south wrap y=111.0 then x=102.52 north — BTN3 U south jog −0.150; x=107 vertical +0.140 vs BTN1 via
+- GND A5 F (111.8,105.2)-(112.5,105.2) — C_VINLS PMID −0.150; via 0.25@(112.22,105.20) ILIM B / PMID
+
+### KEEP
+sol_3v3_west_via: via 3V3 (110.4,108.25) 0.25/0.15 on existing F rail (north of BTN3); B L (110.4,108.25)-(110.4,108.55)-(102.52,108.55)-(102.52,109.40) w=0.12 onto west via through the BTN3 U north opening. Probe overlap=0 (LSCTRL B +0.200, BTN3 +0.450, GND via +0.345). DRC shorting=0 unc 10→9.
+
+### Next
+A5 GND. West GND NTC vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. SDA to U1. PMIC_INT. West 3V3_DISP. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP6.md
+reports/sol_views/
+

@@ -413,6 +413,19 @@ elif edit_name == "sol_gnd_d5_tie":
     text = add_segment(text, 112.8, 106.55, 112.8, 107.24, 0.12, "F.Cu", ground_net)
     print("sol_gnd_d5_tie F L (112.4,106.55)->(112.8,106.55)->(112.8,107.24)")
 
+elif edit_name == "sol_3v3_west_via":
+    # Sol STEP6 refused: F.Cu (102.52,109.40)-(106.5,109.40) hits VBUS.
+    # Independent: via on existing 3V3 F rail y=108.25 (north of BTN3),
+    # B.Cu west through the BTN3 U north opening onto west via
+    # (102.52,109.40). Not a zone refill. Via (107.0,109.59) on the
+    # south L cannot B-drop across BTN3 y=109.15. (110.8,108.25)
+    # overlap LSCTRL B. (111.2,108.25) RISK +0.000 vs SDA x=111.4.
+    text = add_via(text, 110.4, 108.25, 0.25, 0.15, rail_3v3_net)
+    text = add_segment(text, 110.4, 108.25, 110.4, 108.55, 0.12, "B.Cu", rail_3v3_net)
+    text = add_segment(text, 110.4, 108.55, 102.52, 108.55, 0.12, "B.Cu", rail_3v3_net)
+    text = add_segment(text, 102.52, 108.55, 102.52, 109.4, 0.12, "B.Cu", rail_3v3_net)
+    print("sol_3v3_west_via via (110.4,108.25) 0.25 + B L to west via (102.52,109.4)")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 

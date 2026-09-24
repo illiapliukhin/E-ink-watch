@@ -135,6 +135,16 @@ elif has_gnd_d5 and not has_gnd_d5_tie:
     applied.append("sol_gnd_d5_tie")
     has_gnd_d5_tie = True
 
+has_3v3_west = "(at 110.4 108.25)" in text
+if has_gnd_d5_tie and not has_3v3_west:
+    rail_3v3_net = netnum(text, "3V3")
+    text = add_via(text, 110.4, 108.25, 0.25, 0.15, rail_3v3_net)
+    text = add_segment(text, 110.4, 108.25, 110.4, 108.55, 0.12, "B.Cu", rail_3v3_net)
+    text = add_segment(text, 110.4, 108.55, 102.52, 108.55, 0.12, "B.Cu", rail_3v3_net)
+    text = add_segment(text, 102.52, 108.55, 102.52, 109.4, 0.12, "B.Cu", rail_3v3_net)
+    applied.append("sol_3v3_west_via")
+    has_3v3_west = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -154,6 +164,8 @@ if not applied:
             extra += ", sol_gnd_d5_via"
         if has_gnd_d5_tie:
             extra += ", sol_gnd_d5_tie"
+        if has_3v3_west:
+            extra += ", sol_3v3_west_via"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

@@ -12,8 +12,8 @@ BOARD = Path("e-ink-watch.kicad_pcb")
 OUT = Path("reports/sol_views")
 TMP = Path("/tmp/sol_imgs")
 
-# Pocket window (board mm). West edge 105.6 so moved R_SCL (106.5,110.1) and VBUS x=105.7 stay in frame.
-X0, Y0, X1, Y1 = 105.6, 103.2, 117.6, 112.4
+# Pocket window (board mm). West edge 101.8 so west 3V3 via (102.52,109.40) and C4 stay in frame.
+X0, Y0, X1, Y1 = 101.8, 103.2, 117.6, 112.4
 PX_PER_MM = 90
 
 NET_COLORS = {
@@ -37,10 +37,10 @@ NET_COLORS = {
 }
 
 LATENTS = [
-    "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20",
-    "KEEP: R_SCL spread (106.5,110.1,90) pad1 SCL (106.5,110.61) pad2 3V3 (106.5,109.59)",
-    "KEEP: CD E2 via (110.6,106.95); ILIM C2 F L w=0.08; GND D5 via (112.4,106.55)+F L to (112.8,107.24)",
-    "Sol STEP5 SCL/TS no KEEP. Remaining: A5 GND, west GND, west 3V3, SDA, SCL, TS, PMIC_INT",
+    "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; CD E2 (110.6,106.95)",
+    "KEEP: R_SCL (106.5,110.1,90); GND D5 via (112.4,106.55)+F L to R_CD (112.8,107.24)",
+    "KEEP: 3V3 west via (110.4,108.25) 0.25 + B L y=108.55 onto (102.52,109.40)",
+    "Sol STEP6 no SCL/TS/A5 KEEP. Remaining: A5 GND, west GND NTC, SDA, SCL, TS, PMIC_INT, 3V3_DISP",
 ]
 
 
@@ -247,6 +247,7 @@ def render_layer(text, layer, title, callouts):
         ((107.5, 105.4, 108.1, 105.9), "TS via KEEP"),
         ((110.45, 106.80, 110.75, 107.10), "CD via KEEP"),
         ((112.20, 106.35, 112.95, 107.35), "GND D5 KEEP"),
+        ((110.20, 108.05, 110.60, 108.45), "3V3 west KEEP"),
     ]
     if layer == "F.Cu":
         for (bx0, by0, bx1, by1), _label in boxes:
@@ -283,7 +284,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after GND D5 tie (shorting=0, unc=10)",
+        "U2 pocket F.Cu — after 3V3 west stitch (shorting=0, unc=9)",
         LATENTS,
     )
     bcu = render_layer(
@@ -291,10 +292,10 @@ def main():
         "B.Cu",
         "U2 pocket B.Cu — same window, F.Cu ghosted dark",
         [
+            "KEEP 3V3 B.Cu L: (110.4,108.25)->(110.4,108.55)->(102.52,108.55)->(102.52,109.40)",
             "KEEP CD B.Cu L: (110.6,106.95)->(112.65,106.95)->(112.65,108.41)->(113.3,108.41)",
             "TS B.Cu L: (108.51,107)->(107.8,107)->(107.8,105.65)->(110.4,105.65)",
-            "ILIM B.Cu y=105.80 from 111.45 to 110.30 then south/east to R_ILIM",
-            "Do not B.Cu CD at x=112.4 — clips 3V3 via 0.6@(112.16,107.60)",
+            "BTN3 B y=109.15 opens north at x=101.70–103.60 — that is the 3V3 west stitch",
         ],
     )
     fcu_path = OUT / "u2_pocket_fcu_annotated.png"
