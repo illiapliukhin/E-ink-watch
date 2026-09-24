@@ -40,7 +40,7 @@ LATENTS = [
     "KEEP: TS via (107.8,105.65) 0.25; ILIM via (110.75,105.80) 0.20; CD E2 (110.6,106.95)",
     "KEEP: R_SCL (106.5,110.1,90); GND D5 via (112.4,106.55)+F L to R_CD (112.8,107.24)",
     "KEEP: 3V3 west via (110.4,108.25) 0.25 + B L y=108.55 onto (102.52,109.40)",
-    "KEEP: NTC_BAT (103.0,107.2,0) on C4 column; TS B y=107.55 under VBUS to (108.51,107.00)",
+    "KEEP: NTC_BAT (103.0,107.2,0) on C4 column; C_BAT (107.5,108.5,0) off R_SCL courtyard",
 ]
 
 
@@ -249,6 +249,7 @@ def render_layer(text, layer, title, callouts):
         ((112.20, 106.35, 112.95, 107.35), "GND D5 KEEP"),
         ((110.20, 108.05, 110.60, 108.45), "3V3 west KEEP"),
         ((102.40, 106.90, 103.70, 107.75), "NTC west KEEP"),
+        ((106.55, 108.00, 108.45, 109.00), "C_BAT north KEEP"),
     ]
     if layer == "F.Cu":
         for (bx0, by0, bx1, by1), _label in boxes:
@@ -285,7 +286,7 @@ def main():
     fcu = render_layer(
         text,
         "F.Cu",
-        "U2 pocket F.Cu — after NTC west spread (shorting=0, unc=9)",
+        "U2 pocket F.Cu — after C_BAT north spread (shorting=0, unc=9)",
         LATENTS,
     )
     bcu = render_layer(

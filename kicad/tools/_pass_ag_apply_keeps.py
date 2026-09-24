@@ -172,6 +172,25 @@ if has_3v3_west and not has_ntc_west:
     applied.append("sol_ntc_west")
     has_ntc_west = True
 
+has_cbat_north = "(at 107.5 108.5)" in text
+if has_ntc_west and not has_cbat_north:
+    text = set_fp_at(text, "C_BAT", "107.5 108.5")
+    text, n_vbat = set_seg_ends(
+        text, 107.02, 108.8, 107.02, 106.4, 107.02, 108.5, 107.02, 106.4, layer="F.Cu"
+    )
+    text, n_gnd_h = set_seg_ends(
+        text, 107.98, 108.8, 109.5, 108.8, 107.98, 108.5, 109.5, 108.5, layer="F.Cu"
+    )
+    text, n_gnd_v = set_seg_ends(
+        text, 109.5, 108.8, 109.5, 108.6, 109.5, 108.5, 109.5, 108.6, layer="F.Cu"
+    )
+    if n_vbat != 1 or n_gnd_h != 1 or n_gnd_v != 1:
+        raise SystemExit(
+            f"sol_cbat_north follow VBAT={n_vbat} GND_H={n_gnd_h} GND_V={n_gnd_v}"
+        )
+    applied.append("sol_cbat_north")
+    has_cbat_north = True
+
 if not applied:
     if "(at 110.75 105.8)" in text and (
         "(at 108.8 109.8 90)" in text or has_rscl_west
@@ -195,6 +214,8 @@ if not applied:
             extra += ", sol_3v3_west_via"
         if has_ntc_west:
             extra += ", sol_ntc_west"
+        if has_cbat_north:
+            extra += ", sol_cbat_north"
         print(
             "Pass-AG keeps already present: "
             f"iset_via_west, ts_via_corner, sol_combo_west{extra}"

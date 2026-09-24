@@ -1058,3 +1058,22 @@ C_BAT vs R_SCL courtyard −0.100. R_SDA vs SW2 −0.120. A5 GND. C_BAT GND vs e
 reports/PASS_AG_SOL_STEP7.md
 reports/sol_views/
 
+## Pass-AG follow-up (2026-09-24) — independent C_BAT north off R_SCL
+After sol_ntc_west, remaining 0402–0402 courtyard was C_BAT vs R_SCL −0.100. R_SDA north y=108.85 OVERLAP 3V3 x=110.5 (−0.160); R_SDA west x=111.17 OVERLAP 3V3 x=110.5 (−0.380) and SDA x=111.4. R_SCL west is VBUS-tight vs SW1 courtyard −0.170.
+
+### REJECT (not applied)
+- R_SDA (111.50,108.85,0) north — pad1 SDA vs 3V3 vertical x=110.5 −0.160
+- R_SDA (111.17,109.00,0) west — pad1 SDA vs 3V3 x=110.5 −0.380; pad2 3V3 vs SDA x=111.4 −0.385
+- C_BAT south — 3V3 L y=109.59 (STEP7)
+- R_SDA (111.35,110.30,0) — courtyard onto SW1/SW2
+
+### KEEP
+sol_cbat_north: C_BAT (107.5,108.8,0) → (107.5,108.5,0); pad1 VBAT (107.02,108.50) pad2 GND (107.98,108.50). In-place VBAT (107.02,108.8)→(107.02,108.5) and GND L (107.98,108.8)→(107.98,108.5) onto existing y=108.6. Courtyard vs R_SCL −0.100 → +0.200. Probe overlap=0 (R_SCL.2 +0.486, 3V3 L +0.720, SDA diagonal +0.210). DRC shorting=0 unc=9.
+
+### Next
+R_SDA vs SW2 courtyard −0.120 (boxed by 3V3 x=110.5 and SDA x=111.4). Sol STEP8 hit max rounds; independent re-probe of its north/rot90/rot180 R_SDA variants all OVERLAP. A5 GND. C_BAT GND vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C3. SDA to U1. PMIC_INT. West 3V3_DISP. Do not park R_SDA on SW1/SW2. No In1/In2. No VBUS on dock. No zone refill.
+
+### Archives
+reports/PASS_AG_SOL_STEP8.md
+reports/sol_views/
+

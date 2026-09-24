@@ -459,6 +459,32 @@ elif edit_name == "sol_ntc_west":
     if n_ts_diag != 1 or n_ts_stub != 1 or n_gnd != 1:
         raise SystemExit("sol_ntc_west failed to match old TS/GND copper")
 
+elif edit_name == "sol_cbat_north":
+    # Spread C_BAT off R_SCL (courtyard −0.100). South hits 3V3 L y=109.59;
+    # west is VBUS; east is the SDA diagonal. R_SDA north/west OVERLAP the
+    # 3V3 vertical x=110.5 / SDA vertical x=111.4 — not this KEEP.
+    # KEEP: C_BAT (107.5,108.8,0) → (107.5,108.5,0). pad1 VBAT (107.02,108.50)
+    # pad2 GND (107.98,108.50). Retarget VBAT vertical and GND L in-place.
+    # Courtyard vs R_SCL −0.100 → +0.200. Probe overlap=0 (R_SCL.2 +0.486,
+    # 3V3 L +0.720, SDA diagonal +0.210). Do not re-probe the existing VBAT
+    # vertical through VBUS y=107 — that copper is unchanged.
+    text = set_fp_at(text, "C_BAT", "107.5 108.5")
+    text, n_vbat = set_seg_ends(
+        text, 107.02, 108.8, 107.02, 106.4, 107.02, 108.5, 107.02, 106.4, layer="F.Cu"
+    )
+    text, n_gnd_h = set_seg_ends(
+        text, 107.98, 108.8, 109.5, 108.8, 107.98, 108.5, 109.5, 108.5, layer="F.Cu"
+    )
+    text, n_gnd_v = set_seg_ends(
+        text, 109.5, 108.8, 109.5, 108.6, 109.5, 108.5, 109.5, 108.6, layer="F.Cu"
+    )
+    print(
+        f"sol_cbat_north fp C_BAT (107.5,108.5) VBAT={n_vbat} "
+        f"GND_H={n_gnd_h} GND_V={n_gnd_v}"
+    )
+    if n_vbat != 1 or n_gnd_h != 1 or n_gnd_v != 1:
+        raise SystemExit("sol_cbat_north failed to match VBAT/GND copper")
+
 else:
     raise SystemExit(f"unknown edit {edit_name}")
 
