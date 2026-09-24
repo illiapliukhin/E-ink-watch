@@ -124,13 +124,19 @@ def parse_footprints(text):
         rot = float(parts[2]) if len(parts) > 2 else 0.0
         pads = []
         for pad_m in re.finditer(
-            r'\(pad "([^"]+)" smd [^\n]*\n\t\t\t\(at ([^)]+)\)\n\t\t\t\(size ([^)]+)\)[\s\S]*?\(net (\d+) "([^"]+)"\)',
+            r'\(pad "([^"]+)" smd [^\n]*\n'
+            r'\t\t\t\(at ([^)]+)\)\n'
+            r'\t\t\t\(size ([^)]+)\)\n'
+            r'\t\t\t\(layers ([^\n]+)\)[\s\S]*?'
+            r'\(net (\d+) "([^"]+)"\)',
             body,
         ):
             pxy = pad_m.group(2).split()
             lx, ly = float(pxy[0]), float(pxy[1])
             sx, sy = map(float, pad_m.group(3).split()[:2])
-            pads.append((pad_m.group(1), pad_m.group(5), lx, ly, sx, sy))
+            pads.append(
+                (pad_m.group(1), pad_m.group(6), lx, ly, sx, sy, pad_m.group(4))
+            )
         fps.append({"ref": ref_m.group(1), "x": x, "y": y, "rot": rot, "pads": pads})
     return fps
 
@@ -204,14 +210,24 @@ def render_layer(text, layer, title, callouts):
     for fp in fps:
         if not (X0 - 2 <= fp["x"] <= X1 + 2 and Y0 - 2 <= fp["y"] <= Y1 + 2):
             continue
-        for name, net, lx, ly, sx, sy in fp["pads"]:
+        for name, net, lx, ly, sx, sy, layers in fp["pads"]:
             wx, wy = rot_pt(lx, ly, fp["rot"])
             px, py = mapper.xy(fp["x"] + wx, fp["y"] + wy)
             # KiCad rot 90 clockwise also rotates pad size axes
+            pad_sx, pad_sy = sx, sy
             if abs(fp["rot"] % 180 - 90) < 1:
-                sx, sy = sy, sx
-            hx, hy = mapper.wpx(sx / 2), mapper.wpx(sy / 2)
+                pad_sx, pad_sy = sy, sx
+            hx, hy = mapper.wpx(pad_sx / 2), mapper.wpx(pad_sy / 2)
             col = NET_COLORS.get(net, (200, 200, 200))
+            on_layer = layer in layers
+            if not on_layer:
+                ghost = tuple(max(0, c // 5) for c in col)
+                draw.ellipse(
+                    (px - hx, py - hy, px + hx, py + hy),
+                    outline=ghost,
+                    width=1,
+                )
+                continue
             draw.ellipse((px - hx, py - hy, px + hx, py + hy), fill=col, outline=(250, 250, 250))
             if fp["ref"] == "U2":
                 draw.text((px + 4, py - 12), name, fill=(255, 255, 255), font=fnt_s)
