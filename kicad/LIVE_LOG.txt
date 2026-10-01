@@ -1129,3 +1129,20 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AM.md
 
+## Pass-AN (2026-10-01) — larger R_SDA moves still cannot retie 3V3
+From Pass-AM: shorting=0 unc=7. Footprints not moved. No copper. Baseline DRC markers shorting=0 unc=7.
+
+### No path
+- 483 pad-clear sites (0.4 mm grid, 4 rotations, SCL lane reserved). Zero retie both SDA to the diagonal and 3V3. The F pocket beside the diagonal is only x=108.63–110.58, y=106.98–108.18.
+- East south-runs x=112.4–114.5 overlap the 3V3 rail, R_CD, CD via (113.30, 108.41), or R_LSCTRL. West legs y=106.95–108.00 overlap the SCL stub. The 3V3 via (112.16, 107.60) has no B track; ignoring it does not open the lane.
+- B portal (110.22, 107.58) is outside In2 and inside the B GND fill. Pad sites (107.0, 105.1) rot 90 and (105.0, 108.5) rot 270 reach it on B and drill In2 (depth 1.864 mm and 2.562 mm). 3V3 ties are +0.095 and −0.175.
+- R_SDA (109.60, 107.60) rot 180 sits on the diagonal (SDA pad +0.159) if NTC_BAT moves to (108.00, 108.25) rot 270 (ties ≥ +0.259). The 3V3 pad at (109.09, 107.60) cannot reach the rail: 0.285 mm between the diagonal west end and GND y=108.60. East jog y=108.25 is −0.015 vs the diagonal. Not applied.
+- Pass-AM SCL B hop at x=111.35 is 0.075 mm from the B GND fill (copper gap 0.015 at w=0.12). x=111.65 has gap 0.286 but is off the stub once CD clearance forces y≥107.34. Not applied.
+- TS via on C3 (111, 106) is +0.000 vs ILIM B. No nearby via clears In2, the B GND fill, and foreign copper together.
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AN.md
+
