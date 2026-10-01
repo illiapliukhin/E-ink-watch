@@ -1146,3 +1146,18 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AN.md
 
+## Pass-AO (2026-10-01) — PMIC_INT, TS, 3V3_DISP, A5 all blocked
+From Pass-AN: shorting=0 unc=7. R_SDA and the SCL hop were not retried. No footprint moved. No copper.
+
+### No path
+- PMIC_INT: rays off D2 (110.60, 106.40) max +0.025. IPRETERM via (110.05, 106.40) size 0.50 blocks the west side. R_IPRETERM (114.80, 102.90) does not own that via. B grid x=94–111, y=90–107 has one clear cell. Via on D2 overlaps the B GND fill (dist 0.025).
+- TS: F rays off C3 max +0.000 (D2/D4). B end (110.40, 105.65) is −0.035 vs ILIM x=110.30. East bypass at x=111.80 enters the B GND fill. Best via with the ILIM y=105.8 dogbone ignored is +0.078 at (111.00, 106.05). R_TS / NTC_BAT / R_ILIM bodies are not that cage.
+- 3V3_DISP: west island ends at x=85, east island starts at B (92, 87). Gap 12.85 mm. EPD_SCK B y=94.5 spans x=85–115. West of x=85 is the Pass-AI seam. Not replayed.
+- A5 (111.80, 105.20): best F ray +0.008 vs VSYS via (112.50, 105.60). Gap to VSYS F y=105.60 is 0.16 mm even with C_VINLS ignored. GND via on the pad is 0.660 mm from the B fill and −0.200 vs ILIM y=105.20.
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AO.md
+
