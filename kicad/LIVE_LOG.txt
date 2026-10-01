@@ -1233,3 +1233,15 @@ unc=6 shorting=0. SCL to U1 is still open, along with A5, 3V3_DISP, SDA, PMIC_IN
 ### Archives
 reports/PASS_AT.md
 
+## Pass-AU (2026-10-01) — next island still blocked
+From Pass-AT: shorting=0 unc=6. R_SCL is on E5. User asked to close one more island.
+
+### No KEEP
+SCL can leave E5 by 0.50 mm, then U2.E4. The free F region around U1 pad 29 is 5.571 mm away and the gap overlaps VBUS at y=102.90. SDA leaves the diagonal by 1.25 mm, then R_TS, with 5.532 mm still to the U1 region (IPRETERM via, then VBUS). Moving R_SDA cannot span that. D2 and C3 are interior balls. A via on D2 is 0.025 mm outside the B GND pour. The TS via site overlaps VBAT by 0.215 mm. A5 has no step off PMID. 3V3_DISP east and west fronts stay about 14 mm apart. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AU.md
+
