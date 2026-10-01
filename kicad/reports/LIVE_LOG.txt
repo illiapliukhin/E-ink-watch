@@ -776,3 +776,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBUS still leaves SDA
 
 ## Pass-AW (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBAT and ISET still leaves SDA 1.207 mm short on the 3V3 rail y=108.25. shorting=0, unc=6. Report: `reports/PASS_AW.md`. Do not apply VBUS on the dock.
+
+## Pass-AX (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting the 3V3 rail and via `(112.16, 107.60)` does not move the I2C gap. The best local 3V3 deletion still leaves 0.800 mm on VBAT y=105.40. shorting=0, unc=6. Report: `reports/PASS_AX.md`. Do not apply VBUS on the dock.

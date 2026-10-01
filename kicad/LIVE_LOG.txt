@@ -1269,3 +1269,15 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AW.md
 
+## Pass-AX (2026-10-01) — 3V3 rail jog cannot open I2C
+From Pass-AW: shorting=0 unc=6. User asked to jog the 3V3 rail y=108.25 and the via (112.16, 107.60) so SDA or SCL can reach U1, without unseating R_SCL.
+
+### No KEEP
+Deleting the rail segment, or the rail plus that via, does not move the gap (SDA 4.695 mm, SCL 5.486 mm). Deleting every 3V3 track and via in the rail box still leaves 0.800 mm, sealed by VBAT w=0.35 at y=105.40. A via there is inside the B GND pour and the In2 3V3 plane. R_SCL stays seated. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AX.md
+
