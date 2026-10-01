@@ -1093,3 +1093,22 @@ unc=8 shorting=0. Same eight pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AJ.md
 
+## Pass-AL (2026-10-01) — placement did not open 0.15 mm; west GND via kept
+From Pass-AJ: shorting=0 unc=8. Footprints not moved. One copper KEEP.
+
+### Placement (before = after)
+R_SCL (106.5, 110.1, 90), R_SDA (111.5, 109.0, 0), R_CD (113.5, 107.75, 90), C_LDO (113.5, 106.8, 90), R_LSCTRL (114.6, 108.25, 90), C_PMID (112.2, 103.4, 0), R_ILIM (115.6, 106.6, 0), U2 (111, 106, 0).
+
+SCL's F wall is the R_SDA vertical x=111.4 from y=109 to y=106.8. No R_SDA site keeps pad edge ≥0.15 and a retie to the SDA diagonal plus 3V3. F jogs hit the 3V3 rail y=108.25. B replacement hits CD and BTN3. U2 shifts ±0.2–0.4 mm stretch SDA into 3V3 (edge ≤ −0.200). Rotate 90/180/270 in place overlaps 23 pads. Not applied.
+
+### KEEP
+In2 3V3 filled_polygon: outline vertices inside a 0.45 mm circle at (108.71, 108.15) replaced by a clockwise arc r=0.45. Area 422.581 → 422.211. Center stays filled, 20 holes stay empty. Not a full refill. A splice that zeros the polygon area does not clear the plane (discarded).
+
+Via GND (108.71, 108.15) 0.25/0.15 on the existing west F end, inserted before PMID (111.35, 103.85). Joins the B.Cu GND pour. DRC shorting=0 unc 8→7. Via is annular/drill/via_diameter only (same class as D5). Not hole-clearance 0.000 vs Zone 3V3. Extra hole clearance 0.2278: LSCTRL F (111.0, 106.8) vs CD via (110.6, 106.95). Not a short.
+
+### Next
+unc=7 shorting=0. Still open: A5, 3V3_DISP east-west, SDA, SCL×2, PMIC_INT, TS. No VBUS on the dock.
+
+### Archives
+reports/PASS_AL.md
+
