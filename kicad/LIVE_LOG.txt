@@ -1281,3 +1281,15 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AX.md
 
+## Pass-AY (2026-10-01) — power re-layout still cannot open I2C
+From Pass-AX: shorting=0 unc=6. User asked for a real VBAT/3V3/pour re-layout so SDA or SCL can reach U1.
+
+### No KEEP
+SDA reaches U1 only when the 3V3 knot at x=110.16–110.50 is gone and the VBAT bar at y=105.40 is gone. Sliding that knot onto the B 3V3 run still leaves SDA on x=103.25 from y=103.00 to y=108.25, which is the VBAT span. Putting the 0.35 mm bar back on either side of that run leaves 0.800 mm. The crossing is inside the B GND pour and the In2 3V3 pour. R_SCL stays seated. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AY.md
+
