@@ -1257,3 +1257,15 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AV.md
 
+## Pass-AW (2026-10-01) — VBAT/ISET jog cannot open I2C
+From Pass-AV: shorting=0 unc=6. User asked to jog VBAT and/or ISET so SDA or SCL can reach the U1 free copper.
+
+### No KEEP
+Deleting VBAT drops the SDA gap from 5.554 mm to 1.207 mm (free point (110.78, 108.60)) and the SCL gap from 5.578 mm to 2.181 mm. ISET and the IPRETERM vias do not move those numbers. The 1.207 mm that remains is the 3V3 rail at y=108.25, which the SDA line crosses. A jog cannot beat deletion. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AW.md
+

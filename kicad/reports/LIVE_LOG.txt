@@ -773,3 +773,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SCL and SDA are still 5.5 mm f
 
 ## Pass-AV (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBUS still leaves SDA 2.779 mm short (VBAT y=105.60 and ISET y=106.00). shorting=0, unc=6. Report: `reports/PASS_AV.md`. Do not apply VBUS on the dock.
+
+## Pass-AW (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBAT and ISET still leaves SDA 1.207 mm short on the 3V3 rail y=108.25. shorting=0, unc=6. Report: `reports/PASS_AW.md`. Do not apply VBUS on the dock.
