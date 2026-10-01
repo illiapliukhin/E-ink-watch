@@ -785,3 +785,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Sliding the 3V3 knot off the S
 
 ## Pass-AZ (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops under the VBAT bar on B after keepouts in B GND, In1 GND, and In2 3V3. shorting=0, unc 6→5. R_SCL stays seated. Report: `reports/PASS_AZ.md`. Do not apply VBUS on the dock.
+
+## Pass-BA (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. East–west `3V3_DISP` stitches at width 0.28 inside x=85, with pour keepouts. SCL still has no exit from the `R_SCL` seat. shorting=0, unc 5→4. Report: `reports/PASS_BA.md`. Do not apply VBUS on the dock.
