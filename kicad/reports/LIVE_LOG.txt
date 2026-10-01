@@ -770,3 +770,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. C3 GND jogs south to via `(96.95,
 
 ## Pass-AU (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SCL and SDA are still 5.5 mm from the U1 free region (VBUS / IPRETERM). PMIC_INT, TS, A5, and 3V3_DISP stay blocked. shorting=0, unc=6. Report: `reports/PASS_AU.md`. Do not apply VBUS on the dock.
+
+## Pass-AV (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBUS still leaves SDA 2.779 mm short (VBAT y=105.60 and ISET y=106.00). shorting=0, unc=6. Report: `reports/PASS_AV.md`. Do not apply VBUS on the dock.

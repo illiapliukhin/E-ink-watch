@@ -1245,3 +1245,15 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AU.md
 
+## Pass-AV (2026-10-01) — VBUS jog cannot open I2C
+From Pass-AU: shorting=0 unc=6. User asked to jog VBUS at y=102.90, and the IPRETERM via if needed, so SDA or SCL can reach U1.
+
+### No KEEP
+The y=102.90 VBUS run is F (108.12, 102.90)–(110.60, 102.90) w=0.40. Removing all VBUS copper still leaves SDA 2.779 mm and SCL 3.436 mm from the free region at (108.74, 105.23). That remainder is VBAT at y=105.60 and ISET at y=106.00. The IPRETERM vias do not open it either. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AV.md
+
