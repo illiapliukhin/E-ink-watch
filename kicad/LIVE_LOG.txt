@@ -1293,3 +1293,15 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AY.md
 
+## Pass-AZ (2026-10-01) — pour keepouts and SDA hop under VBAT
+From Pass-AY: shorting=0 unc=6. User asked to cut documented keepouts and layer-hop I2C U2→U1.
+
+### KEEP
+SDA reaches U1 pad 27 on F, under the VBAT bar on B. Vias (103.25, 105.90) and (103.25, 104.85) 0.25/0.15. B GND stadium r=0.50 between them. In1 and In2 circles r=0.50 at each via. 3V3 knot leaves the corridor: west drop x=106.40, east via (111.80, 108.25), rail starts at x=111.80. VBAT bar unchanged at w=0.35. R_SCL stays seated. DRC shorting=0, unc 6→5. SCL still open.
+
+### Next
+unc=5 shorting=0. Five pairs left (A5, 3V3_DISP, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_AZ.md
+
