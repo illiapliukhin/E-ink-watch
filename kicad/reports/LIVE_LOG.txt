@@ -740,3 +740,36 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP `disp_via_onto_west`: shorting=0, 
 
 ## Pass-AJ (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=8. Report: `reports/PASS_AJ.md`. Do not apply VBUS on the dock.
+
+## Pass-AL (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP west GND via `(108.71, 108.15)` after a local In2 3V3 notch r=0.45. shorting=0, unc 8→7. Footprints unchanged. Report: `reports/PASS_AL.md`. Do not apply VBUS on the dock.
+
+## Pass-AM (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=7. R_SDA stays at (111.5, 109.0). Report: `reports/PASS_AM.md`. Do not apply VBUS on the dock.
+
+## Pass-AN (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=7. R_SDA stays at (111.5, 109.0). The Pass-AM SCL B hop at x=111.35 is 0.015 mm from the B GND pour. Report: `reports/PASS_AN.md`. Do not apply VBUS on the dock.
+
+## Pass-AO (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=7. PMIC_INT, TS, 3V3_DISP, and A5 stay open. Report: `reports/PASS_AO.md`. Do not apply VBUS on the dock.
+
+## Pass-AP (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. U2 zone shifts of 1–2 mm overlap. `R_SCL (112.05, 107.55, 270)` joins E5 (unc 7→6) and DRC shorting becomes 1 (SWDIO_POGO↔3V3). Reverted. shorting=0, unc=7. Report: `reports/PASS_AP.md`. Do not apply VBUS on the dock.
+
+## Pass-AQ (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Shrinking the 3V3 via and sliding the D5 GND via stays at shorting 0, unc 7, and opens only a 0.6×1.0 mm pocket. `R_SCL (112.00, 107.45, 270)` joins E5 and raises SWDIO_POGO↔3V3. Reverted. Report: `reports/PASS_AQ.md`. Do not apply VBUS on the dock.
+
+## Pass-AR (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SW_DBG pad 6 overlaps the 3V3 diagonal by 0.123 mm. No switch seat at ≥0.15 mm stays off U1. Pogo coords unchanged. R_SCL not seated. shorting=0, unc=7. Report: `reports/PASS_AR.md`. Do not apply VBUS on the dock.
+
+## Pass-AS (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Jogging the 3V3 diagonal off pad 6 clears the switch and raises `GND↔3V3` at C3. R_SCL not seated. shorting=0, unc=7. Report: `reports/PASS_AS.md`. Do not apply VBUS on the dock.
+
+## Pass-AT (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. C3 GND jogs south to via `(96.95, 112.90)`, 3V3 moves onto x=92.00 (pads 5 and 6 clear by 0.725 mm), and `R_SCL (112, 107.45, 270)` joins E5. shorting=0, unc 7→6. Report: `reports/PASS_AT.md`. Do not apply VBUS on the dock.
+
+## Pass-AU (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SCL and SDA are still 5.5 mm from the U1 free region (VBUS / IPRETERM). PMIC_INT, TS, A5, and 3V3_DISP stay blocked. shorting=0, unc=6. Report: `reports/PASS_AU.md`. Do not apply VBUS on the dock.
+
+## Pass-AV (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBUS still leaves SDA 2.779 mm short (VBAT y=105.60 and ISET y=106.00). shorting=0, unc=6. Report: `reports/PASS_AV.md`. Do not apply VBUS on the dock.
