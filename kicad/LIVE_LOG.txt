@@ -1191,3 +1191,17 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AQ.md
 
+## Pass-AR (2026-10-01) — SW_DBG move reverted
+From Pass-AQ: shorting=0 unc=7. User asked to move SW_DBG or the rear pogo so the R_SCL E5 seat can stay short-free.
+
+### No KEEP
+Pad 6 of SW_DBG (93.45, 104.50) overlaps the 3V3 F diagonal (94.9, 101.95)–(92.0, 105.2) by 0.123 mm. Baseline DRC lists that as a solder-mask bridge. The R_SCL seat is what turns it into shorting_items. The rear pogo pads are on B at y=111–114; moving them does not move pad 6.
+
+A 0.25 mm search, rotations 0/90/180/270, finds no SW_DBG seat at ≥0.15 mm that also stays off U1. The only pad-clear pocket is (95.00–95.25, 98.50–99.00), and that body sits on the MDBT50Q (fab x≥94.75, y≤101.25). Not written. R_SCL was not seated. SW_DBG stays (90.5, 105.5). Pogo coords unchanged.
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AR.md
+
