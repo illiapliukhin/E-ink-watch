@@ -1217,3 +1217,19 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AS.md
 
+## Pass-AT (2026-10-01) — R_SCL seated on E5
+From Pass-AS: shorting=0 unc=7. User asked to widen C3, clear SW_DBG pads 5 and 6, then seat R_SCL.
+
+### KEEP
+C3 GND no longer uses the diagonal into via (94.5, 107.5). The stub runs to (97.48, 110.55), then w=0.25 to a new via (96.95, 112.9) 0.6/0.3 that sits outside In2 and inside the B GND pour. nRESET’s y=111 segment is detoured to y=113.5 so it does not cross that stub. Gap from C3 pad 1 to the GND stub is 0.530 mm. The 3V3 tie at x=96.50 is unchanged.
+
+The 3V3 diagonal is now the west stub (94.9, 101.95)–(92.0, 101.95), the vertical is x=92.00 down to the via (92.0, 105.2), and the old y=105.20 horizontal is pulled onto that same x. Pads 5 and 6 are 0.725 mm clear. Step 1 by itself promotes the old pad-6 overlap into shorting; the jog clears it. Combined DRC shorting=0 unc=7.
+
+R_SCL moved from (106.5, 110.1, 90) to (112, 107.45, 270). Pad 1 covers E5. Pad 2 overlaps the 3V3 rail y=108.25. No via shrink and no D5 slide. DRC shorting=0 unc=6. SW_DBG stays (90.5, 105.5).
+
+### Next
+unc=6 shorting=0. SCL to U1 is still open, along with A5, 3V3_DISP, SDA, PMIC_INT, and TS. No VBUS on the dock.
+
+### Archives
+reports/PASS_AT.md
+
