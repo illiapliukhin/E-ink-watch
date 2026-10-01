@@ -743,3 +743,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=8. Report: `re
 
 ## Pass-AL (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP west GND via `(108.71, 108.15)` after a local In2 3V3 notch r=0.45. shorting=0, unc 8→7. Footprints unchanged. Report: `reports/PASS_AL.md`. Do not apply VBUS on the dock.
+
+## Pass-AM (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=7. R_SDA stays at (111.5, 109.0). Report: `reports/PASS_AM.md`. Do not apply VBUS on the dock.

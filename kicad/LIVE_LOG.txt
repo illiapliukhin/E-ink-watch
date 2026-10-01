@@ -1112,3 +1112,20 @@ unc=7 shorting=0. Still open: A5, 3V3_DISP east-west, SDA, SCL×2, PMIC_INT, TS.
 ### Archives
 reports/PASS_AL.md
 
+## Pass-AM (2026-10-01) — R_SDA cannot leave x=111.4 with a 0.15 mm retie
+From Pass-AL: shorting=0 unc=7. Footprints not moved. No copper.
+
+### Measured SCL hop, only if the wall is gone
+Via 0.25 (111.35, 107.30) on the E5 stub, outside In2. B w=0.12 to (111.35, 108.80) edge +0.200 vs BTN3. Via 0.25 there, edge +0.300 vs the 3V3 rail. F w=0.15 up to (111.35, 110.50), edge +0.300. With the vertical still at x=111.4 this via overlaps it. Not applied.
+
+R_SCL (109.20, 110.60) rot 180 would put SCL pad1 at (109.71, 110.60), edge +0.63, with a 3V3 drop to y=109.59 edge +0.630. 126 such sites. Not applied: BTN1 still blocks the current pad at (106.5, 110.61), and the hop still needs the wall removed.
+
+### R_SDA
+Before = after (111.5, 109.0, 0). 649 pad-clear sites outside the SCL lane. Best site on the SDA diagonal is only +0.090. (112.2, 109.2) rot 90 has a 3V3 tie at +0.150 but the return to E4 hits 3V3 via (112.16, 107.60) by −0.335. East bypass hits 3V3 via (114.30, 107.95) and then R_CD / SW3. B.Cu still dies on BTN3 y=109.15. R_CD / C_LDO bodies are not that blocker. U2 not moved.
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AM.md
+
