@@ -1035,3 +1035,23 @@ A5 GND. West GND NTC vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C
 reports/PASS_AG_SOL_STEP6.md
 reports/sol_views/
 
+## Pass-AH (2026-10-01) — orphan 3V3_DISP via onto west stub
+From Pass-AG HEAD: shorting=0 unc=9 (KiCad 9.0.9 DRC).
+
+### KEEP
+disp_via_onto_west: in-place via (96, 105.2) 0.6/0.3 → (85, 102.75). No new items. Probe overlap=0 (3V3 via +0.301). DRC shorting=0 unc 9→8. Power and pocket gates held.
+
+### REVERT
+- gnd_b_west_stitch y=109.35: shorting=6 (GND vs 3V3 / 3V3_DISP / LSCTRL / CD / BTN3)
+- pmic_int_via_b y=106.4: PMIC_INT↔VBAT, PMIC_INT↔IPRETERM
+- pmic_int_b_jog y=107.85: GND↔PMIC_INT at (94.16,107.25) and (94.5,107.5)
+- disp_b_via_stack / disp_b_vertical_only: new via promoted latent C3 3V3↔GND clearance into shorting
+- ts_c3_b_via: ILIM↔TS
+- gnd_a5_l_dogbone: GND↔3V3_DISP (VSYS/3V3_DISP slot is 0.125 mm)
+
+### Next
+unc=8. West 3V3_DISP still open vs east B (92, 87). A5, west GND, SCL, SDA, TS, PMIC_INT unchanged. No VBUS on the dock while power islands are open.
+
+### Archives
+reports/PASS_AH.md
+

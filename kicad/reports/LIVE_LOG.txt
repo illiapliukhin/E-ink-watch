@@ -734,3 +734,6 @@ reports/drc_before_passac.*, reports/drc_after_passac.*
 
 ### Verdict
 Partial/setup: pocket rearranged, shorting=0, C_PMID kept. unc 19→20. Next: clear R_ISET↔VBUS then land ISET; CD E-row rebuild; VSYS B from west.
+
+## Pass-AH (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP `disp_via_onto_west`: shorting=0, unc 9→8. Report: `reports/PASS_AH.md`. Do not apply VBUS on the dock while power islands remain open.
