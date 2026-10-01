@@ -1205,3 +1205,15 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AR.md
 
+## Pass-AS (2026-10-01) — 3V3 jog off pad 6 reverted
+From Pass-AR: shorting=0 unc=7. User asked to jog the 3V3 diagonal off SW_DBG pad 6, then seat R_SCL.
+
+### No KEEP
+The diagonal (94.9, 101.95)–(92.0, 105.2) w=0.25 is redundant with the L through (94.9, 105.2). Moving it to (94.9, 101.95)–(92.0, 101.95) clears pad 6 and DRC shorting becomes 2: C3 GND↔3V3, and SWDCLK_POGO pad 5 vs the horizontal that stays at y=105.2. Also moving that vertical to x=92.0 and pulling the horizontal off pad 5 leaves shorting 1, only C3. The GND track (97.48, 108.8)–(94.5, 107.5) cannot slide off C3 pad 1 without hitting the 3V3 tie at x=96.5. R_SCL was not seated. Full revert. SW_DBG stays (90.5, 105.5).
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AS.md
+

@@ -761,3 +761,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Shrinking the 3V3 via and slid
 
 ## Pass-AR (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SW_DBG pad 6 overlaps the 3V3 diagonal by 0.123 mm. No switch seat at ≥0.15 mm stays off U1. Pogo coords unchanged. R_SCL not seated. shorting=0, unc=7. Report: `reports/PASS_AR.md`. Do not apply VBUS on the dock.
+
+## Pass-AS (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Jogging the 3V3 diagonal off pad 6 clears the switch and raises `GND↔3V3` at C3. R_SCL not seated. shorting=0, unc=7. Report: `reports/PASS_AS.md`. Do not apply VBUS on the dock.
