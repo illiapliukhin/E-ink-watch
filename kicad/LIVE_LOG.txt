@@ -1078,3 +1078,18 @@ unc=8 shorting=0. 3V3_DISP, A5, west GND, SCL, SDA, TS, PMIC_INT still open. No 
 ### Archives
 reports/PASS_AI.md
 
+## Pass-AJ (2026-10-01) — three new corridors, no KEEP
+From Pass-AH: shorting=0 unc=8. Board file unchanged. Pass-AI west seam was not replayed.
+
+### No path
+- PMIC_INT: B w=0.12 (94.2, 92.7)-(103.15, 92.7) and via 0.25 (102.7, 92.7) are clear. F south dies on VBUS y=102.4. B hop across it is pinched by VSYS x=106.8 and 3V3 via (107.5, 102.975). y=106.72 still dies on VBAT (+0.121) then BTN1.
+- SCL: F pocket only x=106.2-107.1, y=110.3-111.5. South-then-east hits BTN1 x=107.5 and SW1. R_SCL not moved.
+- SDA: F from U1.27 reaches (107.2, 102.05). B x=107.35 y=104.7-107.5 is clear. They do not join (3V3 via vs VSYS).
+- 3V3_DISP east rail: F flood reaches (114, 108.75), 1.35 mm from B (113, 107.4)-(115.55, 107.4). Gap is 3V3 y=107.8, 3V3 via (114.3, 107.95), R_CD, C_LDO, R_LSCTRL, ILIM via. Moving the 0402s does not move those vias.
+
+### Next
+unc=8 shorting=0. Same eight pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AJ.md
+
