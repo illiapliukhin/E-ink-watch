@@ -1177,3 +1177,17 @@ unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AP.md
 
+## Pass-AQ (2026-10-01) — clean U2 re-fanout reverted
+From Pass-AP: shorting=0 unc=7. User asked to rip the U2 fanout and rebuild a clean island.
+
+### No KEEP
+In-place shrink of 3V3 via (112.16, 107.6) to 0.25/0.15, then GND via (112.4, 106.55) → (112.20, 106.49): shorting=0 unc=7. The open F pocket is only x=111.8–112.4, y=106.8–107.8. SDA x=111.4, the 3V3 rail y=108.25, LSCTRL, and the GND dogbone at x=112.8 close it. It does not reach R_SCL (106.5, 110.61). BTN1 via (107.5, 110.5) blocks that pad (−0.331).
+
+R_SCL (112.00, 107.45, 270) covers E5 and the 3V3 rail. DRC unc 6, shorting 1: SWDIO_POGO↔3V3 at SW_DBG. Same result as the Pass-AP seat (112.05, 107.55, 270). R_ILIM (116.8, 106.6) shorts ILIM↔GND and unc goes to 9. R_SCL +1 mm X shorts SCL↔BTN1. Modest sites near the old pad overlap VBUS, VBAT, or C_BAT. All reverted. U2 stays (111, 106, 0).
+
+### Next
+unc=7 shorting=0. Same seven pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AQ.md
+

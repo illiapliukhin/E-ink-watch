@@ -755,3 +755,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. shorting=0, unc=7. PMIC_INT, T
 
 ## Pass-AP (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. U2 zone shifts of 1–2 mm overlap. `R_SCL (112.05, 107.55, 270)` joins E5 (unc 7→6) and DRC shorting becomes 1 (SWDIO_POGO↔3V3). Reverted. shorting=0, unc=7. Report: `reports/PASS_AP.md`. Do not apply VBUS on the dock.
+
+## Pass-AQ (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Shrinking the 3V3 via and sliding the D5 GND via stays at shorting 0, unc 7, and opens only a 0.6×1.0 mm pocket. `R_SCL (112.00, 107.45, 270)` joins E5 and raises SWDIO_POGO↔3V3. Reverted. Report: `reports/PASS_AQ.md`. Do not apply VBUS on the dock.
