@@ -1329,3 +1329,15 @@ unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
 ### Archives
 reports/PASS_BB.md
 
+## Pass-BC (2026-10-01) — U2 footprint / fanout
+From Pass-BA: shorting=0 unc=4. User allowed a BQ25120A footprint change or a full re-fanout of A5, D2, C3, and E5.
+
+### No KEEP
+YFP0025 is already NSMD 0.23 mm on a 0.40 mm pitch (edge gap 0.17 mm). A 0.15 mm track needs ~0.45 mm between balls. A through via in the pad needs a drill ≤0.07 mm. A 0.30/0.10 microvia misses In1 on the north half of A5 and misses 0.15 mm clearance on the south half (B5 / VSYS). The GND track that would join A5 to C_VINLS pad 2 is clear by 0.200 mm only without SW via (111.55, 104.55) and the PMID wall at x=112. That via has no legal move (PMID dogbone to the west, C_PMID to the north, J_STRAP_R to the east). D2 and C3 stay interior. R_SCL not moved. No copper written. unc stays 4, shorting stays 0.
+
+### Next
+unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_BC.md
+

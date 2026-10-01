@@ -791,3 +791,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. East–west `3V3_DISP` stitches a
 
 ## Pass-BB (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A5 has no F exit and no via site (ILIM crosses the ball; 0 sites on a 0.05 mm grid). 114 R_SCL seats leave the same 0.266 mm² pocket. shorting=0, unc=4. Report: `reports/PASS_BB.md`. Do not apply VBUS on the dock.
+
+## Pass-BC (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. 0.40 mm pitch / 0.23 mm NSMD cannot grow a 0.15 mm escape. SW via and the PMID wall have no legal move off A5. shorting=0, unc=4. Report: `reports/PASS_BC.md`. Do not apply VBUS on the dock.
