@@ -1049,6 +1049,9 @@ disp_via_onto_west: in-place via (96, 105.2) 0.6/0.3 → (85, 102.75). No new it
 - ts_c3_b_via: ILIM↔TS
 - gnd_a5_l_dogbone: GND↔3V3_DISP (VSYS/3V3_DISP slot is 0.125 mm)
 
+### Resume
+Restored `e-ink-watch.kicad_pcb` to origin/main. Baseline DRC shorting=0 unc=9. Re-gated `disp_via_onto_west` alone: KEEP shorting=0 unc=8. West GND bridge probed, not applied (3V3 / R_SDA / LSCTRL / BTN3). Gate reverts if unconnected does not drop.
+
 ### Next
 unc=8. West 3V3_DISP still open vs east B (92, 87). A5, west GND, SCL, SDA, TS, PMIC_INT unchanged. No VBUS on the dock while power islands are open.
 

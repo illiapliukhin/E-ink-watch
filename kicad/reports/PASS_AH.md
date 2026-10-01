@@ -7,7 +7,7 @@
 
 ## Verdict
 
-**Partial.** Hard gates held. One in-place KEEP closed the orphan `3V3_DISP` via against the west F.Cu island. SCL, TS, A5, west GND, SDA, PMIC_INT, and the remaining `3V3_DISP` east B island stay open. Not production-ready. Do not apply VBUS on the dock: power stubs are still unconnected even though `shorting_items=0`.
+**Partial.** After restoring the board to Pass-AG (`origin/main`, DRC `shorting=0`, `unc=9`), one in-place KEEP was applied alone and re-gated. It closed the orphan `3V3_DISP` via against the west F.Cu island (`unc=8`). A second west-GND bridge was probed and not applied. SCL/TS hauls were not retried. Not production-ready. Do not apply VBUS on the dock: power stubs are still unconnected even though `shorting_items=0`.
 
 ## Baseline (Pass-AG)
 
@@ -47,6 +47,12 @@ Replay from the Pass-AG board: `python3 tools/_pass_ah_try.py disp_via_onto_west
 ## Remaining unc=8
 
 Same list as baseline except the orphan `3V3_DISP` via, which now sits on the west F island. That island is still open versus east B `(92, 87)`.
+
+## Resume check (2026-10-01)
+
+Board file restored to `origin/main` before any new copper. Baseline DRC: `shorting=0`, `unc=9`. `disp_via_onto_west` was the only edit in that save. Gate now also reverts when unconnected does not drop. Result: `shorting=0`, `unc=8`, power and pocket OK.
+
+West GND full stitch was probed again and left off the board. Every F.Cu leg from `(108.71, 108.6)` to `(112.8, 107.24)` overlaps `3V3` or `R_SDA`. Every B.Cu leg overlaps the `3V3` stitch at `y=108.55`, LSCTRL `x=110.8`, or BTN3 `y=109.15`. A5’s north-east dogbone overlaps PMID and SW/ILIM on B.Cu.
 
 ## Next
 

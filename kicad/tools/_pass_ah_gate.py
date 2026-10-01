@@ -16,6 +16,9 @@ for block in re.split(r"\[shorting_items\]:", text)[1:]:
 
 shorting_count = text.count("[shorting_items]")
 unconnected_count = text.count("[unconnected_items]")
+previous_path = Path("backups/_passah_unc.txt")
+previous_unconnected = int(previous_path.read_text().strip()) if previous_path.exists() else 10**9
+unconnected_dropped = unconnected_count < previous_unconnected
 power_pairs = [
     ("GND", "VBUS"),
     ("GND", "VBAT"),
@@ -32,10 +35,11 @@ pocket_ok = all(pairs.get(tuple(sorted(pair)), 0) == 0 for pair in pocket_pairs)
 
 print(
     f"{label}: shorting={shorting_count} unc={unconnected_count} "
-    f"power_ok={power_ok} pocket_ok={pocket_ok} pairs={dict(pairs) if pairs else None}"
+    f"prev_unc={previous_unconnected} power_ok={power_ok} pocket_ok={pocket_ok} "
+    f"pairs={dict(pairs) if pairs else None}"
 )
 
-if shorting_count or not power_ok or not pocket_ok:
+if shorting_count or not power_ok or not pocket_ok or not unconnected_dropped:
     shutil.copy("backups/_passah_last_ok.kicad_pcb", "e-ink-watch.kicad_pcb")
     print("REVERT")
     for block in re.split(r"\[shorting_items\]:", text)[1:][:8]:
@@ -43,4 +47,5 @@ if shorting_count or not power_ok or not pocket_ok:
     sys.exit(1)
 
 shutil.copy("e-ink-watch.kicad_pcb", "backups/_passah_last_ok.kicad_pcb")
+previous_path.write_text(f"{unconnected_count}\n")
 print("KEEP")
