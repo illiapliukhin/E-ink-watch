@@ -1058,3 +1058,23 @@ unc=8. West 3V3_DISP still open vs east B (92, 87). A5, west GND, SCL, SDA, TS, 
 ### Archives
 reports/PASS_AH.md
 
+## Pass-AI (2026-10-01) — 3V3_DISP seam probed, not kept
+From Pass-AH: shorting=0 unc=8 (KiCad 9.0.9). Board file unchanged after both gates.
+
+### Inventory
+Same 8 pairs. West 3V3_DISP via on the stub is uuid d2999c94 at (85, 102.75), not 7b923f4d (that uuid is the east via at (92, 87)).
+
+### No path on the y=106.7 street
+B w=0.12 at y=106.72 clears PMIC_INT and GND via (94.16, 107.25) until VBAT via (96.2, 106.25) edge +0.121. BTN1 B x=98 is a wall to y=110.5, so x≥100.7 (east of EPD_CS_L) is not reachable. EPD_SCK B y=94.5 x=85–115 cannot be crossed or rounded inside r=19.2.
+
+### REVERT (probe-clear, DRC not)
+West seam: via (85, 102.75) → (84.4, 96) size 0.6 (edge +0.181); F w=0.25 (84.45, 98.25)→(83.55, 97.4)→(83.55, 95.9)→(84.4, 96); B w=0.45 (84.4, 96)→(84.4, 94.2)→(87, 88.4)→(92, 87).
+- disp_west_seam (add_segment before PMID): shorting=4 unc=7. EPD_MOSI↔EPD_SCK, EPD_SCK↔3V3_DISP, 3V3↔SWDIO_POGO, 3V3↔SWDCLK_POGO. Reverted.
+- disp_west_seam_inplace (retarget duplicate segments, no new items): shorting=2 unc=7. 3V3↔EPD_MOSI via (101.6, 86.5), 3V3↔SWDIO_POGO. Power and pocket still 0. Reverted.
+
+### Next
+unc=8 shorting=0. 3V3_DISP, A5, west GND, SCL, SDA, TS, PMIC_INT still open. No VBUS on the dock.
+
+### Archives
+reports/PASS_AI.md
+
