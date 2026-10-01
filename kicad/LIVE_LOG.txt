@@ -1317,3 +1317,15 @@ unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
 ### Archives
 reports/PASS_BA.md
 
+## Pass-BB (2026-10-01) — A5 and R_SCL micro-move
+From Pass-BA: shorting=0 unc=4. User asked to try A5 first, then a gated R_SCL move, then PMIC_INT/TS only if A5 opened an escape.
+
+### No KEEP
+A5 (111.80, 105.20) has no 0.15 mm F exit. North gap to VSYS is 0.160 mm. A4/A5 pad gap is 0.17 mm. PMID at 315° is 0.180 mm from the ball center. On B, ILIM (110.30, 105.20)–(114.70, 105.20) w=0.15 crosses the pad. A 0.05 mm via grid found 0 sites that clear a 0.15 drill by 0.25 mm. Pour cuts cannot remove those tracks. 114 R_SCL seats that still cover E5 leave the same 0.266 mm² pocket, 23.85 mm from U1 pad 29. R_SCL was not moved. PMIC_INT and TS were not retried. No copper written, so no new DRC. unc stays 4, shorting stays 0.
+
+### Next
+unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_BB.md
+

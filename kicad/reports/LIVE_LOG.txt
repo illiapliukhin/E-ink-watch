@@ -788,3 +788,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops under the VBAT bar on B 
 
 ## Pass-BA (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. East–west `3V3_DISP` stitches at width 0.28 inside x=85, with pour keepouts. SCL still has no exit from the `R_SCL` seat. shorting=0, unc 5→4. Report: `reports/PASS_BA.md`. Do not apply VBUS on the dock.
+
+## Pass-BB (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A5 has no F exit and no via site (ILIM crosses the ball; 0 sites on a 0.05 mm grid). 114 R_SCL seats leave the same 0.266 mm² pocket. shorting=0, unc=4. Report: `reports/PASS_BB.md`. Do not apply VBUS on the dock.
