@@ -1035,3 +1035,61 @@ A5 GND. West GND NTC vs east R_CD. SCL E5→R_SCL pad1 (106.5,110.61) F.Cu. TS C
 reports/PASS_AG_SOL_STEP6.md
 reports/sol_views/
 
+## Pass-AH (2026-10-01) — orphan 3V3_DISP via onto west stub
+From Pass-AG HEAD: shorting=0 unc=9 (KiCad 9.0.9 DRC).
+
+### KEEP
+disp_via_onto_west: in-place via (96, 105.2) 0.6/0.3 → (85, 102.75). No new items. Probe overlap=0 (3V3 via +0.301). DRC shorting=0 unc 9→8. Power and pocket gates held.
+
+### REVERT
+- gnd_b_west_stitch y=109.35: shorting=6 (GND vs 3V3 / 3V3_DISP / LSCTRL / CD / BTN3)
+- pmic_int_via_b y=106.4: PMIC_INT↔VBAT, PMIC_INT↔IPRETERM
+- pmic_int_b_jog y=107.85: GND↔PMIC_INT at (94.16,107.25) and (94.5,107.5)
+- disp_b_via_stack / disp_b_vertical_only: new via promoted latent C3 3V3↔GND clearance into shorting
+- ts_c3_b_via: ILIM↔TS
+- gnd_a5_l_dogbone: GND↔3V3_DISP (VSYS/3V3_DISP slot is 0.125 mm)
+
+### Resume
+Restored `e-ink-watch.kicad_pcb` to origin/main. Baseline DRC shorting=0 unc=9. Re-gated `disp_via_onto_west` alone: KEEP shorting=0 unc=8. West GND bridge probed, not applied (3V3 / R_SDA / LSCTRL / BTN3). Gate reverts if unconnected does not drop.
+
+### Next
+unc=8. West 3V3_DISP still open vs east B (92, 87). A5, west GND, SCL, SDA, TS, PMIC_INT unchanged. No VBUS on the dock while power islands are open.
+
+### Archives
+reports/PASS_AH.md
+
+## Pass-AI (2026-10-01) — 3V3_DISP seam probed, not kept
+From Pass-AH: shorting=0 unc=8 (KiCad 9.0.9). Board file unchanged after both gates.
+
+### Inventory
+Same 8 pairs. West 3V3_DISP via on the stub is uuid d2999c94 at (85, 102.75), not 7b923f4d (that uuid is the east via at (92, 87)).
+
+### No path on the y=106.7 street
+B w=0.12 at y=106.72 clears PMIC_INT and GND via (94.16, 107.25) until VBAT via (96.2, 106.25) edge +0.121. BTN1 B x=98 is a wall to y=110.5, so x≥100.7 (east of EPD_CS_L) is not reachable. EPD_SCK B y=94.5 x=85–115 cannot be crossed or rounded inside r=19.2.
+
+### REVERT (probe-clear, DRC not)
+West seam: via (85, 102.75) → (84.4, 96) size 0.6 (edge +0.181); F w=0.25 (84.45, 98.25)→(83.55, 97.4)→(83.55, 95.9)→(84.4, 96); B w=0.45 (84.4, 96)→(84.4, 94.2)→(87, 88.4)→(92, 87).
+- disp_west_seam (add_segment before PMID): shorting=4 unc=7. EPD_MOSI↔EPD_SCK, EPD_SCK↔3V3_DISP, 3V3↔SWDIO_POGO, 3V3↔SWDCLK_POGO. Reverted.
+- disp_west_seam_inplace (retarget duplicate segments, no new items): shorting=2 unc=7. 3V3↔EPD_MOSI via (101.6, 86.5), 3V3↔SWDIO_POGO. Power and pocket still 0. Reverted.
+
+### Next
+unc=8 shorting=0. 3V3_DISP, A5, west GND, SCL, SDA, TS, PMIC_INT still open. No VBUS on the dock.
+
+### Archives
+reports/PASS_AI.md
+
+## Pass-AJ (2026-10-01) — three new corridors, no KEEP
+From Pass-AH: shorting=0 unc=8. Board file unchanged. Pass-AI west seam was not replayed.
+
+### No path
+- PMIC_INT: B w=0.12 (94.2, 92.7)-(103.15, 92.7) and via 0.25 (102.7, 92.7) are clear. F south dies on VBUS y=102.4. B hop across it is pinched by VSYS x=106.8 and 3V3 via (107.5, 102.975). y=106.72 still dies on VBAT (+0.121) then BTN1.
+- SCL: F pocket only x=106.2-107.1, y=110.3-111.5. South-then-east hits BTN1 x=107.5 and SW1. R_SCL not moved.
+- SDA: F from U1.27 reaches (107.2, 102.05). B x=107.35 y=104.7-107.5 is clear. They do not join (3V3 via vs VSYS).
+- 3V3_DISP east rail: F flood reaches (114, 108.75), 1.35 mm from B (113, 107.4)-(115.55, 107.4). Gap is 3V3 y=107.8, 3V3 via (114.3, 107.95), R_CD, C_LDO, R_LSCTRL, ILIM via. Moving the 0402s does not move those vias.
+
+### Next
+unc=8 shorting=0. Same eight pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AJ.md
+
