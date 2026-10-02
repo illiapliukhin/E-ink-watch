@@ -1437,3 +1437,19 @@ unc=15 shorting=0. VBUS, PMID, south SW via (115.00, 104.50), REGN, SCL/SDA. No 
 ### Archives
 reports/PASS_BK.md
 
+## Pass-BL (2026-10-02) — island re-place, no KEEP
+From Pass-BK: shorting=0 unc=15. Board file unchanged.
+
+### No KEEP
+Studied U2 at `(109.00, 96.00)` rotation 180 so VBUS pin 24 `(110.25, 97.938)` and PMID pin 23 `(109.75, 97.938)` face the caps. South edge y=98.35. Pad gap to foreign copper 0.360 mm with the old island ignored; the BUSY vias at `(109.80, 99.25)` are 0.60 mm south of the pads. Rotation 90/270 still shorts pads. Rotation 0 leaves the Pass-BK north pocket.
+
+West VBUS w=0.18 `(110.25, 97.938)–(110.25, 98.650)–(108.12, 98.650)–(108.12, 102.400)` clears pads by 0.210–0.285 mm and hits the `EPD_BUSY_R` diagonal. That diagonal has no remaining path to its via once the west run is reserved. Straight VBUS w=0.25 at x=110.25 clears the PMID pad by 0.250 mm only if `EPD_CS_R` y=100.25, `EPD_BUSY_R` y=101.75, and GND y=102.01 are removed. Strap search then fails (CS_R 792 cells, BUSY 491 cells).
+
+PMID through a gap in the bar is 0.210 mm clear to `C_PMID`, and that gap disconnects `C_IN`. Bridge search from `(109.15, 102.90)` to `(110.40, 102.90)`: none (560 cells at 0.20 mm, 723 at 0.10 mm). With the bar intact the PMID flood stops at x=110.0, y=102.44. No B.Cu slit cut. `L_SYS`, `Q1`, `SW_DBG`, `EPD_BUSY_L`, the `3V3_DISP` via, and the PMID via were not moved. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. VBUS and PMID still cannot share F.Cu. South SW via `(115.00, 104.50)`, REGN, SCL/SDA unchanged. No VBUS on the dock.
+
+### Archives
+reports/PASS_BL.md
+
