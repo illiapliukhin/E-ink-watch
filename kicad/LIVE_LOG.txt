@@ -1365,3 +1365,15 @@ unc=3 shorting=0. A5, PMIC_INT, TS stay open until the schematic grows a 3.3 V r
 ### Archives
 reports/PASS_BE.md
 
+## Pass-BF (2026-10-02) — BQ25619 + 3.3 V LDO + display switch
+From Pass-BE: shorting=0 unc=3. User chose BQ25619RTWR (WQFN-24, 0.50 mm) plus a separate 3.3 V LDO and a display power switch.
+
+### KEEP (schematic and a legal placement; fanout not closed)
+U2 is BQ25619 at `(111.00, 91.00)` rot 0. Footprint rotation does not rotate pad rectangles: rot 90/270 with pad angle 0 shorts adjacent pads. `3V3` is MCP1700T-3302E/TT (SOT-23: 1 GND, 2 VOUT, 3 VIN) at `(108.00, 85.75)`, fed from SYS, not from REGN. `3V3_DISP` is DMG2305UX at `(88.50, 92.50)` rot 90 (pad angle 90), source 3V3, drain 3V3_DISP, gate DISP_EN with R_LSCTRL 100 kΩ to 3V3. R_VSYS moved to `(106.75, 93.00)` and retasked REGN–GND so it no longer bridges SYS into the MCU rail. DRC before: 916 violations, unc 3, shorting 0, hole-clearance actual 0.000 vs a zone 98. After: 865 violations, unc 30, shorting 0, hole0 still 98. A follow-up grid route that would have lowered unc promoted U1 pad 15 GND against the existing 3V3 track `(97.6, 86.35)–(106.0, 86.35)` into shorting_items and was reverted. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=30 shorting=0. SCL, SDA, PMIC_INT, TS, VBUS, VBAT, and the LDO/FET pads are still separate islands. Closing them promoted a latent short; fix that U1 pad-15 overlap in the same edit as any new track. No VBUS on the dock.
+
+### Archives
+reports/PASS_BF.md
+

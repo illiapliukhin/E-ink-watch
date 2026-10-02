@@ -800,3 +800,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops to B under a bowed EPD_R
 
 ## Pass-BE (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. BQ25120A is YFP-25 at 0.40 mm only. BQ25619 is 0.50 mm QFN but has no `3V3` buck and no `3V3_DISP` LDO. Board unchanged. shorting=0, unc=3. Report: `reports/PASS_BE.md`. Do not apply VBUS on the dock.
+
+## Pass-BF (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. U2 is BQ25619 at `(111, 91)` rot 0. `3V3` is MCP1700, `3V3_DISP` is DMG2305UX. shorting=0, unc 3→30. Further F.Cu routes promoted a latent short and were reverted. Report: `reports/PASS_BF.md`. Do not apply VBUS on the dock.
