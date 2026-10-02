@@ -1341,3 +1341,15 @@ unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
 ### Archives
 reports/PASS_BC.md
 
+## Pass-BD (2026-10-02) — SDA hop under EPD_RST
+From Pass-BC: shorting=0 unc=4. User allowed moving parts, changing layers, and rerouting to simplify fabrication. No microvias and no filled via-in-pad.
+
+### KEEP
+`R_SCL` moves to `(112.04, 107.68)` rot 270 and `R_SDA` to `(111.10, 109.30)`, so the SCL pull-up is on SCL and 3V3 and the SDA tail no longer has to pass that body. SDA then hops: F `(97.42, 92.43)–(98.30, 89.20)`, via 0.45/0.20, B to `(99.00, 87.70)`, via 0.45/0.20, F into U1 pad 27 at `(98.85, 87.25)`. EPD_RST B bows to y=89.85 between x=97.4 and 99.8. B GND replaces one simple hole; In1 and In2 only clip the vertices inside 0.50 mm disks, plus one In1 circle spliced from `(99.534, 87.807)`. Vias sit ≥0.490 mm outside the pours. `(100, 100)` stays inside. DRC shorting 1→0, unc stays 3 (A5, PMIC_INT, TS). Hole-clearance 0.000 vs a zone stays 98. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=3 shorting=0. Three pairs left (A5, PMIC_INT, TS). They need a smaller drill than a standard through via. No VBUS on the dock.
+
+### Archives
+reports/PASS_BD.md
+

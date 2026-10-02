@@ -794,3 +794,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A5 has no F exit and no via si
 
 ## Pass-BC (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. 0.40 mm pitch / 0.23 mm NSMD cannot grow a 0.15 mm escape. SW via and the PMID wall have no legal move off A5. shorting=0, unc=4. Report: `reports/PASS_BC.md`. Do not apply VBUS on the dock.
+
+## Pass-BD (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops to B under a bowed EPD_RST and lands on U1 pad 27. `R_SCL` `(112.04, 107.68)` rot 270, `R_SDA` `(111.10, 109.30)`. shorting 1→0, unc=3 (A5, PMIC_INT, TS). Report: `reports/PASS_BD.md`. Do not apply VBUS on the dock.
