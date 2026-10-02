@@ -1413,3 +1413,15 @@ unc=16 shorting=0. VBUS, PMID, and SW still have no legal F.Cu exit. REGN still 
 ### Archives
 reports/PASS_BI.md
 
+## Pass-BJ (2026-10-02) — SW onto L_SYS
+From Pass-BI: shorting=0 unc=16. East stub copper ends at x=113.938. The old VSYS vertical at x=114.20 left no SW column.
+
+### KEEP
+`L_SYS` moved to `(115.50, 91.50)` rot 90. SW runs y=88.48 then x=114.58 into the south pad `(115.25, 92.48)`. VSYS reaches the north pad at x=114.95 after a jog at y=88.05. East VSYS stubs bypass south to y=93.60 and return at x=116.42. New segments were appended after the PMID via. An earlier insert before that via promoted `nRESET_POGO` vs `3V3` to shorting and was not kept. Moving the `3V3_DISP` via to `(116.10, 89.50)` added a B GND hole-clearance actual 0.000 and split the B run at y=82.40; reverted. DRC before: 857 violations, unc 16, shorting 0, hole0 98. After: 858 violations, unc 15, shorting 0, hole0 98. The extra violation is two existing `tracks_crossing` pairs (`TS`/`ILIM`, `EPD_SCK`/`EPD_MOSI`) and one clearance line that left the report. `EPD_BUSY_L` stays `(90.20, 90.96)`. `PSEL` still owns x=107.81. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. VBUS and PMID still have no F.Cu exit: the BUSY_R/PSEL gap is 0.165 mm, and the R_ISET/VSYS channel holds one track. The south SW via `(115.00, 104.50)` is still open. REGN still does not fit beside VSYS. SCL/SDA still need a second slot. No VBUS on the dock.
+
+### Archives
+reports/PASS_BJ.md
+
