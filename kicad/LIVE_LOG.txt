@@ -1425,3 +1425,15 @@ unc=15 shorting=0. VBUS and PMID still have no F.Cu exit: the BUSY_R/PSEL gap is
 ### Archives
 reports/PASS_BJ.md
 
+## Pass-BK (2026-10-02) — VBUS/PMID placement, no KEEP
+From Pass-BJ: shorting=0 unc=15. Board file unchanged.
+
+### No KEEP
+VBUS F pocket x=108.2–110.6, y=86.3–89.9. Walls: EPD_CS_R via (108.80, 88.00), PSEL x=108.11 and x=107.81, C_BTST, PMID stub, VSYS y=86.35, the QFN. Dropping C_BTST / R_ISET / R_VSYS pads does not connect it to (108.12, 102.40). Dropping PSEL and EPD_BUSY_R F tracks does (x≈107.75 south), and PSEL then cannot reach R_ISET. BUSY/PSEL copper gap is 0.165 mm; a 0.15 mm track needs 0.45 mm. A 0.45 via does not fit the widened slot. F+B via-pair search: none. Pour openings ≥0.40 mm from B, In1, and In2 with via room: one point (111.00, 104.25), 0.057 mm from the PMID via. PMID pocket x=108.5–110.5, y=86.5–89.25 still misses (111.35, 103.85). No pour slit cut. L_SYS, the SW column, the VSYS return, and the 3V3_DISP via were not moved.
+
+### Next
+unc=15 shorting=0. VBUS, PMID, south SW via (115.00, 104.50), REGN, SCL/SDA. No VBUS on the dock.
+
+### Archives
+reports/PASS_BK.md
+

@@ -815,3 +815,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. `EPD_BUSY_L` via slides to `(90.2
 
 ## Pass-BJ (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. `L_SYS` moves to `(115.50, 91.50)` rot 90. SW joins `L_SYS` pin 1 at x=114.58. East VSYS stubs return at x=116.42. shorting=0, unc 16→15, hole0 stays 98. Report: `reports/PASS_BJ.md`. Do not apply VBUS on the dock.
+
+## Pass-BK (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. `VBUS` and `PMID` stay in the north F.Cu pocket. Moving `C_BTST` / `R_ISET` / `R_VSYS` does not open it. The west slot is 0.165 mm and cannot hold both `PSEL` and `VBUS`. No legal via pair. shorting=0, unc stays 15. Report: `reports/PASS_BK.md`. Do not apply VBUS on the dock.
