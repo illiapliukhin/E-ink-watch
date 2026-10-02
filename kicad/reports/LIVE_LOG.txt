@@ -803,3 +803,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. BQ25120A is YFP-25 at 0.40 mm 
 
 ## Pass-BF (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. U2 is BQ25619 at `(111, 91)` rot 0. `3V3` is MCP1700, `3V3_DISP` is DMG2305UX. shorting=0, unc 3→30. Further F.Cu routes promoted a latent short and were reverted. Report: `reports/PASS_BF.md`. Do not apply VBUS on the dock.
+
+## Pass-BG (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. Module `3V3` reaches In2 through via `(98.30, 85.90)` after the pad-15 track was retracted. U3 VOUT, U2 GND, TS, and VBAT pin 12 are tied. shorting=0, unc 30→22, hole0 stays 98. Report: `reports/PASS_BG.md`. Do not apply VBUS on the dock.

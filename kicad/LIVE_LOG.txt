@@ -1377,3 +1377,15 @@ unc=30 shorting=0. SCL, SDA, PMIC_INT, TS, VBUS, VBAT, and the LDO/FET pads are 
 ### Archives
 reports/PASS_BF.md
 
+## Pass-BG (2026-10-02) — BQ25619 fanout
+From Pass-BF: shorting=0 unc=30. The new pads were stubs. Any added segment promoted the existing 3V3 track through U1 pad 15.
+
+### KEEP
+The 3V3 segment `(97.6, 86.35)–(106.0, 86.35)` now ends at `(98.55, 86.35)` on U1 pads 30/28. Via `(98.30, 85.90)` 0.45/0.20 stitches that pad to an In2 track that overlaps the stored 3V3 pour. B and In1 have 0.42 mm holes bridged from the nearest outline vertex; the via sits 0.41 mm outside those pours. Hole-clearance actual 0.000 vs a zone stays 98. U3 VOUT joins the east 3V3 track. U2 pins 17/18 join the EP. U3 GND, R_VSYS GND, and NTC GND join existing vias or the GND stub. U2 TS joins R_TS and NTC. VBAT pin 12 joins pins 13/14. DRC before: 865 violations, unc 30, shorting 0. After: 855 violations, unc 22, shorting 0. One pre-existing B.Cu ILIM/SW clearance (actual 0.085 mm) showed up after the inserts; those tracks were not moved. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=22 shorting=0. VSYS is blocked by the 0.40 mm gap between R_ISET and C_BTST. SCL/SDA are blocked by EPD_BUSY_R at x=107.60 (0.37 mm slot). Q1, SW, REGN, PSEL, VBUS, PMID, and DISP_EN are still open. No VBUS on the dock.
+
+### Archives
+reports/PASS_BG.md
+
