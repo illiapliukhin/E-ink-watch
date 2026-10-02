@@ -806,3 +806,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. U2 is BQ25619 at `(111, 91)` rot 0. `3V
 
 ## Pass-BG (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. Module `3V3` reaches In2 through via `(98.30, 85.90)` after the pad-15 track was retracted. U3 VOUT, U2 GND, TS, and VBAT pin 12 are tied. shorting=0, unc 30→22, hole0 stays 98. Report: `reports/PASS_BG.md`. Do not apply VBUS on the dock.
+
+## Pass-BH (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. VSYS joins U3 to `L_SYS`. PSEL uses the slot opened by moving `EPD_BUSY_R` to x=107.48. `R_LSCTRL` sits beside Q1: DISP_EN on the gate, 3V3 on the source, drain on via `(89.20, 89.55)`. shorting=0, unc 22→17, hole0 stays 98. Report: `reports/PASS_BH.md`. Do not apply VBUS on the dock.

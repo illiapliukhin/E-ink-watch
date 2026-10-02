@@ -1389,3 +1389,15 @@ unc=22 shorting=0. VSYS is blocked by the 0.40 mm gap between R_ISET and C_BTST.
 ### Archives
 reports/PASS_BG.md
 
+## Pass-BH (2026-10-02) — VSYS, PSEL, display switch
+From Pass-BG: shorting=0 unc=22. The R_ISET–C_BTST gap was 0.40 mm. EPD_BUSY_R at x=107.60 left a 0.37 mm slot beside the west stubs.
+
+### KEEP
+`C_BTST` `(111.25, 86.95)`, `R_ISET` `(110.5, 85.3)` rot 90. One `VSYS` track joins U3 pin 3 to `L_SYS` pin 2. Cap pads get short extensions back onto BTST and SW. `EPD_BUSY_R` F.Cu wall moves to x=107.48. `PSEL` uses the single slot at x=107.81 and reaches `R_ISET` pin 2. `R_LSCTRL` moves to `(86.3, 93.438)` rot 90; stubs are retargeted onto Q1 pin 1 (`DISP_EN`) and, around the south of Q1, onto Q1 pin 2 (`3V3`). Q1 pin 3 reaches via `(89.20, 89.55)`. DRC before: 855 violations, unc 22, shorting 0, hole0 98. After: 857 violations, unc 17, shorting 0, hole0 98. A REGN path the flat-cap checker accepted measured 0.051 mm to BTST and crossed VSYS; it was not written. Two clearance lines that showed up are existing `nRESET`/`SDA` copper, not the new tracks. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=17 shorting=0. SCL/SDA still need a second slot or a BUSY path that does not use x=107.48. REGN does not fit beside VSYS. VBUS, PMID, and SW have no legal F.Cu exit. Q1 `3V3` is not on the module rail. No VBUS on the dock.
+
+### Archives
+reports/PASS_BH.md
+
