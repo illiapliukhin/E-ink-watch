@@ -1401,3 +1401,15 @@ unc=17 shorting=0. SCL/SDA still need a second slot or a BUSY path that does not
 ### Archives
 reports/PASS_BH.md
 
+## Pass-BI (2026-10-02) — Q1 source onto module 3V3
+From Pass-BH: shorting=0 unc=17. The gap between `nRESET` at y=90.15 and `EPD_BUSY_L` via `(90.20, 90.80)` was 0.335 mm.
+
+### KEEP
+`EPD_BUSY_L` via moved in place to `(90.20, 90.96)`. The F.Cu vertical now starts there, and the B.Cu track from `(105.90, 90.80)` ends on the via. `3V3` leaves Q1 pin 2 `(89.45, 93.80)`, crosses at y=90.49, and lands on the module rail at `(93.80, 96.30)`. A slide to y=91.15 measured 0.059 mm against B.Cu `3V3_DISP` and was not kept. DRC before: 857 violations, unc 17, shorting 0, hole0 98. After: 857 violations, unc 16, shorting 0, hole0 98. `PSEL` still owns x=107.81. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=16 shorting=0. VBUS, PMID, and SW still have no legal F.Cu exit. REGN still does not fit beside VSYS (a parallel track at y=86.05 is 0.150 mm from VSYS and then crosses BTST). SCL/SDA still need a second slot; do not take x=107.81. No VBUS on the dock.
+
+### Archives
+reports/PASS_BI.md
+
