@@ -797,3 +797,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. 0.40 mm pitch / 0.23 mm NSMD c
 
 ## Pass-BD (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops to B under a bowed EPD_RST and lands on U1 pad 27. `R_SCL` `(112.04, 107.68)` rot 270, `R_SDA` `(111.10, 109.30)`. shorting 1→0, unc=3 (A5, PMIC_INT, TS). Report: `reports/PASS_BD.md`. Do not apply VBUS on the dock.
+
+## Pass-BE (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. BQ25120A is YFP-25 at 0.40 mm only. BQ25619 is 0.50 mm QFN but has no `3V3` buck and no `3V3_DISP` LDO. Board unchanged. shorting=0, unc=3. Report: `reports/PASS_BE.md`. Do not apply VBUS on the dock.

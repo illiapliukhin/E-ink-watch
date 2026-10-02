@@ -1353,3 +1353,15 @@ unc=3 shorting=0. Three pairs left (A5, PMIC_INT, TS). They need a smaller drill
 ### Archives
 reports/PASS_BD.md
 
+## Pass-BE (2026-10-02) — larger-pitch PMIC
+From Pass-BD: shorting=0 unc=3. User asked for a BQ25120A package with pitch above 0.40 mm, or a function-compatible charger that can take its place.
+
+### No KEEP
+TI lists BQ25120A only as YFP-25, outline 4225306, 0.40 mm. BQ25155 is YFP-20 at 0.40 mm and has no buck. BQ25180 is YBG-8 only and has no SW or LS/LDO. BQ25619RTWR is 4 mm WQFN at 0.50 mm, so the signal pins can escape, but it does not make `3V3` or `3V3_DISP`. No symbol or footprint written. unc stays 3, shorting stays 0. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=3 shorting=0. A5, PMIC_INT, TS stay open until the schematic grows a 3.3 V regulator beside a 0.50 mm charger. No VBUS on the dock.
+
+### Archives
+reports/PASS_BE.md
+
