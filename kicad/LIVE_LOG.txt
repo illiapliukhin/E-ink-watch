@@ -1453,3 +1453,19 @@ unc=15 shorting=0. VBUS and PMID still cannot share F.Cu. South SW via `(115.00,
 ### Archives
 reports/PASS_BL.md
 
+## Pass-BM (2026-10-02) — VBUS/PMID routes, reverted
+From Pass-BL: shorting=0 unc=15. Board file restored. No KEEP.
+
+### Trial, not kept
+VBUS hops B between vias (109.75, 87.25) and (107.65, 87.42), both 0.45/0.20. B run stays at y=87.25. F returns at x=107.65 to the bar (108.12, 102.40). PMID stays on F: y=86.75 to x=108.20, south to 101.55, east to x=109.30, y=102.40 to x=111.15, into the PMID via. Strap EPD_BUSY_R horizontal and vertical were kept. Centerline check used a 0.16 mm margin. West via at y=87.50 was 0.138 mm from the 3V3 corner; y=87.42 clears by 0.195 mm.
+
+PSEL through (108.11, 86.30), the BUSY wall and diagonal, and the SCL/SDA west stubs were parked. GND y=102.01 was shortened to start at x=111.70. PSEL tail to R_ISET stayed. Notch: r=0.50 stadium spur on B and In1, bridge 0.316 mm, area drop 2.74 mm² each. In2 is outside. Hole0 vs a zone stayed 98 with the notch and rose to 102 without it.
+
+DRC on the trial: 863 violations, unc 15, shorting 2. VBUS and PMID left the unconnected list. PSEL and EPD_BUSY_R each added an island, so unc did not fall. shorting_items were the existing nRESET_POGO pad vs 3V3 (96.50, 107.75)–(92.00, 105.50), and EPD_MOSI via (85.35, 97.80) vs EPD_SCK at x=85.00. Moving VBUS stubs together with both PSEL and BUSY is enough to promote the nRESET pair. One family alone stays at shorting 0. PSEL has no third F lane. BUSY flood stops at x=107.2, y=102.0. No 0.45 via fits between PMID x=108.20 and B EPD_CS_R x=108.80. REGN, SCL/SDA, and the south SW via did not open. Board restored. U2 stays rot 0. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. The VBUS B hop and the PMID F run are legal and were not kept. A keep needs those routes without promoting the two latent overlaps, and one more close so unc falls. South SW via (115.00, 104.50), REGN, SCL/SDA unchanged.
+
+### Archives
+reports/PASS_BM.md
+

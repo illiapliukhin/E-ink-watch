@@ -821,3 +821,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. `VBUS` and `PMID` stay in the 
 
 ## Pass-BL (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Rotation 180 at `(109, 96)` opens a VBUS drop that PMID and the strap nets cannot share. shorting=0, unc stays 15. Report: `reports/PASS_BL.md`. Do not apply VBUS on the dock.
+
+## Pass-BM (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A VBUS B hop and a PMID F run both clear 0.15 mm, and both left the unconnected list, but PSEL and EPD_BUSY_R each opened an island (unc stays 15) and the corridor clear promoted two existing overlaps into shorting_items (2). Board restored. shorting=0, unc stays 15, hole0 stays 98. Report: `reports/PASS_BM.md`. Do not apply VBUS on the dock.
