@@ -824,3 +824,6 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Rotation 180 at `(109, 96)` op
 
 ## Pass-BM (2026-10-02)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A VBUS B hop and a PMID F run both clear 0.15 mm, and both left the unconnected list, but PSEL and EPD_BUSY_R each opened an island (unc stays 15) and the corridor clear promoted two existing overlaps into shorting_items (2). Board restored. shorting=0, unc stays 15, hole0 stays 98. Report: `reports/PASS_BM.md`. Do not apply VBUS on the dock.
+
+## Pass-BN (2026-10-03)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. The two latent overlaps were separated, then VBUS and PMID were routed. shorting=0, unc stays 15, hole0 stays 98, violations 858→853. PSEL and EPD_BUSY_R stay open. Report: `reports/PASS_BN.md`. Do not apply VBUS on the dock.

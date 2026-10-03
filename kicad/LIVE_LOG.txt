@@ -1469,3 +1469,19 @@ unc=15 shorting=0. The VBUS B hop and the PMID F run are legal and were not kept
 ### Archives
 reports/PASS_BM.md
 
+## Pass-BN (2026-10-03) — VBUS and PMID kept
+From Pass-BM: shorting=0 unc=15. The two promoted overlaps were real. They were separated first, then the corridor was routed.
+
+### KEEP
+3V3 diagonal parked onto (96.50, 108.30)–(96.50, 108.60). East island stitches through In2 via (96.50, 107.75) 0.50/0.30. B and In1 circles r=0.50, bridge 0.527 mm, drop 0.79 mm². EPD_MOSI via (85.35, 97.80) shrunk 0.60/0.30 to 0.50/0.30, gap to EPD_SCK +0.010 mm. Parking both blocker families then leaves shorting at 0.
+
+VBUS: F to (109.75, 87.25), B hop to (107.65, 87.42), F x=107.65 to the bar (108.12, 102.40). PMID on F into (111.35, 103.85). Width 0.20 on the runs, 0.18 on the four QFN exits. Vias 0.45/0.20. Notch is a union into the existing EPD_CS_R hole, not a spur: track stadium 0.31 mm, via circles 0.45 mm, area drop 2.223 mm² on B and In1. A r=0.50 spur put (108.80, 88.00) at clearance 0.000 and was not kept. GND y=102.01 now starts at x=111.70.
+
+DRC: 858→853 violations, unc 15, shorting 0, hole0 stays 98. VBUS and PMID left the unconnected list. PSEL and EPD_BUSY_R have no 0.16 mm path on F or B, so each opened an island and unc did not fall. U2 stays rot 0. SW_DBG stays (90.50, 105.50). No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. Still open: VBAT, VSYS, EPD_BUSY_R, SDA, SCL, PMIC_INT, TS, SW, PSEL, REGN. South SW via (115.00, 104.50) unchanged.
+
+### Archives
+reports/PASS_BN.md
+
