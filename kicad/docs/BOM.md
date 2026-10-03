@@ -55,10 +55,12 @@ Shared: 24-pin / 8-pin FPC depending on raw vs module — **use raw panels + on-
 | Qty | Part / family | Role | Notes |
 |-----|---------------|------|-------|
 | 1 | Thin LiPo pouch **80–200 mAh** (e.g. ~3.0×20×22 mm @80 mAh; ~4–5 mm thick @200 mAh families) | Energy store | Exact size TBD by case; **must include PCM** (DW01+FS8205 class or vendor protected cell) |
-| 1 | **BQ25120A** | Wearable charger + buck/LDO + ship mode | Up to ~300 mA charge; TI wearable ref designs |
-| — | Alt: **BQ25155** | 500 mA, ADC, 10 nA ship | Better crude fuel gauge via ADC |
-| 1 | Optional **BQ27421-G1** | Fuel gauge | If accurate % needed with BQ25120A |
-| 1 | Load switch (e.g. **TPS229xx** / P-FET) | Gate 3V3_DISP | Cut E Ink rail between refreshes |
+| 1 | **BQ25619RTWR** (WQFN-24, 4×4 mm, 0.50 mm) | Li-ion charger, NVDC power path, I2C, TS, INT | Replaces BQ25120A. Charger buck is **not** the 3.3 V rail. SYS follows the cell (up to the charge voltage). Do not feed SYS or REGN (~4.7 V) to the nRF. PSEL tied to REGN (500 mA input ceiling); ICHG is I2C. /CE tied to GND. |
+| 1 | **MCP1700T-3302E/TT** (SOT-23) | 3.3 V LDO, 250 mA, from **SYS** to MCU `3V3` | Always on (no EN pin). Operating Vin 2.3–6.0 V. Pin 1 GND, 2 VOUT, 3 VIN. SOT-23-5 does not fit beside the WQFN on this outline. nRF52840 / MDBT50Q VDD abs max is 3.6 V. |
+| 1 | **DMG2305UX** (SOT-23 P-MOS) | `3V3` → `3V3_DISP` | Source = 3V3, drain = 3V3_DISP, gate = `DISP_EN`. 100 kΩ gate pull-up to 3V3 so the panel stays **off** until firmware drives the gate low. |
+| — | Was **BQ25120A** YFP-25 | Dropped | 0.40 mm only; no larger-pitch orderable. ISET / ILIM / IPRETERM /CD / LSCTRL leave the circuit. |
+| 1 | Optional **BQ27421-G1** | Fuel gauge | Optional; BQ25619 has no built-in gauge |
+| 1 | 0603 **4.7 µF** | REGN decouple | REGN is the TS bias and PSEL pull-up, not the MCU rail |
 | 1 | Optional USB-C receptacle + **TPD** ESD / CC resistors | Wired charge | Or omit for wireless-only |
 | 1 | Optional wireless RX coil + IC (e.g. proprietary 5–10 W-class overkill — use **low-power wearable RX** like ST WLC / TI BQ510xx class carefully) | Wireless charge | Coil under back; metal case kills it — polymer back required |
 

@@ -773,3 +773,57 @@ Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. SCL and SDA are still 5.5 mm f
 
 ## Pass-AV (2026-10-01)
 Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBUS still leaves SDA 2.779 mm short (VBAT y=105.60 and ISET y=106.00). shorting=0, unc=6. Report: `reports/PASS_AV.md`. Do not apply VBUS on the dock.
+
+## Pass-AW (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting VBAT and ISET still leaves SDA 1.207 mm short on the 3V3 rail y=108.25. shorting=0, unc=6. Report: `reports/PASS_AW.md`. Do not apply VBUS on the dock.
+
+## Pass-AX (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Deleting the 3V3 rail and via `(112.16, 107.60)` does not move the I2C gap. The best local 3V3 deletion still leaves 0.800 mm on VBAT y=105.40. shorting=0, unc=6. Report: `reports/PASS_AX.md`. Do not apply VBUS on the dock.
+
+## Pass-AY (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Sliding the 3V3 knot off the SDA exit still leaves the route on the VBAT bar at x=103.25. A 0.35 mm reconnect crosses that run. shorting=0, unc=6. Report: `reports/PASS_AY.md`. Do not apply VBUS on the dock.
+
+## Pass-AZ (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops under the VBAT bar on B after keepouts in B GND, In1 GND, and In2 3V3. shorting=0, unc 6→5. R_SCL stays seated. Report: `reports/PASS_AZ.md`. Do not apply VBUS on the dock.
+
+## Pass-BA (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. East–west `3V3_DISP` stitches at width 0.28 inside x=85, with pour keepouts. SCL still has no exit from the `R_SCL` seat. shorting=0, unc 5→4. Report: `reports/PASS_BA.md`. Do not apply VBUS on the dock.
+
+## Pass-BB (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A5 has no F exit and no via site (ILIM crosses the ball; 0 sites on a 0.05 mm grid). 114 R_SCL seats leave the same 0.266 mm² pocket. shorting=0, unc=4. Report: `reports/PASS_BB.md`. Do not apply VBUS on the dock.
+
+## Pass-BC (2026-10-01)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. 0.40 mm pitch / 0.23 mm NSMD cannot grow a 0.15 mm escape. SW via and the PMID wall have no legal move off A5. shorting=0, unc=4. Report: `reports/PASS_BC.md`. Do not apply VBUS on the dock.
+
+## Pass-BD (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. SDA hops to B under a bowed EPD_RST and lands on U1 pad 27. `R_SCL` `(112.04, 107.68)` rot 270, `R_SDA` `(111.10, 109.30)`. shorting 1→0, unc=3 (A5, PMIC_INT, TS). Report: `reports/PASS_BD.md`. Do not apply VBUS on the dock.
+
+## Pass-BE (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. BQ25120A is YFP-25 at 0.40 mm only. BQ25619 is 0.50 mm QFN but has no `3V3` buck and no `3V3_DISP` LDO. Board unchanged. shorting=0, unc=3. Report: `reports/PASS_BE.md`. Do not apply VBUS on the dock.
+
+## Pass-BF (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. U2 is BQ25619 at `(111, 91)` rot 0. `3V3` is MCP1700, `3V3_DISP` is DMG2305UX. shorting=0, unc 3→30. Further F.Cu routes promoted a latent short and were reverted. Report: `reports/PASS_BF.md`. Do not apply VBUS on the dock.
+
+## Pass-BG (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. Module `3V3` reaches In2 through via `(98.30, 85.90)` after the pad-15 track was retracted. U3 VOUT, U2 GND, TS, and VBAT pin 12 are tied. shorting=0, unc 30→22, hole0 stays 98. Report: `reports/PASS_BG.md`. Do not apply VBUS on the dock.
+
+## Pass-BH (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. VSYS joins U3 to `L_SYS`. PSEL uses the slot opened by moving `EPD_BUSY_R` to x=107.48. `R_LSCTRL` sits beside Q1: DISP_EN on the gate, 3V3 on the source, drain on via `(89.20, 89.55)`. shorting=0, unc 22→17, hole0 stays 98. Report: `reports/PASS_BH.md`. Do not apply VBUS on the dock.
+
+## Pass-BI (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. `EPD_BUSY_L` via slides to `(90.20, 90.96)` and Q1 pin 2 joins the module `3V3` rail at `(93.80, 96.30)`. shorting=0, unc 17→16, hole0 stays 98. Report: `reports/PASS_BI.md`. Do not apply VBUS on the dock.
+
+## Pass-BJ (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. `L_SYS` moves to `(115.50, 91.50)` rot 90. SW joins `L_SYS` pin 1 at x=114.58. East VSYS stubs return at x=116.42. shorting=0, unc 16→15, hole0 stays 98. Report: `reports/PASS_BJ.md`. Do not apply VBUS on the dock.
+
+## Pass-BK (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. `VBUS` and `PMID` stay in the north F.Cu pocket. Moving `C_BTST` / `R_ISET` / `R_VSYS` does not open it. The west slot is 0.165 mm and cannot hold both `PSEL` and `VBUS`. No legal via pair. shorting=0, unc stays 15. Report: `reports/PASS_BK.md`. Do not apply VBUS on the dock.
+
+## Pass-BL (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. Rotation 180 at `(109, 96)` opens a VBUS drop that PMID and the strap nets cannot share. shorting=0, unc stays 15. Report: `reports/PASS_BL.md`. Do not apply VBUS on the dock.
+
+## Pass-BM (2026-10-02)
+Authoritative log: `kicad/LIVE_LOG.txt`. No KEEP. A VBUS B hop and a PMID F run both clear 0.15 mm, and both left the unconnected list, but PSEL and EPD_BUSY_R each opened an island (unc stays 15) and the corridor clear promoted two existing overlaps into shorting_items (2). Board restored. shorting=0, unc stays 15, hole0 stays 98. Report: `reports/PASS_BM.md`. Do not apply VBUS on the dock.
+
+## Pass-BN (2026-10-03)
+Authoritative log: `kicad/LIVE_LOG.txt`. KEEP. The two latent overlaps were separated, then VBUS and PMID were routed. shorting=0, unc stays 15, hole0 stays 98, violations 858→853. PSEL and EPD_BUSY_R stay open. Report: `reports/PASS_BN.md`. Do not apply VBUS on the dock.

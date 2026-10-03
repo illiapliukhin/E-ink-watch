@@ -1257,3 +1257,231 @@ unc=6 shorting=0. Same six pairs. No VBUS on the dock.
 ### Archives
 reports/PASS_AV.md
 
+## Pass-AW (2026-10-01) — VBAT/ISET jog cannot open I2C
+From Pass-AV: shorting=0 unc=6. User asked to jog VBAT and/or ISET so SDA or SCL can reach the U1 free copper.
+
+### No KEEP
+Deleting VBAT drops the SDA gap from 5.554 mm to 1.207 mm (free point (110.78, 108.60)) and the SCL gap from 5.578 mm to 2.181 mm. ISET and the IPRETERM vias do not move those numbers. The 1.207 mm that remains is the 3V3 rail at y=108.25, which the SDA line crosses. A jog cannot beat deletion. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AW.md
+
+## Pass-AX (2026-10-01) — 3V3 rail jog cannot open I2C
+From Pass-AW: shorting=0 unc=6. User asked to jog the 3V3 rail y=108.25 and the via (112.16, 107.60) so SDA or SCL can reach U1, without unseating R_SCL.
+
+### No KEEP
+Deleting the rail segment, or the rail plus that via, does not move the gap (SDA 4.695 mm, SCL 5.486 mm). Deleting every 3V3 track and via in the rail box still leaves 0.800 mm, sealed by VBAT w=0.35 at y=105.40. A via there is inside the B GND pour and the In2 3V3 plane. R_SCL stays seated. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AX.md
+
+## Pass-AY (2026-10-01) — power re-layout still cannot open I2C
+From Pass-AX: shorting=0 unc=6. User asked for a real VBAT/3V3/pour re-layout so SDA or SCL can reach U1.
+
+### No KEEP
+SDA reaches U1 only when the 3V3 knot at x=110.16–110.50 is gone and the VBAT bar at y=105.40 is gone. Sliding that knot onto the B 3V3 run still leaves SDA on x=103.25 from y=103.00 to y=108.25, which is the VBAT span. Putting the 0.35 mm bar back on either side of that run leaves 0.800 mm. The crossing is inside the B GND pour and the In2 3V3 pour. R_SCL stays seated. Board unchanged.
+
+### Next
+unc=6 shorting=0. Same six pairs. No VBUS on the dock.
+
+### Archives
+reports/PASS_AY.md
+
+## Pass-AZ (2026-10-01) — pour keepouts and SDA hop under VBAT
+From Pass-AY: shorting=0 unc=6. User asked to cut documented keepouts and layer-hop I2C U2→U1.
+
+### KEEP
+SDA reaches U1 pad 27 on F, under the VBAT bar on B. Vias (103.25, 105.90) and (103.25, 104.85) 0.25/0.15. B GND stadium r=0.50 between them. In1 and In2 circles r=0.50 at each via. 3V3 knot leaves the corridor: west drop x=106.40, east via (111.80, 108.25), rail starts at x=111.80. VBAT bar unchanged at w=0.35. R_SCL stays seated. DRC shorting=0, unc 6→5. SCL still open.
+
+### Next
+unc=5 shorting=0. Five pairs left (A5, 3V3_DISP, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_AZ.md
+
+## Pass-BA (2026-10-01) — 3V3_DISP east–west stitch
+From Pass-AZ: shorting=0 unc=5. SDA is on U1 pad 27. User asked for the first open net that can close.
+
+### KEEP
+SCL has no 0.15 mm exit from the R_SCL seat (pocket (111.70, 106.74)–(112.52, 107.35), no via site). PMIC_INT and TS do not connect with the pours ignored. 3V3_DISP does: width 0.28, vias 0.45/0.20 at (88.60, 101.25), (92.20, 96.75), (90.70, 92.25), (89.20, 89.55), landing on the existing vias (85.00, 102.75) and (92.00, 87.00). B GND stadiums r=0.50, In1 circles r=0.50, In2 short outline bridges plus a bite at (90.70, 92.25). Not the west rim. R_SCL and SW_DBG unmoved. DRC shorting=0, unc 5→4. Hole-clearance 0.000 stays 100.
+
+### Next
+unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_BA.md
+
+## Pass-BB (2026-10-01) — A5 and R_SCL micro-move
+From Pass-BA: shorting=0 unc=4. User asked to try A5 first, then a gated R_SCL move, then PMIC_INT/TS only if A5 opened an escape.
+
+### No KEEP
+A5 (111.80, 105.20) has no 0.15 mm F exit. North gap to VSYS is 0.160 mm. A4/A5 pad gap is 0.17 mm. PMID at 315° is 0.180 mm from the ball center. On B, ILIM (110.30, 105.20)–(114.70, 105.20) w=0.15 crosses the pad. A 0.05 mm via grid found 0 sites that clear a 0.15 drill by 0.25 mm. Pour cuts cannot remove those tracks. 114 R_SCL seats that still cover E5 leave the same 0.266 mm² pocket, 23.85 mm from U1 pad 29. R_SCL was not moved. PMIC_INT and TS were not retried. No copper written, so no new DRC. unc stays 4, shorting stays 0.
+
+### Next
+unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_BB.md
+
+## Pass-BC (2026-10-01) — U2 footprint / fanout
+From Pass-BA: shorting=0 unc=4. User allowed a BQ25120A footprint change or a full re-fanout of A5, D2, C3, and E5.
+
+### No KEEP
+YFP0025 is already NSMD 0.23 mm on a 0.40 mm pitch (edge gap 0.17 mm). A 0.15 mm track needs ~0.45 mm between balls. A through via in the pad needs a drill ≤0.07 mm. A 0.30/0.10 microvia misses In1 on the north half of A5 and misses 0.15 mm clearance on the south half (B5 / VSYS). The GND track that would join A5 to C_VINLS pad 2 is clear by 0.200 mm only without SW via (111.55, 104.55) and the PMID wall at x=112. That via has no legal move (PMID dogbone to the west, C_PMID to the north, J_STRAP_R to the east). D2 and C3 stay interior. R_SCL not moved. No copper written. unc stays 4, shorting stays 0.
+
+### Next
+unc=4 shorting=0. Four pairs left (A5, SCL, PMIC_INT, TS). No VBUS on the dock.
+
+### Archives
+reports/PASS_BC.md
+
+## Pass-BD (2026-10-02) — SDA hop under EPD_RST
+From Pass-BC: shorting=0 unc=4. User allowed moving parts, changing layers, and rerouting to simplify fabrication. No microvias and no filled via-in-pad.
+
+### KEEP
+`R_SCL` moves to `(112.04, 107.68)` rot 270 and `R_SDA` to `(111.10, 109.30)`, so the SCL pull-up is on SCL and 3V3 and the SDA tail no longer has to pass that body. SDA then hops: F `(97.42, 92.43)–(98.30, 89.20)`, via 0.45/0.20, B to `(99.00, 87.70)`, via 0.45/0.20, F into U1 pad 27 at `(98.85, 87.25)`. EPD_RST B bows to y=89.85 between x=97.4 and 99.8. B GND replaces one simple hole; In1 and In2 only clip the vertices inside 0.50 mm disks, plus one In1 circle spliced from `(99.534, 87.807)`. Vias sit ≥0.490 mm outside the pours. `(100, 100)` stays inside. DRC shorting 1→0, unc stays 3 (A5, PMIC_INT, TS). Hole-clearance 0.000 vs a zone stays 98. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=3 shorting=0. Three pairs left (A5, PMIC_INT, TS). They need a smaller drill than a standard through via. No VBUS on the dock.
+
+### Archives
+reports/PASS_BD.md
+
+## Pass-BE (2026-10-02) — larger-pitch PMIC
+From Pass-BD: shorting=0 unc=3. User asked for a BQ25120A package with pitch above 0.40 mm, or a function-compatible charger that can take its place.
+
+### No KEEP
+TI lists BQ25120A only as YFP-25, outline 4225306, 0.40 mm. BQ25155 is YFP-20 at 0.40 mm and has no buck. BQ25180 is YBG-8 only and has no SW or LS/LDO. BQ25619RTWR is 4 mm WQFN at 0.50 mm, so the signal pins can escape, but it does not make `3V3` or `3V3_DISP`. No symbol or footprint written. unc stays 3, shorting stays 0. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=3 shorting=0. A5, PMIC_INT, TS stay open until the schematic grows a 3.3 V regulator beside a 0.50 mm charger. No VBUS on the dock.
+
+### Archives
+reports/PASS_BE.md
+
+## Pass-BF (2026-10-02) — BQ25619 + 3.3 V LDO + display switch
+From Pass-BE: shorting=0 unc=3. User chose BQ25619RTWR (WQFN-24, 0.50 mm) plus a separate 3.3 V LDO and a display power switch.
+
+### KEEP (schematic and a legal placement; fanout not closed)
+U2 is BQ25619 at `(111.00, 91.00)` rot 0. Footprint rotation does not rotate pad rectangles: rot 90/270 with pad angle 0 shorts adjacent pads. `3V3` is MCP1700T-3302E/TT (SOT-23: 1 GND, 2 VOUT, 3 VIN) at `(108.00, 85.75)`, fed from SYS, not from REGN. `3V3_DISP` is DMG2305UX at `(88.50, 92.50)` rot 90 (pad angle 90), source 3V3, drain 3V3_DISP, gate DISP_EN with R_LSCTRL 100 kΩ to 3V3. R_VSYS moved to `(106.75, 93.00)` and retasked REGN–GND so it no longer bridges SYS into the MCU rail. DRC before: 916 violations, unc 3, shorting 0, hole-clearance actual 0.000 vs a zone 98. After: 865 violations, unc 30, shorting 0, hole0 still 98. A follow-up grid route that would have lowered unc promoted U1 pad 15 GND against the existing 3V3 track `(97.6, 86.35)–(106.0, 86.35)` into shorting_items and was reverted. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=30 shorting=0. SCL, SDA, PMIC_INT, TS, VBUS, VBAT, and the LDO/FET pads are still separate islands. Closing them promoted a latent short; fix that U1 pad-15 overlap in the same edit as any new track. No VBUS on the dock.
+
+### Archives
+reports/PASS_BF.md
+
+## Pass-BG (2026-10-02) — BQ25619 fanout
+From Pass-BF: shorting=0 unc=30. The new pads were stubs. Any added segment promoted the existing 3V3 track through U1 pad 15.
+
+### KEEP
+The 3V3 segment `(97.6, 86.35)–(106.0, 86.35)` now ends at `(98.55, 86.35)` on U1 pads 30/28. Via `(98.30, 85.90)` 0.45/0.20 stitches that pad to an In2 track that overlaps the stored 3V3 pour. B and In1 have 0.42 mm holes bridged from the nearest outline vertex; the via sits 0.41 mm outside those pours. Hole-clearance actual 0.000 vs a zone stays 98. U3 VOUT joins the east 3V3 track. U2 pins 17/18 join the EP. U3 GND, R_VSYS GND, and NTC GND join existing vias or the GND stub. U2 TS joins R_TS and NTC. VBAT pin 12 joins pins 13/14. DRC before: 865 violations, unc 30, shorting 0. After: 855 violations, unc 22, shorting 0. One pre-existing B.Cu ILIM/SW clearance (actual 0.085 mm) showed up after the inserts; those tracks were not moved. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=22 shorting=0. VSYS is blocked by the 0.40 mm gap between R_ISET and C_BTST. SCL/SDA are blocked by EPD_BUSY_R at x=107.60 (0.37 mm slot). Q1, SW, REGN, PSEL, VBUS, PMID, and DISP_EN are still open. No VBUS on the dock.
+
+### Archives
+reports/PASS_BG.md
+
+## Pass-BH (2026-10-02) — VSYS, PSEL, display switch
+From Pass-BG: shorting=0 unc=22. The R_ISET–C_BTST gap was 0.40 mm. EPD_BUSY_R at x=107.60 left a 0.37 mm slot beside the west stubs.
+
+### KEEP
+`C_BTST` `(111.25, 86.95)`, `R_ISET` `(110.5, 85.3)` rot 90. One `VSYS` track joins U3 pin 3 to `L_SYS` pin 2. Cap pads get short extensions back onto BTST and SW. `EPD_BUSY_R` F.Cu wall moves to x=107.48. `PSEL` uses the single slot at x=107.81 and reaches `R_ISET` pin 2. `R_LSCTRL` moves to `(86.3, 93.438)` rot 90; stubs are retargeted onto Q1 pin 1 (`DISP_EN`) and, around the south of Q1, onto Q1 pin 2 (`3V3`). Q1 pin 3 reaches via `(89.20, 89.55)`. DRC before: 855 violations, unc 22, shorting 0, hole0 98. After: 857 violations, unc 17, shorting 0, hole0 98. A REGN path the flat-cap checker accepted measured 0.051 mm to BTST and crossed VSYS; it was not written. Two clearance lines that showed up are existing `nRESET`/`SDA` copper, not the new tracks. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=17 shorting=0. SCL/SDA still need a second slot or a BUSY path that does not use x=107.48. REGN does not fit beside VSYS. VBUS, PMID, and SW have no legal F.Cu exit. Q1 `3V3` is not on the module rail. No VBUS on the dock.
+
+### Archives
+reports/PASS_BH.md
+
+## Pass-BI (2026-10-02) — Q1 source onto module 3V3
+From Pass-BH: shorting=0 unc=17. The gap between `nRESET` at y=90.15 and `EPD_BUSY_L` via `(90.20, 90.80)` was 0.335 mm.
+
+### KEEP
+`EPD_BUSY_L` via moved in place to `(90.20, 90.96)`. The F.Cu vertical now starts there, and the B.Cu track from `(105.90, 90.80)` ends on the via. `3V3` leaves Q1 pin 2 `(89.45, 93.80)`, crosses at y=90.49, and lands on the module rail at `(93.80, 96.30)`. A slide to y=91.15 measured 0.059 mm against B.Cu `3V3_DISP` and was not kept. DRC before: 857 violations, unc 17, shorting 0, hole0 98. After: 857 violations, unc 16, shorting 0, hole0 98. `PSEL` still owns x=107.81. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=16 shorting=0. VBUS, PMID, and SW still have no legal F.Cu exit. REGN still does not fit beside VSYS (a parallel track at y=86.05 is 0.150 mm from VSYS and then crosses BTST). SCL/SDA still need a second slot; do not take x=107.81. No VBUS on the dock.
+
+### Archives
+reports/PASS_BI.md
+
+## Pass-BJ (2026-10-02) — SW onto L_SYS
+From Pass-BI: shorting=0 unc=16. East stub copper ends at x=113.938. The old VSYS vertical at x=114.20 left no SW column.
+
+### KEEP
+`L_SYS` moved to `(115.50, 91.50)` rot 90. SW runs y=88.48 then x=114.58 into the south pad `(115.25, 92.48)`. VSYS reaches the north pad at x=114.95 after a jog at y=88.05. East VSYS stubs bypass south to y=93.60 and return at x=116.42. New segments were appended after the PMID via. An earlier insert before that via promoted `nRESET_POGO` vs `3V3` to shorting and was not kept. Moving the `3V3_DISP` via to `(116.10, 89.50)` added a B GND hole-clearance actual 0.000 and split the B run at y=82.40; reverted. DRC before: 857 violations, unc 16, shorting 0, hole0 98. After: 858 violations, unc 15, shorting 0, hole0 98. The extra violation is two existing `tracks_crossing` pairs (`TS`/`ILIM`, `EPD_SCK`/`EPD_MOSI`) and one clearance line that left the report. `EPD_BUSY_L` stays `(90.20, 90.96)`. `PSEL` still owns x=107.81. `SW_DBG` stays `(90.50, 105.50)`. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. VBUS and PMID still have no F.Cu exit: the BUSY_R/PSEL gap is 0.165 mm, and the R_ISET/VSYS channel holds one track. The south SW via `(115.00, 104.50)` is still open. REGN still does not fit beside VSYS. SCL/SDA still need a second slot. No VBUS on the dock.
+
+### Archives
+reports/PASS_BJ.md
+
+## Pass-BK (2026-10-02) — VBUS/PMID placement, no KEEP
+From Pass-BJ: shorting=0 unc=15. Board file unchanged.
+
+### No KEEP
+VBUS F pocket x=108.2–110.6, y=86.3–89.9. Walls: EPD_CS_R via (108.80, 88.00), PSEL x=108.11 and x=107.81, C_BTST, PMID stub, VSYS y=86.35, the QFN. Dropping C_BTST / R_ISET / R_VSYS pads does not connect it to (108.12, 102.40). Dropping PSEL and EPD_BUSY_R F tracks does (x≈107.75 south), and PSEL then cannot reach R_ISET. BUSY/PSEL copper gap is 0.165 mm; a 0.15 mm track needs 0.45 mm. A 0.45 via does not fit the widened slot. F+B via-pair search: none. Pour openings ≥0.40 mm from B, In1, and In2 with via room: one point (111.00, 104.25), 0.057 mm from the PMID via. PMID pocket x=108.5–110.5, y=86.5–89.25 still misses (111.35, 103.85). No pour slit cut. L_SYS, the SW column, the VSYS return, and the 3V3_DISP via were not moved.
+
+### Next
+unc=15 shorting=0. VBUS, PMID, south SW via (115.00, 104.50), REGN, SCL/SDA. No VBUS on the dock.
+
+### Archives
+reports/PASS_BK.md
+
+## Pass-BL (2026-10-02) — island re-place, no KEEP
+From Pass-BK: shorting=0 unc=15. Board file unchanged.
+
+### No KEEP
+Studied U2 at `(109.00, 96.00)` rotation 180 so VBUS pin 24 `(110.25, 97.938)` and PMID pin 23 `(109.75, 97.938)` face the caps. South edge y=98.35. Pad gap to foreign copper 0.360 mm with the old island ignored; the BUSY vias at `(109.80, 99.25)` are 0.60 mm south of the pads. Rotation 90/270 still shorts pads. Rotation 0 leaves the Pass-BK north pocket.
+
+West VBUS w=0.18 `(110.25, 97.938)–(110.25, 98.650)–(108.12, 98.650)–(108.12, 102.400)` clears pads by 0.210–0.285 mm and hits the `EPD_BUSY_R` diagonal. That diagonal has no remaining path to its via once the west run is reserved. Straight VBUS w=0.25 at x=110.25 clears the PMID pad by 0.250 mm only if `EPD_CS_R` y=100.25, `EPD_BUSY_R` y=101.75, and GND y=102.01 are removed. Strap search then fails (CS_R 792 cells, BUSY 491 cells).
+
+PMID through a gap in the bar is 0.210 mm clear to `C_PMID`, and that gap disconnects `C_IN`. Bridge search from `(109.15, 102.90)` to `(110.40, 102.90)`: none (560 cells at 0.20 mm, 723 at 0.10 mm). With the bar intact the PMID flood stops at x=110.0, y=102.44. No B.Cu slit cut. `L_SYS`, `Q1`, `SW_DBG`, `EPD_BUSY_L`, the `3V3_DISP` via, and the PMID via were not moved. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. VBUS and PMID still cannot share F.Cu. South SW via `(115.00, 104.50)`, REGN, SCL/SDA unchanged. No VBUS on the dock.
+
+### Archives
+reports/PASS_BL.md
+
+## Pass-BM (2026-10-02) — VBUS/PMID routes, reverted
+From Pass-BL: shorting=0 unc=15. Board file restored. No KEEP.
+
+### Trial, not kept
+VBUS hops B between vias (109.75, 87.25) and (107.65, 87.42), both 0.45/0.20. B run stays at y=87.25. F returns at x=107.65 to the bar (108.12, 102.40). PMID stays on F: y=86.75 to x=108.20, south to 101.55, east to x=109.30, y=102.40 to x=111.15, into the PMID via. Strap EPD_BUSY_R horizontal and vertical were kept. Centerline check used a 0.16 mm margin. West via at y=87.50 was 0.138 mm from the 3V3 corner; y=87.42 clears by 0.195 mm.
+
+PSEL through (108.11, 86.30), the BUSY wall and diagonal, and the SCL/SDA west stubs were parked. GND y=102.01 was shortened to start at x=111.70. PSEL tail to R_ISET stayed. Notch: r=0.50 stadium spur on B and In1, bridge 0.316 mm, area drop 2.74 mm² each. In2 is outside. Hole0 vs a zone stayed 98 with the notch and rose to 102 without it.
+
+DRC on the trial: 863 violations, unc 15, shorting 2. VBUS and PMID left the unconnected list. PSEL and EPD_BUSY_R each added an island, so unc did not fall. shorting_items were the existing nRESET_POGO pad vs 3V3 (96.50, 107.75)–(92.00, 105.50), and EPD_MOSI via (85.35, 97.80) vs EPD_SCK at x=85.00. Moving VBUS stubs together with both PSEL and BUSY is enough to promote the nRESET pair. One family alone stays at shorting 0. PSEL has no third F lane. BUSY flood stops at x=107.2, y=102.0. No 0.45 via fits between PMID x=108.20 and B EPD_CS_R x=108.80. REGN, SCL/SDA, and the south SW via did not open. Board restored. U2 stays rot 0. No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. The VBUS B hop and the PMID F run are legal and were not kept. A keep needs those routes without promoting the two latent overlaps, and one more close so unc falls. South SW via (115.00, 104.50), REGN, SCL/SDA unchanged.
+
+### Archives
+reports/PASS_BM.md
+
+## Pass-BN (2026-10-03) — VBUS and PMID kept
+From Pass-BM: shorting=0 unc=15. The two promoted overlaps were real. They were separated first, then the corridor was routed.
+
+### KEEP
+3V3 diagonal parked onto (96.50, 108.30)–(96.50, 108.60). East island stitches through In2 via (96.50, 107.75) 0.50/0.30. B and In1 circles r=0.50, bridge 0.527 mm, drop 0.79 mm². EPD_MOSI via (85.35, 97.80) shrunk 0.60/0.30 to 0.50/0.30, gap to EPD_SCK +0.010 mm. Parking both blocker families then leaves shorting at 0.
+
+VBUS: F to (109.75, 87.25), B hop to (107.65, 87.42), F x=107.65 to the bar (108.12, 102.40). PMID on F into (111.35, 103.85). Width 0.20 on the runs, 0.18 on the four QFN exits. Vias 0.45/0.20. Notch is a union into the existing EPD_CS_R hole, not a spur: track stadium 0.31 mm, via circles 0.45 mm, area drop 2.223 mm² on B and In1. A r=0.50 spur put (108.80, 88.00) at clearance 0.000 and was not kept. GND y=102.01 now starts at x=111.70.
+
+DRC: 858→853 violations, unc 15, shorting 0, hole0 stays 98. VBUS and PMID left the unconnected list. PSEL and EPD_BUSY_R have no 0.16 mm path on F or B, so each opened an island and unc did not fall. U2 stays rot 0. SW_DBG stays (90.50, 105.50). No VBUS on the dock.
+
+### Next
+unc=15 shorting=0. Still open: VBAT, VSYS, EPD_BUSY_R, SDA, SCL, PMIC_INT, TS, SW, PSEL, REGN. South SW via (115.00, 104.50) unchanged.
+
+### Archives
+reports/PASS_BN.md
+
